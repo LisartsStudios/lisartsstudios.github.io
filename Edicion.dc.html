@@ -14,6 +14,13 @@ a{color:#FF7A5C}a:hover{color:#FFA48C}
 html{scroll-behavior:smooth}
 @keyframes entrar{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .entra{animation:entrar .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d)}
+.linea{position:relative;display:block;width:max-content;max-width:100%;white-space:nowrap;padding:0 .04em}
+.linea .txt{display:inline-block;clip-path:inset(0 100% 0 0);animation:revTxt .5s cubic-bezier(.7,0,.2,1) forwards;animation-delay:calc(var(--d) + .55s)}
+.linea .bloque{position:absolute;left:0;right:0;top:12%;bottom:8%;border-radius:6px;transform-origin:100% 50%;animation:bloque 1.05s cubic-bezier(.7,0,.2,1) both;animation-delay:var(--d)}
+@keyframes bloque{0%{transform:translateX(-105%) scaleX(1)}50%{transform:translateX(0) scaleX(1)}100%{transform:translateX(0) scaleX(0)}}
+@keyframes revTxt{to{clip-path:inset(0 -5% 0 0)}}
+.cabezal-h{position:absolute;top:2%;bottom:-2%;left:0;width:3px;background:#FF7A5C;opacity:0;pointer-events:none;animation:barrido 6s cubic-bezier(.45,0,.55,1) infinite;animation-delay:2.2s}
+@keyframes barrido{0%{left:-2%;opacity:0}4%{opacity:1}36%{left:100%;opacity:1}40%,100%{left:100%;opacity:0}}
 @keyframes salto{0%,38%{transform:none;color:inherit}39%{transform:translate(.06em,-.05em);color:#FF7A5C}46%{transform:translate(-.03em,.02em);color:inherit}47%,78%{transform:none}79%{transform:translate(-.05em,0);color:#FFD23F}84%,100%{transform:none;color:inherit}}
 .mitad-d{animation:salto 3.2s steps(1,end) infinite;animation-delay:.9s}
 @keyframes navaja{0%,30%{left:-4%;opacity:0}32%{opacity:1}40%{left:52%}46%{left:52%;opacity:1}52%,100%{left:52%;opacity:0}}
@@ -47,7 +54,7 @@ html{scroll-behavior:smooth}
 .onda{display:block;height:34px;min-width:84px;border-radius:6px;background-color:#0E3A33;background-image:repeating-linear-gradient(90deg,#5EE6A8 0 2px,transparent 2px 5px);-webkit-mask-image:linear-gradient(180deg,transparent 0 18%,#000 18% 82%,transparent 82%),repeating-linear-gradient(90deg,#000 0 30px,rgba(0,0,0,.5) 30px 44px);mask-image:linear-gradient(180deg,transparent 0 18%,#000 18% 82%,transparent 82%)}
 @keyframes tira{from{transform:scaleY(1)}to{transform:scaleY(0)}}
 .tiras span{flex:1 1 0;background:#FF7A5C;transform-origin:50% 0;animation:tira .55s cubic-bezier(.7,0,.2,1) both;animation-delay:calc(var(--i) * 60ms + .1s)}
-@media (prefers-reduced-motion:reduce){.entra,.mitad-d,.navaja,.rec,.beat,.corta,.cuchilla,.rueda,.bota{animation:none}.navaja{display:none}.cl{opacity:1;animation:none}.toma{animation:none}.toma:first-child{opacity:1}.btn,.clip,.bin{transition:none}.tiras{display:none}}
+@media (prefers-reduced-motion:reduce){.linea .txt{animation:none;clip-path:none}.linea .bloque,.cabezal-h{display:none}.entra,.mitad-d,.navaja,.rec,.beat,.corta,.cuchilla,.rueda,.bota{animation:none}.navaja{display:none}.cl{opacity:1;animation:none}.toma{animation:none}.toma:first-child{opacity:1}.btn,.clip,.bin{transition:none}.tiras{display:none}}
 </style>
 
 </head>
@@ -71,12 +78,10 @@ html{scroll-behavior:smooth}
 <section style="max-width: 1200px; margin: 0 auto; padding: 44px 24px 36px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center">
 <div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
 <p class="entra" style="--d: 0s; margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #8FC3CB">SECCIÓN 03 / 05 · SECUENCIA_01</p>
-<h1 aria-label="Edición de video" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(54px, 9vw, 124px); line-height: 0.92; letter-spacing: -0.035em; color: #FFFFFF">
-<span aria-hidden="true" style="position: relative; display: inline-block; white-space: nowrap">
-<span style="clip-path: inset(0 48% 0 0); display: inline-block">Edición</span><span class="mitad-d" style="position: absolute; left: 0; top: 0; clip-path: inset(0 0 0 52%); display: inline-block">Edición</span>
-<span class="navaja" style="position: absolute; top: -6%; bottom: -6%; width: 4px; background: #FF7A5C; box-shadow: 0 0 0 3px rgba(255,122,92,0.25)"></span>
-</span>
-<span aria-hidden="true" style="display: block; white-space: nowrap; color: #FF7A5C"><sc-for list="{{t2}}" as="l" hint-placeholder-count="8"><span class="cl" style="--i: {{l.i}}">{{l.c}}</span></sc-for></span>
+<h1 aria-label="Edición de video" style="position: relative; margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(54px, 9vw, 124px); line-height: 0.95; letter-spacing: -0.035em; color: #FFFFFF">
+<span aria-hidden="true" class="linea" style="--d: .2s"><span class="txt">Edición</span><span class="bloque" style="background: #FF7A5C"></span></span>
+<span aria-hidden="true" class="linea" style="--d: .55s; color: #FF7A5C"><span class="txt">de video</span><span class="bloque" style="background: #FFD23F"></span></span>
+<span aria-hidden="true" class="cabezal-h"><span style="position: absolute; top: -26px; left: 50%; transform: translateX(-50%); padding: 2px 7px; border-radius: 5px; background: #FF7A5C; color: #071F24; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0; white-space: nowrap">00:00:01:12</span></span>
 </h1>
 <p class="entra" style="--d: .9s; margin: 0; font-family: Caveat, cursive; font-size: 32px; color: #FFD23F; transform: rotate(-2deg); align-self: flex-start">ritmo, corte y una historia en segundos</p>
 <p class="entra" style="--d: 1s; margin: 0; font-size: 18px; line-height: 1.55; color: #B9D6DB; max-width: 580px">Edito contenido para redes de marcas y clubes: reels verticales con ritmo, textos que acompañan el corte y piezas pensadas para que se vean hasta el final.</p>
