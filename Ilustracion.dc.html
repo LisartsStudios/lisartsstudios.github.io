@@ -7,42 +7,44 @@
 <meta name="description" content="Lisandro Martínez Mendoza · Lisarts Studios — Animación 2D/3D, Motion Graphics, Edición de video, Visualizers e Ilustración.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#071F24}
-a{color:#22C3D6}a:hover{color:#7FE3EE}
+a{color:#5EE6A8}a:hover{color:#9FF2CB}
 html{scroll-behavior:smooth}
-@keyframes letra{from{opacity:0;transform:translateY(.5em) rotate(10deg)}to{opacity:1;transform:none}}
-@keyframes salta{0%,100%{transform:translateY(0)}50%{transform:translateY(-.08em)}}
-.l{display:inline-block;animation:letra .7s cubic-bezier(.2,.9,.3,1.3) both,salta 2.6s ease-in-out infinite;animation-delay:calc(var(--i) * 55ms),calc(var(--i) * 120ms + .8s);transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
-.l:hover{transform:translateY(-14px) rotate(-8deg)}
-@keyframes salto{0%{transform:translateY(0);animation-timing-function:cubic-bezier(.22,.61,.36,1)}50%{transform:translateY(-150px);animation-timing-function:cubic-bezier(.55,0,.78,.39)}100%{transform:translateY(0)}}
-@keyframes squash{0%,100%{transform:scale(1.28,.72)}7%,93%{transform:scale(.88,1.14)}20%,80%{transform:scale(1,1)}}
-@keyframes sombra{0%,100%{transform:scale(1);opacity:.45;animation-timing-function:cubic-bezier(.22,.61,.36,1)}50%{transform:scale(.4);opacity:.15;animation-timing-function:cubic-bezier(.55,0,.78,.39)}}
-.pelota{animation:salto 1s infinite}
-.squash{display:block;width:100%;height:100%;border-radius:50%;transform-origin:50% 100%;animation:squash 1s linear infinite}
-.sombra{animation:sombra 1s infinite}
-@keyframes revela{from{clip-path:circle(150% at 50% 50%)}to{clip-path:circle(0% at 50% 50%)}}
-.revela{animation:revela .8s cubic-bezier(.7,0,.2,1) .1s both}
-@keyframes cinta{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.cinta{animation:cinta 34s linear infinite}
-.tira:hover .cinta,.tira:focus-within .cinta{animation-play-state:paused}
-.cuadro{transition:transform .3s cubic-bezier(.3,1.5,.5,1)}
-.cuadro:hover,.cuadro:focus-visible{transform:scale(1.06) rotate(-1.5deg)}
-@keyframes pulso{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
-.play{animation:pulso 1.8s ease-in-out infinite}
-@keyframes flota{0%,100%{translate:0 0;rotate:-6deg}50%{translate:0 -10px;rotate:4deg}}
-.sticker{animation:flota 4.2s ease-in-out infinite}
-.sticker.s2{animation-delay:-1.4s;animation-duration:5s}.sticker.s3{animation-delay:-2.6s}
-@keyframes bota{0%,100%{translate:0 0}45%{translate:0 -8px}60%{translate:0 -5px}}
-.bota{animation:bota 3.2s ease-in-out infinite}
-.bota:nth-child(2n){animation-delay:-.8s}.bota:nth-child(3n){animation-delay:-1.7s}
-@keyframes escribir{0%{clip-path:inset(-20% 100% -20% 0)}50%,85%{clip-path:inset(-20% 0 -20% 0);opacity:1}95%{opacity:0}100%{clip-path:inset(-20% 100% -20% 0);opacity:0}}
-.escribe{display:inline-block;animation:escribir 5s cubic-bezier(.45,.05,.55,.95) infinite}
-@keyframes abrir{from{opacity:0;transform:scale(.9) translateY(20px)}to{opacity:1;transform:none}}
-.abre{animation:abrir .45s cubic-bezier(.2,1.2,.4,1) both}
+@keyframes entrar{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.entra{animation:entrar .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d)}
+.titulo-l{position:relative;display:block;width:max-content;max-width:100%;white-space:nowrap}
+.boceto{color:transparent;-webkit-text-stroke:1.5px var(--c);animation:tiembla .5s steps(1,end) infinite}
+@keyframes tiembla{0%{transform:translate(0,0)}25%{transform:translate(.6px,-.5px)}50%{transform:translate(-.5px,.4px)}75%{transform:translate(.4px,.6px)}}
+.tinta{position:absolute;left:0;top:0;color:var(--c);clip-path:inset(0 100% 0 0);animation:entinta 1.1s cubic-bezier(.7,0,.2,1) forwards;animation-delay:var(--d)}
+@keyframes entinta{to{clip-path:inset(0 -4% 0 0)}}
+.punta{position:absolute;top:8%;bottom:8%;width:3px;border-radius:2px;background:#FFD23F;left:0;opacity:0;animation:punta 1.1s cubic-bezier(.7,0,.2,1) forwards;animation-delay:var(--d)}
+@keyframes punta{0%{left:0;opacity:1}95%{opacity:1}100%{left:100%;opacity:0}}
+.trazo{stroke-dasharray:var(--l);stroke-dashoffset:var(--l);animation:dibuja 7.5s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes dibuja{0%{stroke-dashoffset:var(--l)}22%,82%{stroke-dashoffset:0}92%,100%{stroke-dashoffset:var(--l)}}
+.relleno{opacity:0;animation:rellena 7.5s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes rellena{0%,24%{opacity:0}34%,80%{opacity:1}90%,100%{opacity:0}}
+@keyframes cuelga{0%,100%{transform:rotate(var(--r))}50%{transform:rotate(calc(var(--r) * -0.4))}}
+.vineta{animation:cuelga 6s ease-in-out infinite;transform-origin:50% -10px}
+.hoja{all:unset;box-sizing:border-box;cursor:zoom-in;display:block;width:100%;margin:0 0 22px;break-inside:avoid;position:relative;padding:8px 8px 34px;background:#F2F7F8;border-radius:3px;box-shadow:0 10px 24px rgba(0,0,0,.35);transform:rotate(var(--r));transition:transform .35s cubic-bezier(.3,1.5,.5,1),box-shadow .35s}
+.hoja:hover,.hoja:focus-visible{transform:rotate(0) translateY(-6px) scale(1.03);box-shadow:0 22px 40px rgba(0,0,0,.45);z-index:2}
+.hoja:focus-visible{outline:3px solid #5EE6A8;outline-offset:4px}
+.hoja img{display:block;width:100%;height:auto;background:#0B2E35}
+.hoja .cinta{position:absolute;top:-10px;left:50%;width:74px;height:22px;margin-left:-37px;background:rgba(94,230,168,.55);transform:rotate(calc(var(--r) * -2));box-shadow:0 1px 2px rgba(0,0,0,.15)}
+.mesa{columns:4 220px;column-gap:26px}
+@keyframes colorA{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes colorB{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.capa-color.pa{animation:colorA 1.4s cubic-bezier(.6,0,.2,1) .35s both}.capa-color.pb{animation:colorB 1.4s cubic-bezier(.6,0,.2,1) .35s both}
+@keyframes lapizA{0%{left:0;opacity:1}96%{opacity:1}100%{left:100%;opacity:0}}
+@keyframes lapizB{0%{left:0;opacity:1}96%{opacity:1}100%{left:100%;opacity:0}}
+.lapiz-v{position:absolute;top:0;bottom:0;width:3px;background:#FFD23F;box-shadow:0 0 14px #FFD23F;opacity:0}.lapiz-v.pa{animation:lapizA 1.4s cubic-bezier(.6,0,.2,1) .35s both}.lapiz-v.pb{animation:lapizB 1.4s cubic-bezier(.6,0,.2,1) .35s both}
+@keyframes abre{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.visor{animation:abre .3s ease-out both}
 .btn{transition:transform .25s cubic-bezier(.3,1.6,.5,1)}.btn:hover,.btn:focus-visible{transform:translateY(-3px) rotate(-1.5deg)}
-@media (prefers-reduced-motion:reduce){.l,.pelota,.squash,.sombra,.cinta,.play,.sticker,.bota,.escribe,.abre{animation:none}.tira{overflow-x:auto}.revela{display:none}}
+@keyframes cortina{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+.cortina span{flex:1 1 0;background:#5EE6A8;transform-origin:0 50%;animation:cortina .6s cubic-bezier(.7,0,.2,1) both;animation-delay:calc(var(--i) * 70ms + .1s)}
+@media (prefers-reduced-motion:reduce){.entra,.boceto,.trazo,.relleno,.vineta,.capa-color,.lapiz-v,.visor{animation:none}.trazo{stroke-dashoffset:0}.relleno{opacity:1}.tinta{animation:none;clip-path:none}.punta,.lapiz-v,.cortina{display:none}.hoja,.btn{transition:none}}
 </style>
 
 </head>
@@ -50,169 +52,220 @@ html{scroll-behavior:smooth}
 <div id="dc-root"></div>
 <template id="dc-tpl">
 
-<div style="font-family: Inter, system-ui, sans-serif; color: #E8F4F6; background: #071F24; min-height: 100vh; overflow-x: clip">
+<div style="font-family: Inter, system-ui, sans-serif; color: #E8F4F6; background: #071F24; position: relative; isolation: isolate; min-height: 100vh; overflow-x: clip">
+
+<div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; pointer-events: none; background-image: linear-gradient(rgba(94,230,168,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(94,230,168,0.06) 1px, transparent 1px); background-size: 32px 32px"></div>
 
 <div style="position: sticky; top: 0; z-index: 100; background: {{barraFondo}}; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid {{barraBorde}}; transition: background .3s ease, border-color .3s ease">
 <header style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between">
-<a href="Main.dc.html" class="btn" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px; background: #E8F4F6; color: #071F24; text-decoration: none; font-weight: 600; font-size: 14px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Volver a las secciones</a>
+<a href="Main.dc.html" class="btn" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px; background: #E8F4F6; color: #071F24; text-decoration: none; font-weight: 600; font-size: 14px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Volver al inicio</a>
 <nav aria-label="Secciones" style="display: flex; flex-wrap: wrap; gap: 4px; font-size: 14px">
-<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
-<a href="{{t.href}}" style="{{t.estilo}}">{{t.label}}</a>
-</sc-for>
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5"><a href="{{t.href}}" style="{{t.estilo}}">{{t.label}}</a></sc-for>
 </nav>
 </header>
 </div>
 
-<section style="max-width: 1200px; margin: 0 auto; padding: 36px 24px 24px; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-end; justify-content: space-between">
-<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
-<p style="margin: 0; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: #8FC3CB">Sección {{num}} / 05</p>
-<h1 aria-label="{{titulo}}" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(48px, 8vw, 112px); line-height: 0.95; letter-spacing: -0.03em; color: #FFFFFF"><sc-for list="{{letras}}" as="l" hint-placeholder-count="10"><span class="l" aria-hidden="true" style="--i: {{l.i}}; color: {{l.color}}">{{l.c}}</span></sc-for></h1>
-<p style="margin: 0; font-family: Caveat, cursive; font-size: 30px; color: {{accent}}; transform: rotate(-2deg); align-self: flex-start">{{bajada}}</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.55; color: #B9D6DB; max-width: 620px">{{desc}}</p>
+<section style="max-width: 1200px; margin: 0 auto; padding: 44px 24px 28px; display: flex; flex-wrap: wrap; gap: 36px; align-items: center">
+<div style="flex: 3 1 500px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<p class="entra" style="--d: 0s; margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #8FC3CB">SECCIÓN 05 / 05 · DEL BOCETO AL COLOR</p>
+<h1 aria-label="Ilustración y Storyboard" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(48px, 7.6vw, 104px); line-height: 1; letter-spacing: -0.03em">
+<span aria-hidden="true" class="titulo-l" style="--c: #FFFFFF; --d: .3s"><span class="boceto">Ilustración</span><span class="tinta">Ilustración</span><span class="punta"></span></span>
+<span aria-hidden="true" class="titulo-l" style="--c: #5EE6A8; --d: 1.1s"><span class="boceto">y Storyboard</span><span class="tinta">y Storyboard</span><span class="punta"></span></span>
+</h1>
+<p class="entra" style="--d: 1.6s; margin: 0; font-family: Caveat, cursive; font-size: 32px; color: #FFD23F; transform: rotate(-2deg); align-self: flex-start">la idea, antes de moverse</p>
+<p class="entra" style="--d: 1.7s; margin: 0; font-size: 18px; line-height: 1.55; color: #B9D6DB; max-width: 580px">Fondos, concept art, diseño de personajes, layouts y storyboard: el desarrollo visual que define cómo se ve y cómo se cuenta una pieza animada antes de producirla.</p>
+<div class="entra" style="--d: 1.8s; display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="4"><span style="padding: 9px 16px; border-radius: 999px; border: 1.5px solid #3E6E76; font-size: 14px; font-weight: 500">{{t}}</span></sc-for>
 </div>
-<div aria-hidden="true" style="flex: 1 1 260px; display: flex; justify-content: center; position: relative; height: 240px">
-<div style="position: absolute; bottom: 20px; width: 220px; height: 3px; border-radius: 3px; background: #164650"></div>
-<div class="sombra" style="position: absolute; bottom: 14px; width: 80px; height: 14px; border-radius: 50%; background: #000000"></div>
-<div class="pelota" style="position: absolute; bottom: 22px; width: 70px; height: 70px"><span class="squash" style="background: {{accent}}"></span></div>
-<span style="position: absolute; top: 0; right: 0; font-family: Caveat, cursive; font-size: 20px; color: #8FC3CB; transform: rotate(6deg)">squash &amp; stretch ✶</span>
+</div>
+<div aria-hidden="true" style="flex: 1 1 400px; min-width: 0; display: flex; flex-direction: column; gap: 14px; align-items: center">
+<div style="display: flex; gap: 10px; width: 100%; max-width: 420px">
+<div class="vineta" style="--r: -2deg; flex: 1 1 0; display: flex; flex-direction: column; gap: 4px">
+<svg viewBox="0 0 160 90" style="width: 100%; height: auto; background: #F2F7F8; border: 2px solid #071F24; outline: 2px solid #3E6E76">
+<rect class="relleno" style="--d: .2s" x="0" y="0" width="160" height="90" fill="#13285A"></rect>
+<path class="trazo" style="--l: 260; --d: 0s" d="M0 70 Q60 50 160 66" fill="none" stroke="#071F24" stroke-width="2"></path>
+<path class="trazo" style="--l: 140; --d: .4s" d="M70 56 L70 42 L80 32 L90 42 L90 54" fill="none" stroke="#071F24" stroke-width="2"></path>
+<path class="trazo" style="--l: 200; --d: .7s" d="M20 66 L26 50 L32 66 M120 62 L127 44 L134 62 M136 64 L142 50 L148 64" fill="none" stroke="#071F24" stroke-width="2"></path>
+<circle class="trazo" style="--l: 40; --d: 1s" cx="130" cy="18" r="6" fill="none" stroke="#071F24" stroke-width="2"></circle>
+</svg>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #8FC3CB">ESC 1 · PG</span>
+</div>
+<div class="vineta" style="--r: 1.5deg; flex: 1 1 0; display: flex; flex-direction: column; gap: 4px">
+<svg viewBox="0 0 160 90" style="width: 100%; height: auto; background: #F2F7F8; border: 2px solid #071F24; outline: 2px solid #3E6E76">
+<rect class="relleno" style="--d: 1.4s" x="0" y="0" width="160" height="90" fill="#13285A"></rect>
+<path class="trazo" style="--l: 300; --d: 1.2s" d="M30 90 L30 40 L80 12 L130 40 L130 90" fill="none" stroke="#071F24" stroke-width="2"></path>
+<rect class="relleno" style="--d: 1.6s" x="68" y="38" width="24" height="22" fill="#FFD23F"></rect>
+<rect class="trazo" style="--l: 100; --d: 1.5s" x="68" y="38" width="24" height="22" fill="none" stroke="#071F24" stroke-width="2"></rect>
+<path class="trazo" style="--l: 140; --d: 1.8s" d="M30 52 H130 M30 64 H130 M30 76 H130" fill="none" stroke="#071F24" stroke-width="1.5"></path>
+</svg>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #8FC3CB">ESC 1 · PM</span>
+</div>
+<div class="vineta" style="--r: -1deg; flex: 1 1 0; display: flex; flex-direction: column; gap: 4px">
+<svg viewBox="0 0 160 90" style="width: 100%; height: auto; background: #F2F7F8; border: 2px solid #071F24; outline: 2px solid #3E6E76">
+<rect class="relleno" style="--d: 2.6s" x="0" y="0" width="160" height="90" fill="#13285A"></rect>
+<circle class="relleno" style="--d: 2.8s" cx="80" cy="45" r="28" fill="#DCE6F2"></circle>
+<circle class="trazo" style="--l: 180; --d: 2.4s" cx="80" cy="45" r="28" fill="none" stroke="#071F24" stroke-width="2"></circle>
+<path class="trazo" style="--l: 60; --d: 2.8s" d="M66 36 a5 5 0 1 0 1 0 M90 52 a7 7 0 1 0 1 0" fill="none" stroke="#071F24" stroke-width="1.5"></path>
+<path class="trazo" style="--l: 60; --d: 3s" d="M12 20 l4 4 M140 70 l4 -4 M146 16 l3 3" fill="none" stroke="#071F24" stroke-width="2"></path>
+</svg>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #8FC3CB">ESC 1 · PP</span>
+</div>
+</div>
+<span style="font-family: Caveat, cursive; font-size: 24px; color: #5EE6A8; transform: rotate(-2deg)">plano general → medio → primer plano</span>
 </div>
 </section>
 
-<section style="max-width: 1200px; margin: 0 auto; padding: 8px 24px 24px">
-<div style="display: flex; flex-wrap: wrap; gap: 8px">
-<sc-for list="{{tools}}" as="t" hint-placeholder-count="4"><span class="bota" style="padding: 9px 16px; border-radius: 999px; border: 1.5px solid #3E6E76; font-size: 14px; font-weight: 500">{{t}}</span></sc-for>
+<section aria-label="Mesa de luz" style="max-width: 1200px; margin: 0 auto; padding: 24px 24px 16px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; align-items: baseline">
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(36px, 5.4vw, 68px); line-height: 1; letter-spacing: -0.02em; color: #FFFFFF">La mesa de dibujo</h2>
+<p style="margin: 0; font-family: Caveat, cursive; font-size: 26px; color: #FFD23F; transform: rotate(-2deg)">abrí una hoja y mirá cómo pasa del lápiz al color</p>
 </div>
-</section>
-
-<section aria-label="Trabajos" style="position: relative; padding: 56px 0 40px; display: flex; flex-direction: column; gap: 22px">
-<div style="max-width: 1200px; width: 100%; margin: 0 auto; padding: 0 24px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; align-items: baseline">
-<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(34px, 5vw, 60px); line-height: 1; letter-spacing: -0.02em; color: #FFFFFF">Trabajos</h2>
-<p style="margin: 0; font-family: Caveat, cursive; font-size: 24px; color: {{accent}}; transform: rotate(-2deg)">tocá un cuadro para verlo ↓</p>
+<div role="group" aria-label="Carpetas" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{carpetas}}" as="c" hint-placeholder-count="5"><button type="button" class="btn" onClick="{{c.elegir}}" aria-pressed="{{c.on}}" style="min-height: 44px; padding: 0 16px; border-radius: 10px 10px 4px 4px; border: 1.5px solid {{c.borde}}; background: {{c.fondo}}; color: {{c.texto}}; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{c.n}} <span style="opacity: .65; font-family: 'JetBrains Mono', monospace; font-size: 12px">{{c.cant}}</span></button></sc-for>
 </div>
-<sc-for list="{{stickers}}" as="k" hint-placeholder-count="2">
-<div class="sticker {{k.cls}}" aria-hidden="true" style="position: absolute; z-index: 5; pointer-events: none; {{k.pos}}; width: 128px; height: 128px; border-radius: 50%; background: {{k.bg}}; color: #071F24; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-shadow: 0 14px 30px rgba(0,0,0,0.35)"><span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px; line-height: 1">{{k.big}}</span><span style="font-size: 12px; max-width: 80%; line-height: 1.2">{{k.small}}</span></div>
-</sc-for>
-<div class="tira" style="background: #020B0D; padding: 22px 0; position: relative">
-<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 6px; height: 10px; background-image: repeating-linear-gradient(90deg, #2A4A50 0 14px, transparent 14px 30px)"></div>
-<div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 6px; height: 10px; background-image: repeating-linear-gradient(90deg, #2A4A50 0 14px, transparent 14px 30px)"></div>
-<div class="cinta" style="display: flex; gap: 14px; width: max-content; padding: 0 7px; align-items: center">
-<sc-for list="{{cuadros}}" as="f" hint-placeholder-count="8">
-<button type="button" class="cuadro" onClick="{{f.abrir}}" tabindex="{{f.tab}}" aria-hidden="{{f.oculto}}" aria-label="Ver {{f.titulo}}" style="all: unset; cursor: pointer; flex: none; width: {{frameW}}; display: flex; flex-direction: column; gap: 8px; padding: 8px; border-radius: 10px; background: #0B2E35; box-sizing: border-box">
-<span style="position: relative; aspect-ratio: {{ratio}}; border-radius: 6px; background: {{f.fondo}}; display: flex; align-items: center; justify-content: center; overflow: hidden">
-<span style="position: absolute; left: 8px; top: 8px; font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 0.1em; color: #071F24; background: rgba(232,244,246,0.85); padding: 2px 8px; border-radius: 999px">{{f.tag}}</span>
-<span class="play" style="width: 52px; height: 52px; border-radius: 50%; background: #071F24; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="{{accent}}"><path d="M8 5v14l11-7z"></path></svg></span>
-</span>
-<span style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; color: #FFFFFF; padding: 0 4px">{{f.titulo}}</span>
+<div class="mesa" style="padding-top: 14px">
+<sc-for list="{{hojas}}" as="h" hint-placeholder-count="12">
+<button type="button" class="hoja" onClick="{{h.abrir}}" aria-label="Ver {{h.titulo}}" style="--r: {{h.r}}">
+<span class="cinta" aria-hidden="true"></span>
+<img src="{{h.t}}" alt="{{h.titulo}}" loading="lazy">
+<span style="position: absolute; left: 10px; right: 10px; bottom: 8px; font-family: Caveat, cursive; font-size: 19px; color: #071F24; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: left">{{h.titulo}}</span>
 </button>
 </sc-for>
 </div>
-</div>
-<p style="max-width: 1200px; width: 100%; margin: 0 auto; padding: 0 24px; box-sizing: border-box; font-size: 13px; color: #8FC3CB">La cinta se frena cuando pasás el mouse por encima.</p>
 </section>
 
-<section style="max-width: 1200px; margin: 0 auto; padding: 40px 24px; display: flex; flex-direction: column; gap: 20px">
-<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(30px, 4vw, 44px); color: #FFFFFF">Qué puedo hacer por vos</h2>
-<div style="display: flex; flex-wrap: wrap; gap: 12px">
-<sc-for list="{{servicios}}" as="x" hint-placeholder-count="4">
-<span class="bota" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 22px; border-radius: 18px; background: #0B2E35; font-size: 17px; font-weight: 500"><span style="width: 12px; height: 12px; border-radius: 50%; background: {{accent}}"></span>{{x}}</span>
-</sc-for>
+<section aria-label="Stars in the City" style="max-width: 1200px; margin: 0 auto; padding: 40px 24px 16px">
+<div style="border-radius: 24px; background: #06191D; border: 1.5px solid #164650; padding: clamp(22px, 3vw, 36px); display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; gap: 14px 30px; justify-content: space-between; align-items: flex-end">
+<div style="display: flex; flex-direction: column; gap: 8px; max-width: 640px">
+<span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: #164650; color: #FFD23F; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>PROYECTO EN DESARROLLO · VISTA PREVIA</span>
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 3.4vw, 40px); font-weight: 700; color: #FFFFFF; line-height: 1.05">Stars in the City · dirección de arte</span>
+<span style="font-size: 16px; line-height: 1.55; color: #B9D6DB">Biblia de preproducción de mi cortometraje de tesis: desarrollo visual, diseño de personajes, fondos y color. Muestro una selección; el documento completo lo comparto en una reunión.</span>
+</div>
+<a class="btn" href="https://wa.me/5491158165994" style="min-height: 48px; padding: 0 20px; border-radius: 999px; background: #FFD23F; color: #071F24; font-weight: 700; display: inline-flex; align-items: center; text-decoration: none">Pedir la biblia completa</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 14px">
+<sc-for list="{{stars}}" as="s" hint-placeholder-count="4"><button type="button" class="btn" onClick="{{s.abrir}}" aria-label="Ver {{s.titulo}}" style="all: unset; box-sizing: border-box; cursor: zoom-in; display: flex; flex-direction: column; gap: 6px"><img src="{{s.t}}" alt="{{s.titulo}}" loading="lazy" style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; display: block; border: 1.5px solid #164650"><span style="font-size: 13px; color: #8FC3CB">{{s.titulo}}</span></button></sc-for>
+</div>
 </div>
 </section>
 
-<section style="padding: 32px 24px 64px">
-<div style="max-width: 1200px; margin: 0 auto; box-sizing: border-box; background: {{accent}}; color: #071F24; border-radius: 28px; padding: clamp(28px, 4vw, 52px); display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between">
+<section style="padding: 48px 24px 64px">
+<div style="max-width: 1200px; margin: 0 auto; box-sizing: border-box; background: #5EE6A8; color: #071F24; border-radius: 28px; padding: clamp(28px, 4vw, 52px); display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between">
 <div style="flex: 1 1 380px; display: flex; flex-direction: column; gap: 6px">
-<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.05">{{cta}}</h2>
-<p style="margin: 0; font-family: Caveat, cursive; font-size: 26px"><span class="escribe">armemos algo juntos</span></p>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.05">¿Tenés una idea? Dibujémosla.</h2>
+<p style="margin: 0; font-family: Caveat, cursive; font-size: 26px">concept art, personajes y storyboard</p>
 </div>
-<a class="btn" href="https://wa.me/5491158165994" style="background: #071F24; color: #FFFFFF; font-weight: 600; padding: 16px 26px; border-radius: 999px; text-decoration: none">Escribime por WhatsApp</a>
+<a class="btn" href="https://wa.me/5491158165994" style="background: #071F24; color: #FFFFFF; font-weight: 600; padding: 0 26px; min-height: 54px; display: inline-flex; align-items: center; border-radius: 999px; text-decoration: none">Escribime por WhatsApp</a>
+</div>
+<div style="max-width: 1200px; margin: 28px auto 0; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between">
+<a class="btn" href="MusicVisuals.dc.html" style="min-height: 48px; display: inline-flex; align-items: center; padding: 0 20px; border-radius: 999px; border: 1.5px solid #3E6E76; color: #FFFFFF; text-decoration: none; font-weight: 600">← Visualizers Musicales</a>
+<a class="btn" href="Main.dc.html#contacto" style="min-height: 48px; display: inline-flex; align-items: center; padding: 0 20px; border-radius: 999px; border: 1.5px solid #3E6E76; color: #FFFFFF; text-decoration: none; font-weight: 600">Contacto →</a>
 </div>
 </section>
-
-<nav aria-label="Anterior y siguiente" style="border-top: 1px solid #164650; padding: 18px 24px">
-<div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; font-weight: 600">
-<a href="{{prevHref}}" style="color: #B9D6DB; text-decoration: none; padding: 12px 0">← {{prevTitulo}}</a>
-<a href="{{nextHref}}" style="color: #FFFFFF; text-decoration: none; padding: 12px 0">{{nextTitulo}} →</a>
-</div>
-</nav>
 
 <sc-if value="{{hayVisor}}" hint-placeholder-val="{{ false }}">
-<div role="dialog" aria-modal="true" aria-label="{{visor.titulo}}" style="position: fixed; inset: 0; z-index: 100; background: rgba(2,11,13,0.88); display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box">
-<div class="abre" style="width: min(100%, 860px); max-height: 100%; overflow: auto; background: #0B2E35; border-radius: 22px; padding: 18px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
-<div style="aspect-ratio: {{ratio}}; max-height: 70vh; margin: 0 auto; width: 100%; border-radius: 14px; background: {{visor.fondo}}; display: flex; align-items: center; justify-content: center; color: #071F24; font-weight: 600; text-align: center; padding: 20px; box-sizing: border-box">[Acá va el video o la imagen de "{{visor.titulo}}"]</div>
-<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
-<div style="display: flex; flex-direction: column; gap: 2px">
-<span style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: #FFFFFF">{{visor.titulo}}</span>
-<span style="font-size: 14px; color: #B9D6DB">{{visor.meta}}</span>
+<div role="dialog" aria-modal="true" aria-label="{{visor.titulo}}" style="position: fixed; inset: 0; z-index: 400; background: rgba(2,11,13,0.92); display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box">
+<div class="visor" style="width: min(100%, 1100px); display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+<div style="display: flex; flex-direction: column; min-width: 0"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: #FFFFFF">{{visor.titulo}}</span><span style="font-size: 14px; color: #8FC3CB">{{visor.tipo}}</span></div>
+<button type="button" class="btn" onClick="{{cerrar}}" aria-label="Cerrar" style="flex: 0 0 auto; width: 48px; height: 48px; border-radius: 50%; border: none; background: #E8F4F6; color: #071F24; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
 </div>
-<div style="display: flex; gap: 10px">
-<a class="btn" href="{{visor.link}}" style="min-height: 44px; display: inline-flex; align-items: center; padding: 0 18px; border-radius: 999px; background: {{accent}}; color: #071F24; text-decoration: none; font-weight: 600">Ver en Behance</a>
-<button type="button" onClick="{{cerrar}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid #8FC3CB; background: transparent; color: #FFFFFF; font: inherit; font-weight: 600; cursor: pointer">Cerrar ✕</button>
+<div style="position: relative; display: flex; justify-content: center">
+<div style="position: relative; display: inline-block; max-width: 100%">
+<img src="{{visor.src}}" alt="" style="display: block; max-width: 100%; max-height: 72vh; filter: grayscale(1) contrast(1.35) brightness(1.15)">
+<img src="{{visor.src}}" alt="{{visor.titulo}}" class="capa-color {{visor.par}}" style="position: absolute; inset: 0; width: 100%; height: 100%">
+<span class="lapiz-v {{visor.par}}" aria-hidden="true"></span>
 </div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 10px">
+<button type="button" class="btn" onClick="{{anterior}}" style="min-height: 48px; padding: 0 18px; border-radius: 999px; border: 1.5px solid #3E6E76; background: transparent; color: #FFFFFF; font: inherit; font-weight: 600; cursor: pointer">← Anterior</button>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #8FC3CB">{{visor.pos}}</span>
+<button type="button" class="btn" onClick="{{siguiente}}" style="min-height: 48px; padding: 0 18px; border-radius: 999px; border: 1.5px solid #3E6E76; background: transparent; color: #FFFFFF; font: inherit; font-weight: 600; cursor: pointer">Siguiente →</button>
 </div>
 </div>
 </div>
 </sc-if>
-<div class="revela" aria-hidden="true" style="position: fixed; inset: 0; z-index: 300; pointer-events: none; background: {{accent}}"></div>
+
+<div class="cortina" aria-hidden="true" style="position: fixed; inset: 0; z-index: 300; pointer-events: none; display: flex; flex-direction: column"><span style="--i: 0"></span><span style="--i: 1"></span><span style="--i: 2"></span><span style="--i: 3"></span><span style="--i: 4"></span></div>
 </div>
 </template>
-<script type="text/plain" id="dc-src" data-props='{"accent":{"editor":"color","default":"#5EE6A8"},"$preview":{"width":1280,"height":1900}}'>
-var BH = 'https://www.behance.net/gallery/246740539/Portfolio-Animation-2025';
-var MUS = 'https://www.behance.net/gallery/254840235/Editor-de-Videos-y-Visualizers-Lisarts-Studios';
-var DATA = {
-num: '05', actual: 'Ilustracion.dc.html',
-titulo: 'Ilustración y Storyboard',
-bajada: 'la idea, antes de moverse',
-desc: 'Desarrollo visual, personajes y storyboards: la base para planificar cada pieza animada antes de producirla.',
-tools: ['Photoshop', 'Krita', 'Toon Boom'],
-ratio: '4 / 3', frameW: '320px',
-trabajos: [
-{ titulo: 'Storyboard', tag: 'STORYBOARD', meta: 'Planificación de cortometrajes y piezas animadas', link: BH },
-{ titulo: 'Desarrollo visual', tag: 'PERSONAJES', meta: 'Personajes, fondos y estilo', link: BH },
-{ titulo: '[Nombre del proyecto]', tag: 'ILUSTRACIÓN', meta: '[Rol · año]', link: BH },
-{ titulo: '[Nombre del proyecto]', tag: 'BOCETOS', meta: '[Rol · año]', link: BH }
-],
-stickers: [
-{ big: 'boceto', small: 'antes de animar', pos: 'right: 6%; top: 10px', cls: 's1' },
-{ big: 'Krita', small: '+ Photoshop', pos: 'left: 4%; bottom: 40px', cls: 's2' }
-],
-servicios: ['Storyboard', 'Diseño de personajes', 'Desarrollo visual', 'Ilustración para covers y piezas'],
-cta: '¿Necesitás bajar una idea a imagen?',
-prevHref: 'MusicVisuals.dc.html', prevTitulo: 'Visualizers Musicales',
-nextHref: 'Main.dc.html', nextTitulo: 'Sobre mí y contacto'
-};
+<script type="text/plain" id="dc-src" data-props='{"$preview":{"width":1280,"height":2600}}'>
+var B = function (n) { return IDS[n]; };
+var IDS = {'concept1':'media/c446383e12375963abfdde12a3e065c4.jpg','concept1_t':'media/beef047424862869f23808b576c831cd.jpg','concept2':'media/d65f0ba751e01cdd0d166f5091da0457.jpg','concept2_t':'media/b3e3d2b3e1ab740ccac58b665efcd415.jpg','dib10':'media/58fe7137efd38310823e493268448bb6.jpg','dib10_t':'media/82605d660179f488c283c4ddcbfceae9.jpg','dib16':'media/0f8f88a2008de8089017e1e232ecc976.jpg','dib16_t':'media/afb1b151d5f49158139889d3c77a4b49.jpg','dib20':'media/5b2e9d9cc6de8276defebd03a294a914.jpg','dib20_t':'media/8de2f529f04228d6becf50e7acb7e3aa.jpg','dib23':'media/de398ec2af055da21facfd2d4b532ad4.jpg','dib23_t':'media/6424d99a17587927b1a924ff67279363.jpg','dib24':'media/33695a508f4950f31b65ef5db28af69c.jpg','dib24_t':'media/08bd272b4b907cc6a48360ea99946f39.jpg','dib26':'media/5dd34b44c28da20e567c5619198857c9.jpg','dib26_t':'media/c8d7238b68ce2ba27ed4c07e1cc6e66a.jpg','dib27':'media/f5da52ddcf26c136e8dcd553636a7054.jpg','dib27_t':'media/c5dbf9f9603b22194dae28a7d2af7826.jpg','dib28':'media/da054dde07414d0cd27dde30fa427638.jpg','dib28_t':'media/1983b1d930b638c53a7cd3a9e3025f3c.jpg','dib30':'media/2c3537c146c8ef4be4ab0830ec71ece5.jpg','dib30_t':'media/363e2f77285266d64879bb0d521f2db6.jpg','dib31':'media/720f1fb2e1ccd790bf7e79c20b47bcdd.jpg','dib31_t':'media/bc02a54637ee485efcda745fbe1e7418.jpg','dib33':'media/49fbc8b2d5697a0b6338c812cf7a429e.jpg','dib33_t':'media/9c1468b2f145e4612872272066a90db9.jpg','fondista1':'media/4cecf7dadd14e04c64c6fb1d19ea2501.jpg','fondista1_t':'media/5bb33fbb605dca286d8a2e3a0226f8d9.jpg','fondista2':'media/ecda93bfd642f829c1b348a026bacf84.jpg','fondista2_t':'media/40c8a1aa522d236a10ef6a77f8ae3578.jpg','render1':'media/e43228eb1cfb31831834990b306615a6.jpg','render1_t':'media/02c5ca7e4f8b2025f124dccd5b1990f7.jpg','render2':'media/d9b17f5b6ff53ec86e818cec71d2b823.jpg','render2_t':'media/480dea0dca0c4618dda192b2ca3c976f.jpg','render3':'media/dd19341915d64c5a87a449edd103fded.jpg','render3_t':'media/e1dcbe288fd27eb491ca9360c272ee04.jpg','render4':'media/7e12824eaa3c260875e0c10890485554.jpg','render4_t':'media/6cc2cc401c35c5cc750416de7509a826.jpg','render5':'media/b1ff5cad8814442a8033268868d7b998.jpg','render5_t':'media/aa151ee7c4a076802e5856de2b1d8b39.jpg','sc1':'media/aed3e497376ed62f5e9e528afef1e38f.jpg','sc13':'media/5c42fb5a3be83e925c4785f56b9a3c85.jpg','sc13_t':'media/b8aedac67da34e7cb7181650e75164bc.jpg','sc1_t':'media/c5bae1c93209c3388c4ed901d1472024.jpg','sc50':'media/793ce5bdf554869ddcecf272be102e4d.jpg','sc50_t':'media/c6a3071a62c6bd3614ad965599289f73.jpg','sc54':'media/7e2fc2217478dbe806ea574b76343076.jpg','sc54_t':'media/cb0bd86f3a36391219d708417897e03f.jpg','t1_1':'media/e9df068d6a441515aae7a2c42218eba5.jpg','t1_16':'media/30107851a10dc97774b69386a9be8f58.jpg','t1_16_t':'media/dca2fc465106daaa2b413d6ed3db22d2.jpg','t1_1_t':'media/8c9cff0402a6ea8059c17feb1c4e5cee.jpg','t1_4':'media/56a28cb60d2fe28d35eade6763ee8bef.jpg','t1_4_t':'media/d01d9e71336415426e2775c19bbb9727.jpg','t1_5':'media/596da0c5fc7e5b1b940eae793e0f0dde.jpg','t1_5_t':'media/78ce1e622083a88be3500df1d983b5c0.jpg','t1_9':'media/26af1dbdde920e42bbc807fe5bcedc02.jpg','t1_9_t':'media/cc722a9853d3fef00ff8614aaac78590.jpg','t2_10':'media/8a1b8a63c3f488aba48fe2524e1307fb.jpg','t2_10_t':'media/198a96cac455a8004c275fe2e2ac5a20.jpg','t2_11':'media/5bdef1b5c686eb822f7d48c9ab9093dd.jpg','t2_11_t':'media/52da9bc5b719a14c087415e07a447f0a.jpg','t2_12':'media/49dab6ccd92f1f5422bcf34d6a3523ed.jpg','t2_12_t':'media/2e9720edb85fd3c156f9424b73ab62a4.jpg','t2_16':'media/354236361792eaca3c2ca74a9db718b5.jpg','t2_16_t':'media/bb654375dbbca6fa65a78d11bdee242c.jpg','t2_17':'media/202ba3dc8e7d078f0d053ec6cd8494da.jpg','t2_17_t':'media/eb5fa6226bab6c91d4aadda110bf2bdc.jpg','t2_18':'media/c3a1d1c16b49a69010ae5401190640d8.jpg','t2_18_t':'media/36aaf3a1f139f5582bd567fc3600a03c.jpg','t3_2':'media/122f3311013b07d22cf993f62d86a234.jpg','t3_2_t':'media/0bf361a0b888cf1b8729584f69701b12.jpg','t3_3':'media/117c41072a885f87eee4ecc142bff8b9.jpg','t3_3_t':'media/0d4d496c3f988613f725b45a99af6a11.jpg','t3_4':'media/27546e2a0ac32b5b234aee3705d8e9a4.jpg','t3_4_t':'media/5f06c155eec2cc6eb7e1bf612f5a59bf.jpg'};
+var CARPETAS = [
+{ id: 'todos', n: 'Todo', color: '#E8F4F6' },
+{ id: 'fondos', n: 'Fondos y concept art', color: '#5EE6A8' },
+{ id: 'bosque', n: 'En el Bosque', color: '#22C3D6' },
+{ id: '3d', n: 'Entornos 3D', color: '#B79CFF' },
+{ id: 'sketch', n: 'Sketchbook', color: '#FFD23F' }
+];
+var HOJAS = [
+{ k: 'fondista1', cat: 'fondos', titulo: 'Tren sobre el mar', tipo: 'Fondo · pintura digital' },
+{ k: 'concept1', cat: 'fondos', titulo: 'La mesa', tipo: 'Concept art · pintura digital' },
+{ k: 'fondista2', cat: 'fondos', titulo: 'Interior del tren', tipo: 'Fondo · pintura digital' },
+{ k: 'concept2', cat: 'fondos', titulo: 'La ciudad', tipo: 'Concept art' },
+{ k: 't2_10', cat: 'bosque', titulo: 'Concept art · la cabaña', tipo: 'En el Bosque · concept art' },
+{ k: 't1_9', cat: 'bosque', titulo: 'Personajes finales', tipo: 'En el Bosque · diseño de personajes' },
+{ k: 't2_11', cat: 'bosque', titulo: 'Concept art · el auto', tipo: 'En el Bosque · concept art' },
+{ k: 't1_4', cat: 'bosque', titulo: 'Marcos', tipo: 'En el Bosque · diseño de personaje' },
+{ k: 't2_12', cat: 'bosque', titulo: 'Concept art · el bosque', tipo: 'En el Bosque · concept art' },
+{ k: 't1_5', cat: 'bosque', titulo: 'Manuel', tipo: 'En el Bosque · diseño de personaje' },
+{ k: 't2_16', cat: 'bosque', titulo: 'Fondo final · la cabaña', tipo: 'En el Bosque · fondo' },
+{ k: 't2_17', cat: 'bosque', titulo: 'Fondo final · el camino', tipo: 'En el Bosque · fondo' },
+{ k: 't2_18', cat: 'bosque', titulo: 'Props finales', tipo: 'En el Bosque · diseño de props' },
+{ k: 't1_16', cat: 'bosque', titulo: 'Comparativa de tamaños', tipo: 'En el Bosque · diseño de personajes' },
+{ k: 't3_2', cat: 'bosque', titulo: 'Layout · escena 3', tipo: 'En el Bosque · layout' },
+{ k: 't3_3', cat: 'bosque', titulo: 'Layout · escena 5', tipo: 'En el Bosque · layout' },
+{ k: 't3_4', cat: 'bosque', titulo: 'Layout · escena 12', tipo: 'En el Bosque · layout' },
+{ k: 't1_1', cat: 'bosque', titulo: 'En el Bosque', tipo: 'Portada del proyecto' },
+{ k: 'render1', cat: '3d', titulo: 'Cabaña de noche', tipo: 'Entorno 3D · render' },
+{ k: 'render2', cat: '3d', titulo: 'Pinos y cabaña', tipo: 'Entorno 3D · render' },
+{ k: 'render3', cat: '3d', titulo: 'La cabaña y la luna', tipo: 'Entorno 3D · render' },
+{ k: 'render4', cat: '3d', titulo: 'Ventana encendida', tipo: 'Entorno 3D · render' },
+{ k: 'render5', cat: '3d', titulo: 'Bosque al atardecer', tipo: 'Entorno 3D · render' },
+{ k: 'dib33', cat: 'sketch', titulo: 'Bajo la lluvia', tipo: 'Sketchbook · lápiz' },
+{ k: 'dib20', cat: 'sketch', titulo: 'Calle', tipo: 'Sketchbook · lápiz' },
+{ k: 'dib28', cat: 'sketch', titulo: 'Ratón caballero', tipo: 'Sketchbook · lápiz' },
+{ k: 'dib10', cat: 'sketch', titulo: 'Rosa azul', tipo: 'Sketchbook · lápiz y color' },
+{ k: 'dib30', cat: 'sketch', titulo: 'Casa en el campo', tipo: 'Sketchbook · lápiz' },
+{ k: 'dib16', cat: 'sketch', titulo: 'La parca', tipo: 'Sketchbook · lápiz' },
+{ k: 'dib27', cat: 'sketch', titulo: 'Rana con moño', tipo: 'Sketchbook · lápiz' },
+{ k: 'dib31', cat: 'sketch', titulo: 'Esquina', tipo: 'Sketchbook · lápiz' },
+{ k: 'dib24', cat: 'sketch', titulo: 'Gato', tipo: 'Sketchbook · lápiz' },
+{ k: 'dib23', cat: 'sketch', titulo: 'Salto', tipo: 'Sketchbook · lápiz' },
+{ k: 'dib26', cat: 'sketch', titulo: 'Criatura', tipo: 'Sketchbook · lápiz' }
+];
+var STARS = [
+{ k: 'sc1', titulo: 'Portada de la biblia', tipo: 'Stars in the City · dirección de arte' },
+{ k: 'sc13', titulo: 'La ciudad de noche', tipo: 'Stars in the City · desarrollo visual' },
+{ k: 'sc50', titulo: 'Diseño de personaje', tipo: 'Stars in the City · personajes' },
+{ k: 'sc54', titulo: 'Diseño de personaje', tipo: 'Stars in the City · personajes' }
+];
+var ROTS = ['-2.5deg', '1.8deg', '-1deg', '2.6deg', '-1.8deg', '1deg', '-3deg', '2deg'];
 var TABS = [['Animacion.dc.html', 'Animación', '#22C3D6'], ['Motion.dc.html', 'Motion', '#FFD23F'], ['Edicion.dc.html', 'Edición', '#FF7A5C'], ['MusicVisuals.dc.html', 'Visualizers', '#B79CFF'], ['Ilustracion.dc.html', 'Ilustración', '#5EE6A8']];
-var FONDOS = ['#22C3D6', '#FFD23F', '#FF7A5C', '#B79CFF', '#5EE6A8'];
 class Component extends DCLogic {
 componentDidMount() { var self = this; this.onScroll = function (e) { var t = e && e.target && e.target.scrollTop; var y = Math.max(window.scrollY || 0, document.documentElement.scrollTop || 0, t || 0); var on = y > 30; if (on !== !!(self.state && self.state.bajo)) self.setState({ bajo: on }); }; window.addEventListener('scroll', this.onScroll, { passive: true }); document.addEventListener('scroll', this.onScroll, { passive: true, capture: true }); }
 componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); document.removeEventListener('scroll', this.onScroll, { capture: true }); }
 renderVals() {
-var self = this;
-var st = this.state || {};
-var accent = this.props.accent ?? '#5EE6A8';
-var d = DATA;
-var letras = d.titulo.split('').map(function (c, i) { return { c: c === ' ' ? ' ' : c, i: i, color: '#FFFFFF' }; });
-var tabs = TABS.map(function (t) {
-var on = t[0] === d.actual;
-return { href: t[0], label: t[1], estilo: 'text-decoration: none; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 999px; font-weight: 600; ' + (on ? 'background: ' + t[2] + '; color: #071F24' : 'color: #B9D6DB') };
-});
-var base = d.trabajos.map(function (w, i) { return Object.assign({}, w, { fondo: FONDOS[(i + parseInt(d.num, 10) - 1) % FONDOS.length] }); });
-var cuadros = [];
-for (var k = 0; k < 4; k++) {
-base.forEach(function (w, i) {
-cuadros.push(Object.assign({}, w, { tab: k === 0 ? '0' : '-1', oculto: k === 0 ? 'false' : 'true', abrir: function () { self.setState({ sel: i }); } }));
-});
-}
-var stickers = d.stickers.map(function (s, i) { return Object.assign({ bg: i % 2 ? '#F2F7F8' : '#FFD23F' }, s); });
-var sel = st.sel;
-var hay = typeof sel === 'number';
+var self = this, st = this.state || {};
+var filtro = st.filtro || 'todos';
+var lista = filtro === 'todos' ? HOJAS : HOJAS.filter(function (h) { return h.cat === filtro; });
+var abierto = st.abierto;
+var serie = st.serie === 'stars' ? STARS : lista;
+var tabs = TABS.map(function (t) { var a = t[0] === 'Ilustracion.dc.html'; return { href: t[0], label: t[1], estilo: 'text-decoration: none; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 999px; font-weight: 600; ' + (a ? 'background: ' + t[2] + '; color: #071F24' : 'color: #B9D6DB') }; });
+var v = typeof abierto === 'number' ? serie[abierto] : null;
 return {
 barraFondo: st.bajo ? 'rgba(7,31,36,0.55)' : 'rgba(7,31,36,1)', barraBorde: st.bajo ? 'rgba(62,110,118,0.6)' : 'transparent',
-accent: accent, num: d.num, titulo: d.titulo, bajada: d.bajada, desc: d.desc, tools: d.tools,
-ratio: d.ratio, frameW: d.frameW, letras: letras, tabs: tabs, cuadros: cuadros, stickers: stickers,
-servicios: d.servicios, cta: d.cta, prevHref: d.prevHref, prevTitulo: d.prevTitulo, nextHref: d.nextHref, nextTitulo: d.nextTitulo,
-hayVisor: hay, visor: hay ? base[sel] : { titulo: '', meta: '', link: BH, fondo: accent },
-cerrar: function () { self.setState({ sel: null }); }
+tabs: tabs, tools: ['Krita', 'Photoshop', 'Blender', 'Lápiz y papel'],
+carpetas: CARPETAS.map(function (c) { var on = c.id === filtro; var n = c.id === 'todos' ? HOJAS.length : HOJAS.filter(function (h) { return h.cat === c.id; }).length; return { n: c.n, cant: n, on: on ? 'true' : 'false', fondo: on ? c.color : 'transparent', borde: on ? c.color : '#3E6E76', texto: on ? '#071F24' : '#E8F4F6', elegir: function () { self.setState({ filtro: c.id, abierto: null }); } }; }),
+hojas: lista.map(function (h, i) { return { titulo: h.titulo, t: B(h.k + '_t'), r: ROTS[i % ROTS.length], abrir: function () { self.setState({ abierto: i, serie: 'mesa' , giro: (st.giro || 0) + 1 }); } }; }),
+stars: STARS.map(function (s, i) { return { titulo: s.titulo, t: B(s.k + '_t'), abrir: function () { self.setState({ abierto: i, serie: 'stars' , giro: (st.giro || 0) + 1 }); } }; }),
+hayVisor: !!v,
+visor: v ? { titulo: v.titulo, tipo: v.tipo, src: B(v.k), par: (st.giro || 0) % 2 ? 'pb' : 'pa', pos: (abierto + 1) + ' / ' + serie.length } : { titulo: '', tipo: '', src: '', pos: '' },
+cerrar: function () { self.setState({ abierto: null }); },
+anterior: function () { self.setState({ abierto: (abierto - 1 + serie.length) % serie.length , giro: (st.giro || 0) + 1 }); },
+siguiente: function () { self.setState({ abierto: (abierto + 1) % serie.length , giro: (st.giro || 0) + 1 }); }
 };
 }
 }
