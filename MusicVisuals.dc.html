@@ -110,7 +110,7 @@ html{scroll-behavior:smooth}
 <section aria-label="Bandeja" style="max-width: 1200px; margin: 0 auto; padding: 28px 24px 16px; display: flex; flex-direction: column; gap: 18px">
 <div style="display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; align-items: baseline">
 <h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(36px, 5.4vw, 68px); line-height: 1; letter-spacing: -0.02em; color: #FFFFFF">La bandeja</h2>
-<p style="margin: 0; font-family: Caveat, cursive; font-size: 26px; color: #FFD23F; transform: rotate(-2deg)">sacá un disco de la batea y ponelo a sonar</p>
+<p style="margin: 0; font-family: Caveat, cursive; font-size: 26px; color: #FFD23F; transform: rotate(-2deg)">sacá un disco de la batea y ponelo a sonar · el álbum trae 6 temas</p>
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">
 <div id="pantalla" style="flex: 999 1 560px; min-width: 0; border-radius: 18px; overflow: hidden; background: #020B0D; border: 1.5px solid #164650; position: relative; aspect-ratio: 16 / 9">
@@ -132,7 +132,7 @@ html{scroll-behavior:smooth}
 <circle cx="50" cy="50" r="49" fill="#0A0A0C"></circle>
 <circle cx="50" cy="50" r="40" fill="none" stroke="#1E1E24" stroke-width="1.5"></circle>
 <circle cx="50" cy="50" r="31" fill="none" stroke="#1E1E24" stroke-width="1.5"></circle>
-<image href="{{pant.poster}}" x="22" y="31" width="56" height="38" preserveAspectRatio="xMidYMid slice" clip-path="url(#etiqueta)"></image>
+<image href="{{pant.etiqueta}}" x="31" y="31" width="38" height="38" preserveAspectRatio="xMidYMid slice" clip-path="url(#etiqueta)"></image>
 <circle cx="50" cy="50" r="19" fill="none" stroke="{{pant.color}}" stroke-width="3"></circle>
 <circle cx="50" cy="50" r="2.5" fill="#071F24"></circle>
 </svg>
@@ -140,12 +140,17 @@ html{scroll-behavior:smooth}
 <div style="min-width: 0; display: flex; flex-direction: column; gap: 4px">
 <span style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; line-height: 1.1; color: #FFFFFF">{{pant.titulo}}</span>
 <span style="font-size: 15px; font-weight: 600; color: {{pant.color}}">{{pant.artista}}</span>
-<span style="font-size: 13px; color: #8FC3CB">{{pant.tipo}}</span>
+<span style="font-size: 13px; color: #8FC3CB; overflow-wrap: anywhere">{{pant.tipo}}</span>
 </div>
 </div>
 <div aria-hidden="true" style="display: flex; align-items: flex-end; gap: 4px; height: 34px">
 <sc-for list="{{barras}}" as="b" hint-placeholder-count="16"><span class="eq {{pant.quieto}}" style="--t: {{b.t}}; --d: {{b.d}}; flex: 1 1 0; height: 100%; border-radius: 3px; background: {{pant.color}}; opacity: {{b.o}}"></span></sc-for>
 </div>
+<sc-if value="{{pant.esAlbum}}" hint-placeholder-val="{{ false }}">
+<ol aria-label="Temas del álbum" style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; max-height: 236px; overflow-y: auto">
+<sc-for list="{{temas}}" as="x" hint-placeholder-count="6"><li><button type="button" onClick="{{x.elegir}}" aria-current="{{x.actual}}" style="all: unset; box-sizing: border-box; cursor: pointer; width: 100%; min-height: 40px; padding: 6px 10px; border-radius: 8px; display: flex; gap: 10px; align-items: center; background: {{x.fondo}}; color: {{x.texto}}"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; opacity: .75; flex: 0 0 auto">{{x.n}}</span><span style="min-width: 0; display: flex; flex-direction: column"><span style="font-size: 14px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{x.titulo}}</span><span style="font-size: 12px; opacity: .8">{{x.feat}}</span></span></button></li></sc-for>
+</ol>
+</sc-if>
 <div style="display: flex; gap: 8px">
 <button type="button" class="btn" onClick="{{anterior}}" aria-label="Disco anterior" style="min-width: 48px; min-height: 48px; border-radius: 12px; border: 1.5px solid #3E6E76; background: transparent; color: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zM20 6v12l-10-6z"></path></svg></button>
 <button type="button" class="btn" onClick="{{reproducir}}" style="flex: 1 1 auto; min-height: 48px; padding: 0 16px; border-radius: 12px; border: none; background: #B79CFF; color: #071F24; font: inherit; font-weight: 700; cursor: pointer">{{pant.accion}}</button>
@@ -208,6 +213,14 @@ html{scroll-behavior:smooth}
 </template>
 <script type="text/plain" id="dc-src" data-props='{"$preview":{"width":1280,"height":2300}}'>
 var DISCOS = [
+{ album: true, tapa: 'media/417301fe3210b628c24714c080a36339.jpg', titulo: 'VALELAPENASIESPORESTO', artista: 'El Mesías', tipo: 'Álbum · 6 visualizers animados', color: '#FF7A5C', tracks: [
+{ yt: 'UBubN3aOKcM', titulo: 'Fragancia', feat: 'prod. TW2NTY0' },
+{ yt: 'QdSQkM2oEFE', titulo: 'Hilo Rojo', feat: 'ft. Chill Boy & Sanxhezz' },
+{ yt: '5JyX2gc6lEk', titulo: 'Switch', feat: 'prod. TW2NTY0' },
+{ yt: 'svBMudyiq_Q', titulo: 'Halloween', feat: 'ft. Sanxhezz' },
+{ yt: '5t_MZnyi0gs', titulo: 'SISEPUEDENCOPIARDELILYACHTYYOTAMBIEN', feat: 'prod. TW2NTY0' },
+{ yt: 'ZIV2Gyd6aJk', titulo: 'Te vi bailar', feat: 'ft. Nahuemtt' }
+] },
 { yt: 'ejLrYQq5J-A', titulo: 'Ayer hablé con Dios', artista: 'Sanxhezz w/ Nahuemtt', tipo: 'Visualizer', color: '#B79CFF' },
 { yt: 'bBr6OaKDWQ4', titulo: 'Glu Glu (Lost Tape)', artista: 'Sanxhezz w/ Tanqueturu', tipo: 'Visualizer', color: '#22C3D6' },
 { yt: 'nra6BhQPEBo', titulo: 'Blueberry', artista: 'MFLW', tipo: 'Visualizer', color: '#5EE6A8' },
@@ -216,25 +229,28 @@ var DISCOS = [
 { video: 'media/b7921f337c177bc145f226bf6da77557.mp4', poster: 'media/b764ecd8b97fe369a40ab540e1592b5f.jpg', titulo: 'Chiedo Solo a Dio', artista: 'Diego Smolovich y Lito Vitale', tipo: 'Trailer · videoclip animado', color: '#E8F4F6' }
 ];
 var TABS = [['Animacion.dc.html', 'Animación', '#22C3D6'], ['Motion.dc.html', 'Motion', '#FFD23F'], ['Edicion.dc.html', 'Edición', '#FF7A5C'], ['MusicVisuals.dc.html', 'Visualizers', '#B79CFF'], ['Ilustracion.dc.html', 'Ilustración', '#5EE6A8']];
-function tapa(d) { return d.poster || ('https://i.ytimg.com/vi/' + d.yt + '/hqdefault.jpg'); }
-function lado(i) { return (i < 3 ? 'A' : 'B') + ((i % 3) + 1); }
+function tapa(d) { return d.tapa || d.poster || ('https://i.ytimg.com/vi/' + d.yt + '/hqdefault.jpg'); }
+function yth(id) { return 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg'; }
+function lado(i) { var h = Math.ceil(DISCOS.length / 2); return (i < h ? 'A' : 'B') + ((i % h) + 1); }
 function letras(t, desde) { return t.split('').map(function (c, k) { return { c: c === ' ' ? ' ' : c, i: desde + k, b: (1.4 + ((k * 7) % 5) * 0.18).toFixed(2) + 's' }; }); }
 class Component extends DCLogic {
 componentDidMount() { var self = this; this.onScroll = function (e) { var t = e && e.target && e.target.scrollTop; var y = Math.max(window.scrollY || 0, document.documentElement.scrollTop || 0, t || 0); var on = y > 30; if (on !== !!(self.state && self.state.bajo)) self.setState({ bajo: on }); }; window.addEventListener('scroll', this.onScroll, { passive: true }); document.addEventListener('scroll', this.onScroll, { passive: true, capture: true }); }
 componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); document.removeEventListener('scroll', this.onScroll, { capture: true }); }
 renderVals() {
 var self = this, st = this.state || {};
-var sel = typeof st.sel === 'number' ? st.sel : 0, on = !!st.suena, d = DISCOS[sel];
+var sel = typeof st.sel === 'number' ? st.sel : 0, on = !!st.suena, D = DISCOS[sel];
+var pista = D.album ? Math.min(st.pista || 0, D.tracks.length - 1) : 0;
+var d = D.album ? { yt: D.tracks[pista].yt, titulo: D.tracks[pista].titulo, artista: D.artista + ' · ' + D.tracks[pista].feat, tipo: D.titulo + ' · tema ' + (pista + 1) + ' de ' + D.tracks.length, color: D.color, poster: yth(D.tracks[pista].yt) } : D;
 var tabs = TABS.map(function (t) { var a = t[0] === 'MusicVisuals.dc.html'; return { href: t[0], label: t[1], estilo: 'text-decoration: none; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 999px; font-weight: 600; ' + (a ? 'background: ' + t[2] + '; color: #071F24' : 'color: #B9D6DB') }; });
 var barras = []; for (var k = 0; k < 16; k++) barras.push({ t: (0.5 + (k * 13 % 7) * 0.08).toFixed(2) + 's', d: ((k * 5 % 9) * 0.07).toFixed(2) + 's', o: (0.55 + (k % 3) * 0.2).toFixed(2) });
-var poner = function (i) { self.setState({ sel: i, suena: true }); var p = document.getElementById('pantalla'); if (p && p.getBoundingClientRect) { var r = p.getBoundingClientRect(); if (r.top < 0 || r.bottom > window.innerHeight) p.scrollIntoView({ behavior: 'smooth', block: 'center' }); } };
+var poner = function (i) { self.setState({ sel: i, suena: true, pista: 0 }); var p = document.getElementById('pantalla'); if (p && p.getBoundingClientRect) { var r = p.getBoundingClientRect(); if (r.top < 0 || r.bottom > window.innerHeight) p.scrollIntoView({ behavior: 'smooth', block: 'center' }); } };
 return {
 barraFondo: st.bajo ? 'rgba(7,31,36,0.55)' : 'rgba(7,31,36,1)', barraBorde: st.bajo ? 'rgba(62,110,118,0.6)' : 'transparent',
 tabs: tabs, t1: letras('Visualizers', 0), t2: letras('Musicales', 11),
 tools: ['After Effects', 'Premiere Pro', 'Photoshop', 'Krita'],
 barras: barras, cantidad: DISCOS.length,
 pant: {
-titulo: d.titulo, artista: d.artista, tipo: d.tipo, color: d.color, lado: lado(sel), poster: tapa(d),
+titulo: d.titulo, artista: d.artista, tipo: d.tipo, color: d.color, lado: lado(sel), poster: tapa(d), etiqueta: tapa(D), esAlbum: !!D.album,
 ytOn: on && !!d.yt, videoOn: on && !!d.video, tapaOn: !on,
 yt: d.yt ? 'https://www.youtube-nocookie.com/embed/' + d.yt + '?autoplay=1&rel=0&modestbranding=1' : '',
 video: d.video || '', hayLink: !!d.yt, link: d.yt ? 'https://www.youtube.com/watch?v=' + d.yt : '',
@@ -242,8 +258,9 @@ quieto: on ? '' : 'quieto', accion: on ? 'Sonando…' : '▶ Poner el disco'
 },
 fundas: DISCOS.map(function (x, i) { return { titulo: x.titulo, artista: x.artista, color: x.color, poster: tapa(x), lado: lado(i), on: i === sel ? 'true' : 'false', elegir: function () { poner(i); } }; }),
 reproducir: function () { self.setState({ suena: true }); },
-anterior: function () { poner((sel - 1 + DISCOS.length) % DISCOS.length); },
-siguiente: function () { poner((sel + 1) % DISCOS.length); }
+temas: D.album ? D.tracks.map(function (x, j) { var a = j === pista; return { n: j + 1, titulo: x.titulo, feat: x.feat, actual: a ? 'true' : 'false', fondo: a ? D.color : 'transparent', texto: a ? '#071F24' : '#E8F4F6', elegir: function () { self.setState({ pista: j, suena: true }); } }; }) : [],
+anterior: function () { if (D.album && pista > 0) { self.setState({ pista: pista - 1, suena: true }); return; } poner((sel - 1 + DISCOS.length) % DISCOS.length); },
+siguiente: function () { if (D.album && pista < D.tracks.length - 1) { self.setState({ pista: pista + 1, suena: true }); return; } poner((sel + 1) % DISCOS.length); }
 };
 }
 }
