@@ -14,12 +14,22 @@ a{color:#FF7A5C}a:hover{color:#FFA48C}
 html{scroll-behavior:smooth}
 @keyframes entrar{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .entra{animation:entrar .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d)}
+.linea2{display:block;white-space:nowrap;width:max-content;max-width:100%}
+.trozo{display:inline-block;position:relative}
+.clipx{display:inline-block;padding:0 .03em;border-radius:.08em;animation:armar 1.1s cubic-bezier(.5,1.6,.4,1) both;animation-delay:var(--d)}
+@keyframes armar{0%{transform:translate(var(--fx),var(--fy));opacity:0;box-shadow:inset 0 0 0 .04em #FF7A5C;background:rgba(255,122,92,.14)}25%{opacity:1}70%{box-shadow:inset 0 0 0 .04em #FF7A5C;background:rgba(255,122,92,.14)}100%{transform:none;opacity:1;box-shadow:inset 0 0 0 .04em transparent;background:transparent}}
+.trozo.corte{animation:ripple 6s cubic-bezier(.7,0,.2,1) infinite;animation-delay:var(--cd)}
+@keyframes ripple{0%,6%{transform:none}12%,30%{transform:translateX(.22em)}38%,100%{transform:none}}
+.trozo.corte::before{content:"";position:absolute;left:-.13em;top:8%;bottom:4%;width:.04em;min-width:2px;background:#FFFFFF;box-shadow:0 0 12px #FFFFFF;opacity:0;animation:navaja2 6s steps(1,end) infinite;animation-delay:var(--cd)}
+@keyframes navaja2{0%,5%{opacity:0}6%,9%{opacity:1}10%,100%{opacity:0}}
+.trozo.corte::after{content:"";position:absolute;left:-.2em;top:14%;bottom:10%;width:.16em;border-radius:3px;background:repeating-linear-gradient(135deg,rgba(255,122,92,.55) 0 4px,transparent 4px 8px);opacity:0;animation:hueco 6s cubic-bezier(.7,0,.2,1) infinite;animation-delay:var(--cd)}
+@keyframes hueco{0%,10%{opacity:0}14%,28%{opacity:1}34%,100%{opacity:0}}
 .linea{position:relative;display:block;width:max-content;max-width:100%;white-space:nowrap;padding:0 .04em}
 .linea .txt{display:inline-block;clip-path:inset(0 100% 0 0);animation:revTxt .5s cubic-bezier(.7,0,.2,1) forwards;animation-delay:calc(var(--d) + .55s)}
 .linea .bloque{position:absolute;left:0;right:0;top:12%;bottom:8%;border-radius:6px;transform-origin:100% 50%;animation:bloque 1.05s cubic-bezier(.7,0,.2,1) both;animation-delay:var(--d)}
 @keyframes bloque{0%{transform:translateX(-105%) scaleX(1)}50%{transform:translateX(0) scaleX(1)}100%{transform:translateX(0) scaleX(0)}}
 @keyframes revTxt{to{clip-path:inset(0 -5% 0 0)}}
-.cabezal-h{position:absolute;top:2%;bottom:-2%;left:0;width:3px;background:#FF7A5C;opacity:0;pointer-events:none;animation:barrido 6s cubic-bezier(.45,0,.55,1) infinite;animation-delay:2.2s}
+.cabezal-h{position:absolute;top:2%;bottom:-2%;left:0;width:3px;background:#FF7A5C;opacity:0;pointer-events:none;animation:barrido 6s cubic-bezier(.45,0,.55,1) infinite;animation-delay:1.9s}
 @keyframes barrido{0%{left:-2%;opacity:0}4%{opacity:1}36%{left:100%;opacity:1}40%,100%{left:100%;opacity:0}}
 @keyframes salto{0%,38%{transform:none;color:inherit}39%{transform:translate(.06em,-.05em);color:#FF7A5C}46%{transform:translate(-.03em,.02em);color:inherit}47%,78%{transform:none}79%{transform:translate(-.05em,0);color:#FFD23F}84%,100%{transform:none;color:inherit}}
 .mitad-d{animation:salto 3.2s steps(1,end) infinite;animation-delay:.9s}
@@ -54,7 +64,7 @@ html{scroll-behavior:smooth}
 .onda{display:block;height:34px;min-width:84px;border-radius:6px;background-color:#0E3A33;background-image:repeating-linear-gradient(90deg,#5EE6A8 0 2px,transparent 2px 5px);-webkit-mask-image:linear-gradient(180deg,transparent 0 18%,#000 18% 82%,transparent 82%),repeating-linear-gradient(90deg,#000 0 30px,rgba(0,0,0,.5) 30px 44px);mask-image:linear-gradient(180deg,transparent 0 18%,#000 18% 82%,transparent 82%)}
 @keyframes tira{from{transform:scaleY(1)}to{transform:scaleY(0)}}
 .tiras span{flex:1 1 0;background:#FF7A5C;transform-origin:50% 0;animation:tira .55s cubic-bezier(.7,0,.2,1) both;animation-delay:calc(var(--i) * 60ms + .1s)}
-@media (prefers-reduced-motion:reduce){.linea .txt{animation:none;clip-path:none}.linea .bloque,.cabezal-h{display:none}.entra,.mitad-d,.navaja,.rec,.beat,.corta,.cuchilla,.rueda,.bota{animation:none}.navaja{display:none}.cl{opacity:1;animation:none}.toma{animation:none}.toma:first-child{opacity:1}.btn,.clip,.bin{transition:none}.tiras{display:none}}
+@media (prefers-reduced-motion:reduce){.clipx,.trozo.corte{animation:none}.trozo.corte::before,.trozo.corte::after{display:none}.linea .txt{animation:none;clip-path:none}.linea .bloque,.cabezal-h{display:none}.entra,.mitad-d,.navaja,.rec,.beat,.corta,.cuchilla,.rueda,.bota{animation:none}.navaja{display:none}.cl{opacity:1;animation:none}.toma{animation:none}.toma:first-child{opacity:1}.btn,.clip,.bin{transition:none}.tiras{display:none}}
 </style>
 
 </head>
@@ -78,9 +88,9 @@ html{scroll-behavior:smooth}
 <section style="max-width: 1200px; margin: 0 auto; padding: 44px 24px 36px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center">
 <div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
 <p class="entra" style="--d: 0s; margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #8FC3CB">SECCIÓN 03 / 05 · SECUENCIA_01</p>
-<h1 aria-label="Edición de video" style="position: relative; margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(54px, 9vw, 124px); line-height: 0.95; letter-spacing: -0.035em; color: #FFFFFF">
-<span aria-hidden="true" class="linea" style="--d: .2s"><span class="txt">Edición</span><span class="bloque" style="background: #FF7A5C"></span></span>
-<span aria-hidden="true" class="linea" style="--d: .55s; color: #FF7A5C"><span class="txt">de video</span><span class="bloque" style="background: #FFD23F"></span></span>
+<h1 aria-label="Edición de video" style="position: relative; margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(54px, 9vw, 124px); line-height: 1; letter-spacing: -0.035em; color: #FFFFFF">
+<span aria-hidden="true" class="linea2"><span class="trozo" style="--cd: 0s"><span class="clipx" style="--fx: 1.6em; --fy: -0.5em; --d: .15s">Edi</span></span><span class="trozo corte" style="--cd: 3.4s"><span class="clipx" style="--fx: -1.4em; --fy: 0.4em; --d: .3s">ción</span></span></span>
+<span aria-hidden="true" class="linea2" style="color: #FF7A5C"><span class="trozo" style="--cd: 0s"><span class="clipx" style="--fx: 2.4em; --fy: 0.5em; --d: .45s">de</span></span><span class="trozo corte" style="--cd: 3.9s"><span class="clipx" style="--fx: -1.2em; --fy: -0.4em; --d: .6s">&nbsp;vi</span></span><span class="trozo corte" style="--cd: 4.2s"><span class="clipx" style="--fx: 0.8em; --fy: 0.6em; --d: .75s">deo</span></span></span>
 <span aria-hidden="true" class="cabezal-h"><span style="position: absolute; top: -26px; left: 50%; transform: translateX(-50%); padding: 2px 7px; border-radius: 5px; background: #FF7A5C; color: #071F24; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0; white-space: nowrap">00:00:01:12</span></span>
 </h1>
 <p class="entra" style="--d: .9s; margin: 0; font-family: Caveat, cursive; font-size: 32px; color: #FFD23F; transform: rotate(-2deg); align-self: flex-start">ritmo, corte y una historia en segundos</p>
