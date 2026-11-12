@@ -7,42 +7,42 @@
 <meta name="description" content="Lisandro Martínez Mendoza · Lisarts Studios — Animación 2D/3D, Motion Graphics, Edición de video, Visualizers e Ilustración.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#071F24}
-a{color:#22C3D6}a:hover{color:#7FE3EE}
+a{color:#B79CFF}a:hover{color:#D3C4FF}
 html{scroll-behavior:smooth}
-@keyframes letra{from{opacity:0;transform:translateY(.5em) rotate(10deg)}to{opacity:1;transform:none}}
-@keyframes salta{0%,100%{transform:translateY(0)}50%{transform:translateY(-.08em)}}
-.l{display:inline-block;animation:letra .7s cubic-bezier(.2,.9,.3,1.3) both,salta 2.6s ease-in-out infinite;animation-delay:calc(var(--i) * 55ms),calc(var(--i) * 120ms + .8s);transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
-.l:hover{transform:translateY(-14px) rotate(-8deg)}
-@keyframes salto{0%{transform:translateY(0);animation-timing-function:cubic-bezier(.22,.61,.36,1)}50%{transform:translateY(-150px);animation-timing-function:cubic-bezier(.55,0,.78,.39)}100%{transform:translateY(0)}}
-@keyframes squash{0%,100%{transform:scale(1.28,.72)}7%,93%{transform:scale(.88,1.14)}20%,80%{transform:scale(1,1)}}
-@keyframes sombra{0%,100%{transform:scale(1);opacity:.45;animation-timing-function:cubic-bezier(.22,.61,.36,1)}50%{transform:scale(.4);opacity:.15;animation-timing-function:cubic-bezier(.55,0,.78,.39)}}
-.pelota{animation:salto 1s infinite}
-.squash{display:block;width:100%;height:100%;border-radius:50%;transform-origin:50% 100%;animation:squash 1s linear infinite}
-.sombra{animation:sombra 1s infinite}
-@keyframes revela{from{clip-path:circle(150% at 50% 50%)}to{clip-path:circle(0% at 50% 50%)}}
-.revela{animation:revela .8s cubic-bezier(.7,0,.2,1) .1s both}
-@keyframes cinta{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.cinta{animation:cinta 34s linear infinite}
-.tira:hover .cinta,.tira:focus-within .cinta{animation-play-state:paused}
-.cuadro{transition:transform .3s cubic-bezier(.3,1.5,.5,1)}
-.cuadro:hover,.cuadro:focus-visible{transform:scale(1.06) rotate(-1.5deg)}
-@keyframes pulso{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
-.play{animation:pulso 1.8s ease-in-out infinite}
-@keyframes flota{0%,100%{translate:0 0;rotate:-6deg}50%{translate:0 -10px;rotate:4deg}}
-.sticker{animation:flota 4.2s ease-in-out infinite}
-.sticker.s2{animation-delay:-1.4s;animation-duration:5s}.sticker.s3{animation-delay:-2.6s}
-@keyframes bota{0%,100%{translate:0 0}45%{translate:0 -8px}60%{translate:0 -5px}}
-.bota{animation:bota 3.2s ease-in-out infinite}
-.bota:nth-child(2n){animation-delay:-.8s}.bota:nth-child(3n){animation-delay:-1.7s}
-@keyframes escribir{0%{clip-path:inset(-20% 100% -20% 0)}50%,85%{clip-path:inset(-20% 0 -20% 0);opacity:1}95%{opacity:0}100%{clip-path:inset(-20% 100% -20% 0);opacity:0}}
-.escribe{display:inline-block;animation:escribir 5s cubic-bezier(.45,.05,.55,.95) infinite}
-@keyframes abrir{from{opacity:0;transform:scale(.9) translateY(20px)}to{opacity:1;transform:none}}
-.abre{animation:abrir .45s cubic-bezier(.2,1.2,.4,1) both}
+@keyframes entrar{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.entra{animation:entrar .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d)}
+@keyframes baila{0%,100%{transform:translateY(0) scaleY(1)}20%{transform:translateY(-.1em) scaleY(1.06)}40%{transform:translateY(0) scaleY(.94)}}
+@keyframes cae{from{opacity:0;transform:translateY(-.6em)}to{opacity:1;transform:none}}
+.nota{display:inline-block;transform-origin:50% 100%;animation:cae .5s cubic-bezier(.3,1.6,.5,1) both,baila var(--b) ease-in-out infinite;animation-delay:calc(var(--i) * 45ms),calc(var(--i) * 45ms + .6s)}
+@keyframes gira{to{transform:rotate(360deg)}}
+.gira{animation:gira var(--v, 1.8s) linear infinite;transform-box:fill-box;transform-origin:50% 50%}
+.gira.quieto{animation-play-state:paused}
+@keyframes brazo{0%{transform:rotate(-28deg)}60%{transform:rotate(4deg)}75%{transform:rotate(1deg)}100%{transform:rotate(2deg)}}
+.brazo{transform-box:view-box;transform-origin:262px 46px;animation:brazo 1.6s cubic-bezier(.5,0,.2,1) .5s both}
+@keyframes onda{from{transform:scale(.6);opacity:.8}to{transform:scale(1.5);opacity:0}}
+.onda{transform-box:fill-box;transform-origin:50% 50%;animation:onda 2.4s ease-out infinite;animation-delay:var(--d)}
+@keyframes eq{0%,100%{transform:scaleY(.25)}50%{transform:scaleY(1)}}
+.eq{transform-origin:50% 100%;animation:eq var(--t) ease-in-out infinite;animation-delay:var(--d)}
+.eq.quieto{animation:none;transform:scaleY(.2)}
 .btn{transition:transform .25s cubic-bezier(.3,1.6,.5,1)}.btn:hover,.btn:focus-visible{transform:translateY(-3px) rotate(-1.5deg)}
-@media (prefers-reduced-motion:reduce){.l,.pelota,.squash,.sombra,.cinta,.play,.sticker,.bota,.escribe,.abre{animation:none}.tira{overflow-x:auto}.revela{display:none}}
+.funda{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:flex;flex-direction:column;gap:10px;width:100%}
+.funda:focus-visible{outline:3px solid #FFFFFF;outline-offset:6px;border-radius:12px}
+.funda .tapa{position:relative;z-index:2;display:block;aspect-ratio:1 / 1;border-radius:10px;overflow:hidden;background:#0B2E35;box-shadow:0 14px 28px rgba(0,0,0,.35);transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
+.funda .tapa img{width:100%;height:100%;object-fit:cover;display:block}
+.funda .disco{position:absolute;z-index:1;top:4%;left:4%;width:92%;aspect-ratio:1 / 1;border-radius:50%;background:repeating-radial-gradient(circle,#0A0A0C 0 2px,#1B1B20 2px 4px);transition:transform .45s cubic-bezier(.3,1.3,.5,1)}
+.funda .disco::after{content:"";position:absolute;inset:34%;border-radius:50%;background:var(--c)}
+.funda:hover .tapa,.funda:focus-visible .tapa{transform:translateY(-8px) rotate(-2deg)}
+.funda:hover .disco,.funda:focus-visible .disco{transform:translateX(26%)}
+.funda[aria-pressed="true"] .disco{transform:translateX(34%);animation:gira 1.8s linear infinite}
+.funda[aria-pressed="true"] .tapa{box-shadow:0 0 0 3px var(--c),0 14px 28px rgba(0,0,0,.35)}
+@keyframes sello{0%,100%{transform:rotate(-8deg) scale(1)}50%{transform:rotate(-8deg) scale(1.06)}}
+.sello{animation:sello 2.4s ease-in-out infinite}
+@keyframes vinilo{from{clip-path:circle(150% at 50% 50%)}to{clip-path:circle(0% at 50% 50%)}}
+.cortina{animation:vinilo .9s cubic-bezier(.7,0,.2,1) .15s both}
+@media (prefers-reduced-motion:reduce){.entra,.nota,.gira,.brazo,.onda,.eq,.sello,.funda[aria-pressed="true"] .disco{animation:none}.cortina{display:none}.funda .tapa,.funda .disco,.btn{transition:none}}
 </style>
 
 </head>
@@ -50,171 +50,200 @@ html{scroll-behavior:smooth}
 <div id="dc-root"></div>
 <template id="dc-tpl">
 
-<div style="font-family: Inter, system-ui, sans-serif; color: #E8F4F6; background: #071F24; min-height: 100vh; overflow-x: clip">
+<div style="font-family: Inter, system-ui, sans-serif; color: #E8F4F6; background: #071F24; position: relative; isolation: isolate; min-height: 100vh; overflow-x: clip">
+
+<div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; pointer-events: none; background-image: radial-gradient(circle at 85% 8%, rgba(183,156,255,0.16), transparent 40%), repeating-radial-gradient(circle at 85% 8%, rgba(183,156,255,0.06) 0 1px, transparent 1px 22px)"></div>
 
 <div style="position: sticky; top: 0; z-index: 100; background: {{barraFondo}}; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid {{barraBorde}}; transition: background .3s ease, border-color .3s ease">
 <header style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between">
-<a href="Main.dc.html" class="btn" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px; background: #E8F4F6; color: #071F24; text-decoration: none; font-weight: 600; font-size: 14px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Volver a las secciones</a>
+<a href="Main.dc.html" class="btn" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px; background: #E8F4F6; color: #071F24; text-decoration: none; font-weight: 600; font-size: 14px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Volver al inicio</a>
 <nav aria-label="Secciones" style="display: flex; flex-wrap: wrap; gap: 4px; font-size: 14px">
-<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
-<a href="{{t.href}}" style="{{t.estilo}}">{{t.label}}</a>
-</sc-for>
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5"><a href="{{t.href}}" style="{{t.estilo}}">{{t.label}}</a></sc-for>
 </nav>
 </header>
 </div>
 
-<section style="max-width: 1200px; margin: 0 auto; padding: 36px 24px 24px; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-end; justify-content: space-between">
-<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
-<p style="margin: 0; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: #8FC3CB">Sección {{num}} / 05</p>
-<h1 aria-label="{{titulo}}" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(48px, 8vw, 112px); line-height: 0.95; letter-spacing: -0.03em; color: #FFFFFF"><sc-for list="{{letras}}" as="l" hint-placeholder-count="10"><span class="l" aria-hidden="true" style="--i: {{l.i}}; color: {{l.color}}">{{l.c}}</span></sc-for></h1>
-<p style="margin: 0; font-family: Caveat, cursive; font-size: 30px; color: {{accent}}; transform: rotate(-2deg); align-self: flex-start">{{bajada}}</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.55; color: #B9D6DB; max-width: 620px">{{desc}}</p>
+<section style="max-width: 1200px; margin: 0 auto; padding: 44px 24px 28px; display: flex; flex-wrap: wrap; gap: 36px; align-items: center">
+<div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<p class="entra" style="--d: 0s; margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #8FC3CB">SECCIÓN 04 / 05 · LADO A</p>
+<h1 aria-label="Visualizers Musicales" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(48px, 7.6vw, 106px); line-height: 0.98; letter-spacing: -0.03em; color: #FFFFFF">
+<span aria-hidden="true" style="display: block; white-space: nowrap"><sc-for list="{{t1}}" as="l" hint-placeholder-count="11"><span class="nota" style="--i: {{l.i}}; --b: {{l.b}}">{{l.c}}</span></sc-for></span>
+<span aria-hidden="true" style="display: block; white-space: nowrap; color: #B79CFF"><sc-for list="{{t2}}" as="l" hint-placeholder-count="9"><span class="nota" style="--i: {{l.i}}; --b: {{l.b}}">{{l.c}}</span></sc-for></span>
+</h1>
+<p class="entra" style="--d: .8s; margin: 0; font-family: Caveat, cursive; font-size: 32px; color: #FFD23F; transform: rotate(-2deg); align-self: flex-start">tu tema, con imagen propia</p>
+<p class="entra" style="--d: .9s; margin: 0; font-size: 18px; line-height: 1.55; color: #B9D6DB; max-width: 580px">Visualizers y videoclips animados para lanzamientos musicales, trabajando directo con artistas y productores, del primer boceto al video final.</p>
+<div class="entra" style="--d: 1s; display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="4"><span style="padding: 9px 16px; border-radius: 999px; border: 1.5px solid #3E6E76; font-size: 14px; font-weight: 500">{{t}}</span></sc-for>
 </div>
-<div aria-hidden="true" style="flex: 1 1 260px; display: flex; justify-content: center; position: relative; height: 240px">
-<div style="position: absolute; bottom: 20px; width: 220px; height: 3px; border-radius: 3px; background: #164650"></div>
-<div class="sombra" style="position: absolute; bottom: 14px; width: 80px; height: 14px; border-radius: 50%; background: #000000"></div>
-<div class="pelota" style="position: absolute; bottom: 22px; width: 70px; height: 70px"><span class="squash" style="background: {{accent}}"></span></div>
-<span style="position: absolute; top: 0; right: 0; font-family: Caveat, cursive; font-size: 20px; color: #8FC3CB; transform: rotate(6deg)">squash &amp; stretch ✶</span>
+</div>
+<div aria-hidden="true" style="flex: 1 1 280px; display: flex; justify-content: center">
+<svg viewBox="0 0 320 250" style="width: min(100%, 380px); height: auto; overflow: visible">
+<rect x="10" y="20" width="300" height="220" rx="22" fill="#0B2E35" stroke="#164650" stroke-width="2"></rect>
+<circle class="onda" style="--d: 0s" cx="130" cy="130" r="96" fill="none" stroke="#B79CFF" stroke-width="2"></circle>
+<circle class="onda" style="--d: 1.2s" cx="130" cy="130" r="96" fill="none" stroke="#B79CFF" stroke-width="2"></circle>
+<g class="gira" style="--v: 1.8s">
+<circle cx="130" cy="130" r="92" fill="#0A0A0C"></circle>
+<circle cx="130" cy="130" r="80" fill="none" stroke="#1E1E24" stroke-width="2"></circle>
+<circle cx="130" cy="130" r="66" fill="none" stroke="#1E1E24" stroke-width="2"></circle>
+<circle cx="130" cy="130" r="52" fill="none" stroke="#1E1E24" stroke-width="2"></circle>
+<path d="M60 90 A80 80 0 0 1 100 56" fill="none" stroke="#3A3A44" stroke-width="3" stroke-linecap="round"></path>
+<circle cx="130" cy="130" r="30" fill="#B79CFF"></circle>
+<path d="M118 124 h24 M114 132 h32" stroke="#071F24" stroke-width="3" stroke-linecap="round"></path>
+<circle cx="130" cy="130" r="4" fill="#071F24"></circle>
+</g>
+<g class="brazo">
+<circle cx="262" cy="46" r="14" fill="#164650"></circle>
+<circle cx="262" cy="46" r="6" fill="#FFD23F"></circle>
+<path d="M262 46 L262 150 L214 196" fill="none" stroke="#E8F4F6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+<rect x="200" y="190" width="22" height="12" rx="3" fill="#FF7A5C" transform="rotate(-45 211 196)"></rect>
+</g>
+<g transform="translate(250 196)">
+<rect class="eq" style="--t: .7s; --d: 0s" x="0" y="0" width="7" height="30" rx="2" fill="#5EE6A8" transform="translate(0 -30)"></rect>
+<rect class="eq" style="--t: .9s; --d: .2s" x="11" y="0" width="7" height="30" rx="2" fill="#22C3D6" transform="translate(0 -30)"></rect>
+<rect class="eq" style="--t: .6s; --d: .1s" x="22" y="0" width="7" height="30" rx="2" fill="#FFD23F" transform="translate(0 -30)"></rect>
+<rect class="eq" style="--t: .8s; --d: .3s" x="33" y="0" width="7" height="30" rx="2" fill="#FF7A5C" transform="translate(0 -30)"></rect>
+</g>
+</svg>
 </div>
 </section>
 
-<section style="max-width: 1200px; margin: 0 auto; padding: 8px 24px 24px">
-<div style="display: flex; flex-wrap: wrap; gap: 8px">
-<sc-for list="{{tools}}" as="t" hint-placeholder-count="4"><span class="bota" style="padding: 9px 16px; border-radius: 999px; border: 1.5px solid #3E6E76; font-size: 14px; font-weight: 500">{{t}}</span></sc-for>
+<section aria-label="Bandeja" style="max-width: 1200px; margin: 0 auto; padding: 28px 24px 16px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; align-items: baseline">
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(36px, 5.4vw, 68px); line-height: 1; letter-spacing: -0.02em; color: #FFFFFF">La bandeja</h2>
+<p style="margin: 0; font-family: Caveat, cursive; font-size: 26px; color: #FFD23F; transform: rotate(-2deg)">sacá un disco de la batea y ponelo a sonar</p>
 </div>
-</section>
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">
+<div id="pantalla" style="flex: 999 1 560px; min-width: 0; border-radius: 18px; overflow: hidden; background: #020B0D; border: 1.5px solid #164650; position: relative; aspect-ratio: 16 / 9">
+<sc-if value="{{pant.ytOn}}" hint-placeholder-val="{{ false }}"><iframe src="{{pant.yt}}" title="{{pant.titulo}}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0"></iframe></sc-if>
+<sc-if value="{{pant.videoOn}}" hint-placeholder-val="{{ false }}"><video src="{{pant.video}}" poster="{{pant.poster}}" autoplay controls playsinline style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #020B0D"></video></sc-if>
+<sc-if value="{{pant.tapaOn}}" hint-placeholder-val="{{ true }}">
+<button type="button" onClick="{{reproducir}}" aria-label="Reproducir {{pant.titulo}}" style="all: unset; box-sizing: border-box; cursor: pointer; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center">
+<img src="{{pant.poster}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.6)">
+<span class="btn" style="position: relative; width: 88px; height: 88px; border-radius: 50%; background: #B79CFF; color: #071F24; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 10px rgba(183,156,255,0.25)"><svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></span>
+</button>
+</sc-if>
+</div>
+<div style="flex: 1 1 280px; min-width: 0; border-radius: 18px; background: #0B2E35; border: 1.5px solid #164650; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #8FC3CB">AHORA SUENA · {{pant.lado}}</span>
+<div style="display: flex; gap: 16px; align-items: center">
+<div style="position: relative; flex: 0 0 auto; width: 104px; height: 104px">
+<svg class="gira {{pant.quieto}}" viewBox="0 0 100 100" width="104" height="104" aria-hidden="true" style="--v: 2s; display: block">
+<defs><clipPath id="etiqueta"><circle cx="50" cy="50" r="19"></circle></clipPath></defs>
+<circle cx="50" cy="50" r="49" fill="#0A0A0C"></circle>
+<circle cx="50" cy="50" r="40" fill="none" stroke="#1E1E24" stroke-width="1.5"></circle>
+<circle cx="50" cy="50" r="31" fill="none" stroke="#1E1E24" stroke-width="1.5"></circle>
+<image href="{{pant.poster}}" x="22" y="31" width="56" height="38" preserveAspectRatio="xMidYMid slice" clip-path="url(#etiqueta)"></image>
+<circle cx="50" cy="50" r="19" fill="none" stroke="{{pant.color}}" stroke-width="3"></circle>
+<circle cx="50" cy="50" r="2.5" fill="#071F24"></circle>
+</svg>
+</div>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 4px">
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; line-height: 1.1; color: #FFFFFF">{{pant.titulo}}</span>
+<span style="font-size: 15px; font-weight: 600; color: {{pant.color}}">{{pant.artista}}</span>
+<span style="font-size: 13px; color: #8FC3CB">{{pant.tipo}}</span>
+</div>
+</div>
+<div aria-hidden="true" style="display: flex; align-items: flex-end; gap: 4px; height: 34px">
+<sc-for list="{{barras}}" as="b" hint-placeholder-count="16"><span class="eq {{pant.quieto}}" style="--t: {{b.t}}; --d: {{b.d}}; flex: 1 1 0; height: 100%; border-radius: 3px; background: {{pant.color}}; opacity: {{b.o}}"></span></sc-for>
+</div>
+<div style="display: flex; gap: 8px">
+<button type="button" class="btn" onClick="{{anterior}}" aria-label="Disco anterior" style="min-width: 48px; min-height: 48px; border-radius: 12px; border: 1.5px solid #3E6E76; background: transparent; color: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zM20 6v12l-10-6z"></path></svg></button>
+<button type="button" class="btn" onClick="{{reproducir}}" style="flex: 1 1 auto; min-height: 48px; padding: 0 16px; border-radius: 12px; border: none; background: #B79CFF; color: #071F24; font: inherit; font-weight: 700; cursor: pointer">{{pant.accion}}</button>
+<button type="button" class="btn" onClick="{{siguiente}}" aria-label="Disco siguiente" style="min-width: 48px; min-height: 48px; border-radius: 12px; border: 1.5px solid #3E6E76; background: transparent; color: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6h2v12h-2zM4 6l10 6-10 6z"></path></svg></button>
+</div>
+<sc-if value="{{pant.hayLink}}" hint-placeholder-val="{{ true }}"><a href="{{pant.link}}" target="_blank" rel="noopener" style="font-size: 14px; font-weight: 600">Ver en YouTube ↗</a></sc-if>
+</div>
+</div>
 
-<section aria-label="Trabajos" style="position: relative; padding: 56px 0 40px; display: flex; flex-direction: column; gap: 22px">
-<div style="max-width: 1200px; width: 100%; margin: 0 auto; padding: 0 24px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; align-items: baseline">
-<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(34px, 5vw, 60px); line-height: 1; letter-spacing: -0.02em; color: #FFFFFF">Trabajos</h2>
-<p style="margin: 0; font-family: Caveat, cursive; font-size: 24px; color: {{accent}}; transform: rotate(-2deg)">tocá un cuadro para verlo ↓</p>
-</div>
-<sc-for list="{{stickers}}" as="k" hint-placeholder-count="2">
-<div class="sticker {{k.cls}}" aria-hidden="true" style="position: absolute; z-index: 5; pointer-events: none; {{k.pos}}; width: 128px; height: 128px; border-radius: 50%; background: {{k.bg}}; color: #071F24; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-shadow: 0 14px 30px rgba(0,0,0,0.35)"><span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px; line-height: 1">{{k.big}}</span><span style="font-size: 12px; max-width: 80%; line-height: 1.2">{{k.small}}</span></div>
-</sc-for>
-<div class="tira" style="background: #020B0D; padding: 22px 0; position: relative">
-<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 6px; height: 10px; background-image: repeating-linear-gradient(90deg, #2A4A50 0 14px, transparent 14px 30px)"></div>
-<div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 6px; height: 10px; background-image: repeating-linear-gradient(90deg, #2A4A50 0 14px, transparent 14px 30px)"></div>
-<div class="cinta" style="display: flex; gap: 14px; width: max-content; padding: 0 7px; align-items: center">
-<sc-for list="{{cuadros}}" as="f" hint-placeholder-count="8">
-<button type="button" class="cuadro" onClick="{{f.abrir}}" tabindex="{{f.tab}}" aria-hidden="{{f.oculto}}" aria-label="Ver {{f.titulo}}" style="all: unset; cursor: pointer; flex: none; width: {{frameW}}; display: flex; flex-direction: column; gap: 8px; padding: 8px; border-radius: 10px; background: #0B2E35; box-sizing: border-box">
-<span style="position: relative; aspect-ratio: {{ratio}}; border-radius: 6px; background: {{f.fondo}}; display: flex; align-items: center; justify-content: center; overflow: hidden">
-<span style="position: absolute; left: 8px; top: 8px; font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 0.1em; color: #071F24; background: rgba(232,244,246,0.85); padding: 2px 8px; border-radius: 999px">{{f.tag}}</span>
-<span class="play" style="width: 52px; height: 52px; border-radius: 50%; background: #071F24; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="{{accent}}"><path d="M8 5v14l11-7z"></path></svg></span>
+<div style="padding-top: 18px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #8FC3CB">LA BATEA · {{cantidad}} DISCOS</span>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); gap: 28px 34px; padding-right: 30px">
+<sc-for list="{{fundas}}" as="f" hint-placeholder-count="6">
+<button type="button" class="funda" onClick="{{f.elegir}}" aria-pressed="{{f.on}}" aria-label="Poner {{f.titulo}} de {{f.artista}}" style="--c: {{f.color}}">
+<span style="position: relative; display: block">
+<span class="disco" aria-hidden="true"></span>
+<span class="tapa"><img src="{{f.poster}}" alt="" loading="lazy"><span style="position: absolute; left: 8px; top: 8px; padding: 2px 7px; border-radius: 5px; background: rgba(7,31,36,0.85); color: {{f.color}}; font-family: 'JetBrains Mono', monospace; font-size: 11px">{{f.lado}}</span></span>
 </span>
-<span style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; color: #FFFFFF; padding: 0 4px">{{f.titulo}}</span>
+<span style="display: flex; flex-direction: column; gap: 2px; text-align: left">
+<span style="font-weight: 700; font-size: 14px; color: #FFFFFF; line-height: 1.25">{{f.titulo}}</span>
+<span style="font-size: 13px; color: {{f.color}}">{{f.artista}}</span>
+</span>
 </button>
 </sc-for>
 </div>
 </div>
-<p style="max-width: 1200px; width: 100%; margin: 0 auto; padding: 0 24px; box-sizing: border-box; font-size: 13px; color: #8FC3CB">La cinta se frena cuando pasás el mouse por encima.</p>
 </section>
 
-<section style="max-width: 1200px; margin: 0 auto; padding: 40px 24px; display: flex; flex-direction: column; gap: 20px">
-<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(30px, 4vw, 44px); color: #FFFFFF">Qué puedo hacer por vos</h2>
-<div style="display: flex; flex-wrap: wrap; gap: 12px">
-<sc-for list="{{servicios}}" as="x" hint-placeholder-count="4">
-<span class="bota" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 22px; border-radius: 18px; background: #0B2E35; font-size: 17px; font-weight: 500"><span style="width: 12px; height: 12px; border-radius: 50%; background: {{accent}}"></span>{{x}}</span>
-</sc-for>
+<section aria-label="Próximamente" style="max-width: 1200px; margin: 0 auto; padding: 40px 24px 16px">
+<div style="position: relative; border-radius: 22px; border: 2px dashed #3E6E76; padding: clamp(22px, 3vw, 34px); display: flex; flex-wrap: wrap; gap: 26px; align-items: center; background: repeating-linear-gradient(135deg, rgba(183,156,255,0.05) 0 12px, transparent 12px 24px)">
+<div aria-hidden="true" style="position: relative; flex: 0 0 auto; width: 150px; height: 150px; margin: 0 auto">
+<span style="position: absolute; top: 6%; left: 30%; width: 88%; aspect-ratio: 1 / 1; border-radius: 50%; background: repeating-radial-gradient(circle, #0A0A0C 0 2px, #1B1B20 2px 4px)"></span>
+<span style="position: absolute; inset: 0; border-radius: 10px; background: #0B2E35; border: 1.5px solid #164650; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 64px; font-weight: 700; color: #3E6E76">?</span>
+<span class="sello" style="position: absolute; right: -18px; top: -14px; padding: 7px 12px; border-radius: 8px; background: #FFD23F; color: #071F24; font-size: 12px; font-weight: 800; letter-spacing: 0.08em">PRÓXIMAMENTE</span>
+</div>
+<div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: #8FC3CB">LADO B · EN PRODUCCIÓN</span>
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 3vw, 34px); font-weight: 700; color: #FFFFFF; line-height: 1.1">Nuevo video de Sanxhezz</span>
+<span style="font-family: Caveat, cursive; font-size: 26px; color: #B79CFF">se viene, muy pronto</span>
+</div>
 </div>
 </section>
 
-<section style="padding: 32px 24px 64px">
-<div style="max-width: 1200px; margin: 0 auto; box-sizing: border-box; background: {{accent}}; color: #071F24; border-radius: 28px; padding: clamp(28px, 4vw, 52px); display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between">
+<section style="padding: 48px 24px 64px">
+<div style="max-width: 1200px; margin: 0 auto; box-sizing: border-box; background: #B79CFF; color: #071F24; border-radius: 28px; padding: clamp(28px, 4vw, 52px); display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between">
 <div style="flex: 1 1 380px; display: flex; flex-direction: column; gap: 6px">
-<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.05">{{cta}}</h2>
-<p style="margin: 0; font-family: Caveat, cursive; font-size: 26px"><span class="escribe">armemos algo juntos</span></p>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.05">¿Sacás un tema? Démosle imagen.</h2>
+<p style="margin: 0; font-family: Caveat, cursive; font-size: 26px">visualizers, videoclips animados y más</p>
 </div>
-<a class="btn" href="https://wa.me/5491158165994" style="background: #071F24; color: #FFFFFF; font-weight: 600; padding: 16px 26px; border-radius: 999px; text-decoration: none">Escribime por WhatsApp</a>
+<a class="btn" href="https://wa.me/5491158165994" style="background: #071F24; color: #FFFFFF; font-weight: 600; padding: 0 26px; min-height: 54px; display: inline-flex; align-items: center; border-radius: 999px; text-decoration: none">Escribime por WhatsApp</a>
+</div>
+<div style="max-width: 1200px; margin: 28px auto 0; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between">
+<a class="btn" href="Edicion.dc.html" style="min-height: 48px; display: inline-flex; align-items: center; padding: 0 20px; border-radius: 999px; border: 1.5px solid #3E6E76; color: #FFFFFF; text-decoration: none; font-weight: 600">← Edición de video</a>
+<a class="btn" href="Ilustracion.dc.html" style="min-height: 48px; display: inline-flex; align-items: center; padding: 0 20px; border-radius: 999px; border: 1.5px solid #3E6E76; color: #FFFFFF; text-decoration: none; font-weight: 600">Ilustración y Storyboard →</a>
 </div>
 </section>
 
-<nav aria-label="Anterior y siguiente" style="border-top: 1px solid #164650; padding: 18px 24px">
-<div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; font-weight: 600">
-<a href="{{prevHref}}" style="color: #B9D6DB; text-decoration: none; padding: 12px 0">← {{prevTitulo}}</a>
-<a href="{{nextHref}}" style="color: #FFFFFF; text-decoration: none; padding: 12px 0">{{nextTitulo}} →</a>
-</div>
-</nav>
-
-<sc-if value="{{hayVisor}}" hint-placeholder-val="{{ false }}">
-<div role="dialog" aria-modal="true" aria-label="{{visor.titulo}}" style="position: fixed; inset: 0; z-index: 100; background: rgba(2,11,13,0.88); display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box">
-<div class="abre" style="width: min(100%, 860px); max-height: 100%; overflow: auto; background: #0B2E35; border-radius: 22px; padding: 18px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
-<div style="aspect-ratio: {{ratio}}; max-height: 70vh; margin: 0 auto; width: 100%; border-radius: 14px; background: {{visor.fondo}}; display: flex; align-items: center; justify-content: center; color: #071F24; font-weight: 600; text-align: center; padding: 20px; box-sizing: border-box">[Acá va el video o la imagen de "{{visor.titulo}}"]</div>
-<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
-<div style="display: flex; flex-direction: column; gap: 2px">
-<span style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: #FFFFFF">{{visor.titulo}}</span>
-<span style="font-size: 14px; color: #B9D6DB">{{visor.meta}}</span>
-</div>
-<div style="display: flex; gap: 10px">
-<a class="btn" href="{{visor.link}}" style="min-height: 44px; display: inline-flex; align-items: center; padding: 0 18px; border-radius: 999px; background: {{accent}}; color: #071F24; text-decoration: none; font-weight: 600">Ver en Behance</a>
-<button type="button" onClick="{{cerrar}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid #8FC3CB; background: transparent; color: #FFFFFF; font: inherit; font-weight: 600; cursor: pointer">Cerrar ✕</button>
-</div>
-</div>
-</div>
-</div>
-</sc-if>
-<div class="revela" aria-hidden="true" style="position: fixed; inset: 0; z-index: 300; pointer-events: none; background: {{accent}}"></div>
+<div class="cortina" aria-hidden="true" style="position: fixed; inset: 0; z-index: 300; pointer-events: none; background: #B79CFF"></div>
 </div>
 </template>
-<script type="text/plain" id="dc-src" data-props='{"accent":{"editor":"color","default":"#B79CFF"},"$preview":{"width":1280,"height":1900}}'>
-var BH = 'https://www.behance.net/gallery/246740539/Portfolio-Animation-2025';
-var MUS = 'https://www.behance.net/gallery/254840235/Editor-de-Videos-y-Visualizers-Lisarts-Studios';
-var DATA = {
-num: '04', actual: 'MusicVisuals.dc.html',
-titulo: 'Visualizers Musicales',
-bajada: 'tu tema, con imagen propia',
-desc: 'Identidad visual para lanzamientos musicales: visualizers, videoclips animados, covers y Spotify Canvas, trabajando directo con artistas y productores de principio a fin.',
-tools: ['After Effects', 'Premiere Pro', 'Photoshop'],
-ratio: '1 / 1', frameW: '280px',
-trabajos: [
-{ titulo: 'Sanxhezz', tag: 'VIDEO', meta: '2 videos · Trabajando actualmente', link: MUS },
-{ titulo: 'MFLW', tag: 'VIDEO', meta: 'Video', link: MUS },
-{ titulo: 'Chill Boy', tag: 'VIDEO', meta: 'Video', link: MUS },
-{ titulo: 'LICHA', tag: 'VIDEO', meta: 'Video', link: MUS },
-{ titulo: 'Elmesias', tag: 'EN PROCESO', meta: 'Trabajando actualmente', link: MUS },
-{ titulo: 'Diego Smolovich', tag: 'EN PROCESO', meta: 'Trabajando actualmente', link: MUS }
-],
-stickers: [
-{ big: '6', small: 'artistas', pos: 'right: 6%; top: 10px', cls: 's1' },
-{ big: 'clip', small: 'animado en producción', pos: 'left: 4%; bottom: 40px', cls: 's2' }
-],
-servicios: ['Visualizers', 'Videoclips animados', 'Album covers animados', 'Spotify Canvas', 'Thumbnails de YouTube', 'Reels para artistas'],
-cta: '¿Sacás un tema? Démosle imagen.',
-prevHref: 'Edicion.dc.html', prevTitulo: 'Edición de video',
-nextHref: 'Ilustracion.dc.html', nextTitulo: 'Ilustración y Storyboard'
-};
+<script type="text/plain" id="dc-src" data-props='{"$preview":{"width":1280,"height":2300}}'>
+var DISCOS = [
+{ yt: 'ejLrYQq5J-A', titulo: 'Ayer hablé con Dios', artista: 'Sanxhezz w/ Nahuemtt', tipo: 'Visualizer', color: '#B79CFF' },
+{ yt: 'bBr6OaKDWQ4', titulo: 'Glu Glu (Lost Tape)', artista: 'Sanxhezz w/ Tanqueturu', tipo: 'Visualizer', color: '#22C3D6' },
+{ yt: 'nra6BhQPEBo', titulo: 'Blueberry', artista: 'MFLW', tipo: 'Visualizer', color: '#5EE6A8' },
+{ yt: '8His9AKpXkA', titulo: 'Como las de antes', artista: 'Chill Boy · Bleur¿', tipo: 'Visualizer animado', color: '#FFD23F' },
+{ yt: 'JBvWOcuXPZk', titulo: 'Cart4s para v0s', artista: 'LICHA ft. Sanxhezz', tipo: 'Visualizer', color: '#FF7A5C' },
+{ video: 'media/b7921f337c177bc145f226bf6da77557.mp4', poster: 'media/b764ecd8b97fe369a40ab540e1592b5f.jpg', titulo: 'Chiedo Solo a Dio', artista: 'Elmesías', tipo: 'Trailer · videoclip animado', color: '#E8F4F6' }
+];
 var TABS = [['Animacion.dc.html', 'Animación', '#22C3D6'], ['Motion.dc.html', 'Motion', '#FFD23F'], ['Edicion.dc.html', 'Edición', '#FF7A5C'], ['MusicVisuals.dc.html', 'Visualizers', '#B79CFF'], ['Ilustracion.dc.html', 'Ilustración', '#5EE6A8']];
-var FONDOS = ['#22C3D6', '#FFD23F', '#FF7A5C', '#B79CFF', '#5EE6A8'];
+function tapa(d) { return d.poster || ('https://i.ytimg.com/vi/' + d.yt + '/hqdefault.jpg'); }
+function lado(i) { return (i < 3 ? 'A' : 'B') + ((i % 3) + 1); }
+function letras(t, desde) { return t.split('').map(function (c, k) { return { c: c === ' ' ? ' ' : c, i: desde + k, b: (1.4 + ((k * 7) % 5) * 0.18).toFixed(2) + 's' }; }); }
 class Component extends DCLogic {
 componentDidMount() { var self = this; this.onScroll = function (e) { var t = e && e.target && e.target.scrollTop; var y = Math.max(window.scrollY || 0, document.documentElement.scrollTop || 0, t || 0); var on = y > 30; if (on !== !!(self.state && self.state.bajo)) self.setState({ bajo: on }); }; window.addEventListener('scroll', this.onScroll, { passive: true }); document.addEventListener('scroll', this.onScroll, { passive: true, capture: true }); }
 componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); document.removeEventListener('scroll', this.onScroll, { capture: true }); }
 renderVals() {
-var self = this;
-var st = this.state || {};
-var accent = this.props.accent ?? '#B79CFF';
-var d = DATA;
-var letras = d.titulo.split('').map(function (c, i) { return { c: c === ' ' ? ' ' : c, i: i, color: '#FFFFFF' }; });
-var tabs = TABS.map(function (t) {
-var on = t[0] === d.actual;
-return { href: t[0], label: t[1], estilo: 'text-decoration: none; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 999px; font-weight: 600; ' + (on ? 'background: ' + t[2] + '; color: #071F24' : 'color: #B9D6DB') };
-});
-var base = d.trabajos.map(function (w, i) { return Object.assign({}, w, { fondo: FONDOS[(i + parseInt(d.num, 10) - 1) % FONDOS.length] }); });
-var cuadros = [];
-for (var k = 0; k < 4; k++) {
-base.forEach(function (w, i) {
-cuadros.push(Object.assign({}, w, { tab: k === 0 ? '0' : '-1', oculto: k === 0 ? 'false' : 'true', abrir: function () { self.setState({ sel: i }); } }));
-});
-}
-var stickers = d.stickers.map(function (s, i) { return Object.assign({ bg: i % 2 ? '#F2F7F8' : '#FFD23F' }, s); });
-var sel = st.sel;
-var hay = typeof sel === 'number';
+var self = this, st = this.state || {};
+var sel = typeof st.sel === 'number' ? st.sel : 0, on = !!st.suena, d = DISCOS[sel];
+var tabs = TABS.map(function (t) { var a = t[0] === 'MusicVisuals.dc.html'; return { href: t[0], label: t[1], estilo: 'text-decoration: none; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 999px; font-weight: 600; ' + (a ? 'background: ' + t[2] + '; color: #071F24' : 'color: #B9D6DB') }; });
+var barras = []; for (var k = 0; k < 16; k++) barras.push({ t: (0.5 + (k * 13 % 7) * 0.08).toFixed(2) + 's', d: ((k * 5 % 9) * 0.07).toFixed(2) + 's', o: (0.55 + (k % 3) * 0.2).toFixed(2) });
+var poner = function (i) { self.setState({ sel: i, suena: true }); var p = document.getElementById('pantalla'); if (p && p.getBoundingClientRect) { var r = p.getBoundingClientRect(); if (r.top < 0 || r.bottom > window.innerHeight) p.scrollIntoView({ behavior: 'smooth', block: 'center' }); } };
 return {
 barraFondo: st.bajo ? 'rgba(7,31,36,0.55)' : 'rgba(7,31,36,1)', barraBorde: st.bajo ? 'rgba(62,110,118,0.6)' : 'transparent',
-accent: accent, num: d.num, titulo: d.titulo, bajada: d.bajada, desc: d.desc, tools: d.tools,
-ratio: d.ratio, frameW: d.frameW, letras: letras, tabs: tabs, cuadros: cuadros, stickers: stickers,
-servicios: d.servicios, cta: d.cta, prevHref: d.prevHref, prevTitulo: d.prevTitulo, nextHref: d.nextHref, nextTitulo: d.nextTitulo,
-hayVisor: hay, visor: hay ? base[sel] : { titulo: '', meta: '', link: BH, fondo: accent },
-cerrar: function () { self.setState({ sel: null }); }
+tabs: tabs, t1: letras('Visualizers', 0), t2: letras('Musicales', 11),
+tools: ['After Effects', 'Premiere Pro', 'Photoshop', 'Krita'],
+barras: barras, cantidad: DISCOS.length,
+pant: {
+titulo: d.titulo, artista: d.artista, tipo: d.tipo, color: d.color, lado: lado(sel), poster: tapa(d),
+ytOn: on && !!d.yt, videoOn: on && !!d.video, tapaOn: !on,
+yt: d.yt ? 'https://www.youtube-nocookie.com/embed/' + d.yt + '?autoplay=1&rel=0&modestbranding=1' : '',
+video: d.video || '', hayLink: !!d.yt, link: d.yt ? 'https://www.youtube.com/watch?v=' + d.yt : '',
+quieto: on ? '' : 'quieto', accion: on ? 'Sonando…' : '▶ Poner el disco'
+},
+fundas: DISCOS.map(function (x, i) { return { titulo: x.titulo, artista: x.artista, color: x.color, poster: tapa(x), lado: lado(i), on: i === sel ? 'true' : 'false', elegir: function () { poner(i); } }; }),
+reproducir: function () { self.setState({ suena: true }); },
+anterior: function () { poner((sel - 1 + DISCOS.length) % DISCOS.length); },
+siguiente: function () { poner((sel + 1) % DISCOS.length); }
 };
 }
 }
