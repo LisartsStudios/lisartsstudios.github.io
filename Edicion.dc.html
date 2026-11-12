@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lisarts Studios — Edición de video</title>
+<meta name="description" content="Lisandro Martínez Mendoza · Lisarts Studios — Animación 2D/3D, Motion Graphics, Edición de video, Visualizers e Ilustración.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#071F24}
+a{color:#FF7A5C}a:hover{color:#FFA48C}
+html{scroll-behavior:smooth}
+@keyframes entrar{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.entra{animation:entrar .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d)}
+@keyframes salto{0%,38%{transform:none;color:inherit}39%{transform:translate(.06em,-.05em);color:#FF7A5C}46%{transform:translate(-.03em,.02em);color:inherit}47%,78%{transform:none}79%{transform:translate(-.05em,0);color:#FFD23F}84%,100%{transform:none;color:inherit}}
+.mitad-d{animation:salto 3.2s steps(1,end) infinite;animation-delay:.9s}
+@keyframes navaja{0%,30%{left:-4%;opacity:0}32%{opacity:1}40%{left:52%}46%{left:52%;opacity:1}52%,100%{left:52%;opacity:0}}
+.navaja{animation:navaja 3.2s cubic-bezier(.7,0,.2,1) infinite;animation-delay:.9s}
+@keyframes aparece{from{opacity:0}to{opacity:1}}
+.cl{opacity:0;animation:aparece .01s linear forwards;animation-delay:calc(var(--i) * 83ms + .5s)}
+@keyframes corteImg{0%,16.66%{opacity:1}16.67%,100%{opacity:0}}
+.toma{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:corteImg 6s steps(1,end) infinite;animation-delay:var(--d)}
+@keyframes rec{0%,49%{opacity:1}50%,100%{opacity:.15}}
+.rec{animation:rec 1s steps(1,end) infinite}
+@keyframes beat{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+.beat{transform-origin:50% 100%;animation:beat .9s cubic-bezier(.5,0,.5,1) infinite;animation-delay:var(--d)}
+@keyframes corta{0%,35%{transform:translateX(0)}50%,100%{transform:translateX(10px)}}
+.corta{animation:corta 2s cubic-bezier(.7,0,.2,1) infinite alternate}
+@keyframes cuchilla{0%,20%{transform:translateY(-34px)}35%,60%{transform:translateY(0)}80%,100%{transform:translateY(-34px)}}
+.cuchilla{animation:cuchilla 2s cubic-bezier(.7,0,.2,1) infinite alternate}
+@keyframes rueda{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.rueda{animation:rueda var(--dur) linear infinite}
+@keyframes bota{0%,100%{translate:0 0}45%{translate:0 -8px}60%{translate:0 -5px}}
+.bota{animation:bota 3.2s ease-in-out infinite}
+.bota:nth-child(2n){animation-delay:-.8s}.bota:nth-child(3n){animation-delay:-1.7s}
+.btn{transition:transform .25s cubic-bezier(.3,1.6,.5,1)}.btn:hover,.btn:focus-visible{transform:translateY(-3px) rotate(-1.5deg)}
+.bin{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:10px;width:100%;min-height:48px;padding:8px 12px;border-radius:10px;transition:background .2s}
+.bin:hover,.bin:focus-visible{background:#123C44}
+.bin:focus-visible{outline:3px solid #FFFFFF;outline-offset:-3px}
+.bin[aria-disabled="true"]{cursor:default;opacity:.55}
+.bin[aria-disabled="true"]:hover{background:transparent}
+.clip{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:block;height:64px;min-width:84px;border-radius:7px;overflow:hidden;background-color:#123C44;background-repeat:repeat-x;background-size:auto 100%;transition:filter .2s,transform .2s}
+.clip:hover{filter:brightness(1.15)}
+.clip:focus-visible{outline:3px solid #FFFFFF;outline-offset:2px}
+.onda{display:block;height:34px;min-width:84px;border-radius:6px;background-color:#0E3A33;background-image:repeating-linear-gradient(90deg,#5EE6A8 0 2px,transparent 2px 5px);-webkit-mask-image:linear-gradient(180deg,transparent 0 18%,#000 18% 82%,transparent 82%),repeating-linear-gradient(90deg,#000 0 30px,rgba(0,0,0,.5) 30px 44px);mask-image:linear-gradient(180deg,transparent 0 18%,#000 18% 82%,transparent 82%)}
+@keyframes tira{from{transform:scaleY(1)}to{transform:scaleY(0)}}
+.tiras span{flex:1 1 0;background:#FF7A5C;transform-origin:50% 0;animation:tira .55s cubic-bezier(.7,0,.2,1) both;animation-delay:calc(var(--i) * 60ms + .1s)}
+@media (prefers-reduced-motion:reduce){.entra,.mitad-d,.navaja,.rec,.beat,.corta,.cuchilla,.rueda,.bota{animation:none}.navaja{display:none}.cl{opacity:1;animation:none}.toma{animation:none}.toma:first-child{opacity:1}.btn,.clip,.bin{transition:none}.tiras{display:none}}
+</style>
+
+</head>
+<body>
+<div id="dc-root"></div>
+<template id="dc-tpl">
+
+<div style="font-family: Inter, system-ui, sans-serif; color: #E8F4F6; background: #071F24; position: relative; isolation: isolate; min-height: 100vh; overflow-x: clip">
+
+<div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; pointer-events: none; background-image: linear-gradient(90deg, rgba(18,60,68,0.55) 1px, transparent 1px); background-size: 96px 100%"></div>
+
+<div style="position: sticky; top: 0; z-index: 100; background: {{barraFondo}}; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid {{barraBorde}}; transition: background .3s ease, border-color .3s ease">
+<header style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between">
+<a href="Main.dc.html" class="btn" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px; background: #E8F4F6; color: #071F24; text-decoration: none; font-weight: 600; font-size: 14px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Volver al inicio</a>
+<nav aria-label="Secciones" style="display: flex; flex-wrap: wrap; gap: 4px; font-size: 14px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5"><a href="{{t.href}}" style="{{t.estilo}}">{{t.label}}</a></sc-for>
+</nav>
+</header>
+</div>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: 44px 24px 36px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center">
+<div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<p class="entra" style="--d: 0s; margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #8FC3CB">SECCIÓN 03 / 05 · SECUENCIA_01</p>
+<h1 aria-label="Edición de video" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(54px, 9vw, 124px); line-height: 0.92; letter-spacing: -0.035em; color: #FFFFFF">
+<span aria-hidden="true" style="position: relative; display: inline-block; white-space: nowrap">
+<span style="clip-path: inset(0 48% 0 0); display: inline-block">Edición</span><span class="mitad-d" style="position: absolute; left: 0; top: 0; clip-path: inset(0 0 0 52%); display: inline-block">Edición</span>
+<span class="navaja" style="position: absolute; top: -6%; bottom: -6%; width: 4px; background: #FF7A5C; box-shadow: 0 0 0 3px rgba(255,122,92,0.25)"></span>
+</span>
+<span aria-hidden="true" style="display: block; white-space: nowrap; color: #FF7A5C"><sc-for list="{{t2}}" as="l" hint-placeholder-count="8"><span class="cl" style="--i: {{l.i}}">{{l.c}}</span></sc-for></span>
+</h1>
+<p class="entra" style="--d: .9s; margin: 0; font-family: Caveat, cursive; font-size: 32px; color: #FFD23F; transform: rotate(-2deg); align-self: flex-start">ritmo, corte y una historia en segundos</p>
+<p class="entra" style="--d: 1s; margin: 0; font-size: 18px; line-height: 1.55; color: #B9D6DB; max-width: 580px">Edito contenido para redes de marcas y clubes: reels verticales con ritmo, textos que acompañan el corte y piezas pensadas para que se vean hasta el final.</p>
+<div class="entra" style="--d: 1.1s; display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="3"><span class="bota" style="padding: 9px 16px; border-radius: 999px; border: 1.5px solid #3E6E76; font-size: 14px; font-weight: 500">{{t}}</span></sc-for>
+</div>
+</div>
+<div aria-hidden="true" style="flex: 1 1 260px; display: flex; justify-content: center">
+<div style="position: relative; width: min(64vw, 250px); aspect-ratio: 9 / 16; border-radius: 26px; padding: 9px; background: #0B2E35; border: 1.5px solid #164650; box-shadow: 0 30px 60px rgba(0,0,0,0.35); transform: rotate(3deg)">
+<div style="position: relative; width: 100%; height: 100%; border-radius: 18px; overflow: hidden; background: #020B0D">
+<sc-for list="{{tomas}}" as="m" hint-placeholder-count="6"><img class="toma" src="{{m.src}}" alt="" style="--d: {{m.d}}"></sc-for>
+<span style="position: absolute; left: 10px; top: 10px; display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 6px; background: rgba(7,31,36,0.8); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #FFFFFF"><span class="rec" style="width: 8px; height: 8px; border-radius: 50%; background: #FF7A5C"></span>REC</span>
+<span style="position: absolute; right: 10px; top: 10px; padding: 4px 9px; border-radius: 6px; background: rgba(7,31,36,0.8); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #FFD23F">9:16</span>
+</div>
+<span style="position: absolute; left: -46px; bottom: 34px; padding: 10px 14px; border-radius: 14px; background: #FF7A5C; color: #071F24; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; transform: rotate(-6deg); box-shadow: 0 10px 22px rgba(0,0,0,0.3)">✂ corte cada 1s</span>
+</div>
+</div>
+</section>
+
+<section aria-label="Sala de montaje" style="max-width: 1200px; margin: 0 auto; padding: 32px 24px 24px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; align-items: baseline">
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(36px, 5.4vw, 68px); line-height: 1; letter-spacing: -0.02em; color: #FFFFFF">Sala de montaje</h2>
+<p style="margin: 0; font-family: Caveat, cursive; font-size: 26px; color: #FFD23F; transform: rotate(-2deg)">elegí una cuenta · tocá cualquier clip de la línea de tiempo</p>
+</div>
+
+<div style="border-radius: 18px; background: #0B2E35; border: 1.5px solid #164650; overflow: hidden">
+<div style="display: flex; flex-wrap: wrap">
+
+<div role="group" aria-label="Cuentas" style="flex: 1 1 240px; min-width: 0; padding: 12px; box-sizing: border-box; background: #06191D; border-right: 1.5px solid #164650; display: flex; flex-direction: column; gap: 4px">
+<span style="padding: 4px 12px 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #8FC3CB">PROYECTO · CUENTAS</span>
+<sc-for list="{{bins}}" as="b" hint-placeholder-count="4">
+<button type="button" class="bin" onClick="{{b.elegir}}" aria-pressed="{{b.on}}" aria-disabled="{{b.off}}" style="background: {{b.fondo}}">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="{{b.color}}" style="flex: 0 0 auto"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h4.4l2 2.2h8.6A1.5 1.5 0 0 1 21 8.7v9.8a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"></path></svg>
+<span style="display: flex; flex-direction: column; min-width: 0"><span style="font-weight: 600; font-size: 14px; color: #FFFFFF">{{b.n}}</span><span style="font-size: 12px; color: #8FC3CB">{{b.sub}}</span></span>
+</button>
+</sc-for>
+</div>
+
+<div style="flex: 999 1 520px; min-width: 0; padding: 18px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 22px; align-items: center; justify-content: center">
+<div style="position: relative; width: min(100%, 300px); aspect-ratio: 9 / 16; border-radius: 14px; overflow: hidden; background: #020B0D; border: 1.5px solid #164650">
+<sc-if value="{{mon.esVideo}}" hint-placeholder-val="{{ true }}"><video id="ed-monitor" src="{{mon.video}}" poster="{{mon.poster}}" controls playsinline preload="metadata" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #020B0D"></video></sc-if>
+<sc-if value="{{mon.esImg}}" hint-placeholder-val="{{ false }}"><img src="{{mon.img}}" alt="{{mon.titulo}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain"></sc-if>
+<span style="position: absolute; left: 8px; top: 8px; padding: 3px 9px; border-radius: 6px; background: rgba(7,31,36,0.85); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #FF7A5C; pointer-events: none">PROGRAMA</span>
+</div>
+<div style="flex: 1 1 220px; min-width: 0; max-width: 320px; display: flex; flex-direction: column; gap: 10px">
+<span id="ed-tc" aria-hidden="true" style="font-family: 'JetBrains Mono', monospace; font-size: 26px; color: #FFD23F; letter-spacing: 0.04em">00:00:00:00</span>
+<span style="align-self: flex-start; padding: 4px 11px; border-radius: 999px; background: {{mon.color}}; color: #071F24; font-size: 12px; font-weight: 700">{{mon.cuenta}}</span>
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; line-height: 1.1; color: #FFFFFF">{{mon.titulo}}</span>
+<span style="font-size: 14px; color: #8FC3CB">{{mon.tipo}}</span>
+<span style="font-size: 15px; line-height: 1.5; color: #B9D6DB">{{mon.desc}}</span>
+<div style="display: flex; gap: 8px; padding-top: 4px">
+<button type="button" class="btn" onClick="{{anterior}}" aria-label="Clip anterior" style="min-width: 48px; min-height: 48px; border-radius: 12px; border: 1.5px solid #3E6E76; background: transparent; color: #FFFFFF; font: inherit; font-size: 18px; cursor: pointer">⏮</button>
+<button type="button" class="btn" onClick="{{reproducir}}" style="flex: 1 1 auto; min-height: 48px; padding: 0 18px; border-radius: 12px; border: none; background: #FF7A5C; color: #071F24; font: inherit; font-weight: 700; cursor: pointer">▶ Reproducir</button>
+<button type="button" class="btn" onClick="{{siguiente}}" aria-label="Clip siguiente" style="min-width: 48px; min-height: 48px; border-radius: 12px; border: 1.5px solid #3E6E76; background: transparent; color: #FFFFFF; font: inherit; font-size: 18px; cursor: pointer">⏭</button>
+</div>
+</div>
+</div>
+</div>
+
+<div style="border-top: 1.5px solid #164650; background: #06191D; overflow-x: auto">
+<div style="min-width: 720px; padding: 10px 14px 14px; display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 6px 8px; align-items: center">
+<span></span>
+<div aria-hidden="true" style="display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8FC3CB; padding-bottom: 2px; background-image: repeating-linear-gradient(90deg, #3E6E76 0 1px, transparent 1px 5%); background-size: 100% 6px; background-repeat: no-repeat; background-position: 0 100%"><span>00:00</span><span>{{secuenciaFin}}</span></div>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #FF7A5C">V1</span>
+<div id="ed-pista" style="position: relative; display: flex; gap: 3px">
+<sc-for list="{{clips}}" as="c" hint-placeholder-count="6">
+<button type="button" class="clip" id="{{c.id}}" onClick="{{c.ir}}" aria-label="Ver {{c.titulo}}" aria-current="{{c.actual}}" style="flex: {{c.peso}} 1 0; background-image: url({{c.tira}}); box-shadow: inset 0 0 0 {{c.borde}} #FF7A5C">
+<span style="position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 7px 5px; background: linear-gradient(180deg, transparent, rgba(2,11,13,0.92)); font-size: 11px; font-weight: 600; color: #FFFFFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: left">{{c.titulo}}</span>
+</button>
+</sc-for>
+<span id="ed-cabezal" aria-hidden="true" style="position: absolute; top: -26px; bottom: -48px; left: 0; width: 2px; background: #FF7A5C; z-index: 3; pointer-events: none; transition: left .12s linear"><span style="position: absolute; top: 0; left: -6px; width: 14px; height: 12px; background: #FF7A5C; clip-path: polygon(0 0, 100% 0, 100% 60%, 50% 100%, 0 60%)"></span></span>
+</div>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5EE6A8">A1</span>
+<div aria-hidden="true" style="display: flex; gap: 3px">
+<sc-for list="{{clips}}" as="c" hint-placeholder-count="6"><span class="onda" style="flex: {{c.peso}} 1 0; opacity: {{c.audio}}"></span></sc-for>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: 56px 24px 24px; display: flex; flex-direction: column; gap: 20px">
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(30px, 4vw, 44px); color: #FFFFFF">Cómo edito</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px">
+<div style="padding: 22px; border-radius: 18px; background: #0B2E35; border: 1.5px solid #164650; display: flex; flex-direction: column; gap: 12px">
+<div aria-hidden="true" style="height: 60px; display: flex; align-items: flex-end; gap: 6px"><span class="beat" style="--d: 0s; width: 12px; height: 56px; border-radius: 4px; background: #FFD23F"></span><span class="beat" style="--d: .15s; width: 12px; height: 56px; border-radius: 4px; background: #FFD23F"></span><span class="beat" style="--d: .3s; width: 12px; height: 56px; border-radius: 4px; background: #FFD23F"></span><span class="beat" style="--d: .45s; width: 12px; height: 56px; border-radius: 4px; background: #FFD23F"></span><span class="beat" style="--d: .6s; width: 12px; height: 56px; border-radius: 4px; background: #FFD23F"></span></div>
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: #FFFFFF">Ritmo</span>
+<span style="font-size: 15px; line-height: 1.5; color: #B9D6DB">El corte sigue la música y la acción, para que el video no se caiga en ningún segundo.</span>
+</div>
+<div style="padding: 22px; border-radius: 18px; background: #0B2E35; border: 1.5px solid #164650; display: flex; flex-direction: column; gap: 12px">
+<div aria-hidden="true" style="position: relative; height: 60px; display: flex; align-items: flex-end"><span style="width: 70px; height: 22px; border-radius: 5px 0 0 5px; background: #FF7A5C"></span><span class="corta" style="width: 70px; height: 22px; border-radius: 0 5px 5px 0; background: #FF7A5C"></span><span class="cuchilla" style="position: absolute; left: 66px; bottom: 24px; width: 8px; height: 30px; background: #FFFFFF; clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%)"></span></div>
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: #FFFFFF">Corte</span>
+<span style="font-size: 15px; line-height: 1.5; color: #B9D6DB">Me quedo con lo mejor de cada toma y armo la historia con textos que acompañan sin tapar.</span>
+</div>
+<div style="padding: 22px; border-radius: 18px; background: #0B2E35; border: 1.5px solid #164650; display: flex; flex-direction: column; gap: 12px">
+<div aria-hidden="true" style="height: 60px; display: flex; align-items: center; gap: 10px"><svg class="rueda" style="--dur: 6s" width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="23" fill="none" stroke="#FF7A5C" stroke-width="4"></circle><circle cx="26" cy="9" r="5" fill="#FF7A5C"></circle></svg><svg class="rueda" style="--dur: 8s" width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="23" fill="none" stroke="#5EE6A8" stroke-width="4"></circle><circle cx="26" cy="9" r="5" fill="#5EE6A8"></circle></svg><svg class="rueda" style="--dur: 7s" width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="23" fill="none" stroke="#22C3D6" stroke-width="4"></circle><circle cx="26" cy="9" r="5" fill="#22C3D6"></circle></svg></div>
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: #FFFFFF">Formato</span>
+<span style="font-size: 15px; line-height: 1.5; color: #B9D6DB">Cada pieza sale lista para su plataforma: vertical para reels y stories, y gráficas que acompañan.</span>
+</div>
+</div>
+</section>
+
+<section style="padding: 40px 24px 64px">
+<div style="max-width: 1200px; margin: 0 auto; box-sizing: border-box; background: #FF7A5C; color: #071F24; border-radius: 28px; padding: clamp(28px, 4vw, 52px); display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between">
+<div style="flex: 1 1 380px; display: flex; flex-direction: column; gap: 6px">
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.05">¿Tenés el material y te falta el corte?</h2>
+<p style="margin: 0; font-family: Caveat, cursive; font-size: 26px">pasámelo y lo editamos</p>
+</div>
+<a class="btn" href="https://wa.me/5491158165994" style="background: #071F24; color: #FFFFFF; font-weight: 600; padding: 0 26px; min-height: 54px; display: inline-flex; align-items: center; border-radius: 999px; text-decoration: none">Escribime por WhatsApp</a>
+</div>
+<div style="max-width: 1200px; margin: 28px auto 0; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between">
+<a class="btn" href="Motion.dc.html" style="min-height: 48px; display: inline-flex; align-items: center; padding: 0 20px; border-radius: 999px; border: 1.5px solid #3E6E76; color: #FFFFFF; text-decoration: none; font-weight: 600">← Motion Graphics</a>
+<a class="btn" href="MusicVisuals.dc.html" style="min-height: 48px; display: inline-flex; align-items: center; padding: 0 20px; border-radius: 999px; border: 1.5px solid #3E6E76; color: #FFFFFF; text-decoration: none; font-weight: 600">Visualizers Musicales →</a>
+</div>
+</section>
+
+<div class="tiras" aria-hidden="true" style="position: fixed; inset: 0; z-index: 300; pointer-events: none; display: flex"><span style="--i: 0"></span><span style="--i: 1"></span><span style="--i: 2"></span><span style="--i: 3"></span><span style="--i: 4"></span><span style="--i: 5"></span><span style="--i: 6"></span></div>
+</div>
+</template>
+<script type="text/plain" id="dc-src" data-props='{"$preview":{"width":1280,"height":2100}}'>
+var CUENTAS = [
+{ id: 'aconcagua', n: 'Aconcagua Beach Voley', color: '#22C3D6', sub: 'cuenta actual' },
+{ id: 'molten', n: 'Molten', color: '#FFD23F', sub: 'sponsor · Aconcagua' },
+{ id: 'lisarts', n: 'Lisarts Studios', color: '#B79CFF', sub: 'mi cuenta' },
+{ id: 'arcoiris', n: 'Arcoiris Colchones', color: '#5EE6A8', sub: '3 videos · en camino', vacia: true }
+];
+var CLIPS = [
+{ cuenta: 'aconcagua', titulo: 'Se acercan los torneos', tipo: 'Reel vertical · 2026', desc: 'Reel de entrenamiento con texto que acompaña el corte, para anunciar la temporada de torneos.', video: 'media/ee4ebb1d646941e13bb5c451feda75d0.mp4', poster: 'media/2952803f9d33fdb73a90b6ca6d8bd823.jpg', tira: 'media/cd27eab7f82a476f47d0d955e5e68daa.jpg', dur: 21 },
+{ cuenta: 'aconcagua', titulo: 'All for', tipo: 'Reel vertical · 2026', desc: 'Reel corto con los jugadores y la camiseta del club.', video: 'media/507f675aab0cedac4e3c3914004ca66b.mp4', poster: 'media/9fe857c7850163406870b993d997c1ac.jpg', tira: 'media/c8521401a17985caa90360aae8a912dd.jpg', dur: 10 },
+{ cuenta: 'aconcagua', titulo: 'Día de físico', tipo: 'Reel vertical · 2026', desc: 'Reel del entrenamiento físico en la arena.', video: 'media/e5197712b13fe12ef7d8591f607bd3fe.mp4', poster: 'media/399ad04db6a0c89c2c6172675fafe77f.jpg', tira: 'media/67a8ace75d00e9cd93ec0d58f34fdad0.jpg', dur: 20 },
+{ cuenta: 'aconcagua', titulo: '¿El sol hace que entrenemos mejor?', tipo: 'Reel vertical · 2026', desc: 'Reel corto con pregunta para generar comentarios.', video: 'media/6bce1629a2500869a0d3426ff6a675d5.mp4', poster: 'media/1d221f988541db48ee215e086ea611df.jpg', tira: 'media/a5d43ea06dffde5b16ecdad5a5f11134.jpg', dur: 6 },
+{ cuenta: 'aconcagua', titulo: 'Sponsors en la cancha', tipo: 'Reel vertical · 2026', desc: 'Reel que muestra a los sponsors del club en el día a día de la cancha.', video: 'media/fd0379bd8d51887cfca41502b6a36ac6.mp4', poster: 'media/f51a45e7dc10f6d055437653738294f9.jpg', tira: 'media/ac863d9f5376966879550d502be79ed0.jpg', dur: 55 },
+{ cuenta: 'molten', titulo: 'Molten — feel the emotion', tipo: 'Video para sponsor · 2026', desc: 'Video para Molten, sponsor de Aconcagua Beach Voley, con la pelota como protagonista.', video: 'media/37c49347dbea1e340d54d9de601e6dab.mp4', poster: 'media/968cc96a5019d7516c7c102d1246900b.jpg', tira: 'media/dabd55e3431e45fbad7e5b9c5725d48c.jpg', dur: 49 },
+{ cuenta: 'lisarts', titulo: 'Reels Lisarts #1', tipo: 'Reel para mi cuenta · 2026', desc: 'Contenido para la cuenta de Lisarts Studios.', video: 'media/8787abc02ee2875e57f9069dffa1141f.mp4', poster: 'media/6b00edbf1c959140989da1351f6cc22f.jpg', tira: 'media/6b00edbf1c959140989da1351f6cc22f.jpg', dur: 12 },
+{ cuenta: 'lisarts', titulo: 'Reels Lisarts #2', tipo: 'Reel para mi cuenta · 2026', desc: 'Contenido para la cuenta de Lisarts Studios.', video: 'media/73dfcd6206bb22ef80dfb328468b104b.mp4', poster: 'media/399dd5ece241cedd948f6e1c68c1ee58.jpg', tira: 'media/399dd5ece241cedd948f6e1c68c1ee58.jpg', dur: 12 },
+{ cuenta: 'lisarts', titulo: 'Reels Lisarts #3', tipo: 'Reel para mi cuenta · 2026', desc: 'Contenido para la cuenta de Lisarts Studios.', video: 'media/2f1151118b1f38201363152821344a32.mp4', poster: 'media/e0b4784012a4d363df5ffa7f689b86fb.jpg', tira: 'media/e0b4784012a4d363df5ffa7f689b86fb.jpg', dur: 12 },
+{ cuenta: 'lisarts', titulo: 'Reels Lisarts #4', tipo: 'Reel para mi cuenta · 2026', desc: 'Contenido para la cuenta de Lisarts Studios.', video: 'media/5347fd5250cef94f3c00bbbe4e5b5a4c.mp4', poster: 'media/6eeeb963f82e9a3c1c4bf7a7a113b26f.jpg', tira: 'media/6eeeb963f82e9a3c1c4bf7a7a113b26f.jpg', dur: 12 },
+{ cuenta: 'lisarts', titulo: 'Reels Lisarts #5', tipo: 'Reel para mi cuenta · 2026', desc: 'Contenido para la cuenta de Lisarts Studios.', video: 'media/573a67c19d8969062f1a0f7dfcdd0ca9.mp4', poster: 'media/e40886432824e4ba6a56d666321020b2.jpg', tira: 'media/e40886432824e4ba6a56d666321020b2.jpg', dur: 12 }
+];
+var TOMAS = ['media/2952803f9d33fdb73a90b6ca6d8bd823.jpg', 'media/968cc96a5019d7516c7c102d1246900b.jpg', 'media/399ad04db6a0c89c2c6172675fafe77f.jpg', 'media/1d221f988541db48ee215e086ea611df.jpg', 'media/9fe857c7850163406870b993d997c1ac.jpg', 'media/f51a45e7dc10f6d055437653738294f9.jpg'];
+var TABS = [['Animacion.dc.html', 'Animación', '#22C3D6'], ['Motion.dc.html', 'Motion', '#FFD23F'], ['Edicion.dc.html', 'Edición', '#FF7A5C'], ['MusicVisuals.dc.html', 'Visualizers', '#B79CFF'], ['Ilustracion.dc.html', 'Ilustración', '#5EE6A8']];
+function cuenta(id) { for (var i = 0; i < CUENTAS.length; i++) { if (CUENTAS[i].id === id) return CUENTAS[i]; } return CUENTAS[0]; }
+function delBin(id) { var r = []; CLIPS.forEach(function (c, i) { if (c.cuenta === id) r.push(i); }); return r; }
+function dos(n) { n = Math.floor(n); return n < 10 ? '0' + n : String(n); }
+function tc(s) { s = Math.max(0, s); return dos(s / 3600) + ':' + dos((s / 60) % 60) + ':' + dos(s % 60) + ':' + dos((s % 1) * 30); }
+function mmss(s) { return dos(s / 60) + ':' + dos(s % 60); }
+function letras(t, desde) { return t.split('').map(function (c, k) { return { c: c === ' ' ? ' ' : c, i: desde + k }; }); }
+class Component extends DCLogic {
+componentDidMount() {
+var self = this;
+this.onScroll = function (e) { var t = e && e.target && e.target.scrollTop; var y = Math.max(window.scrollY || 0, document.documentElement.scrollTop || 0, t || 0); var on = y > 30; if (on !== !!(self.state && self.state.bajo)) self.setState({ bajo: on }); };
+window.addEventListener('scroll', this.onScroll, { passive: true }); document.addEventListener('scroll', this.onScroll, { passive: true, capture: true });
+var loop = function () {
+self.raf = requestAnimationFrame(loop);
+var st = self.state || {}, bin = st.bin || 'aconcagua', ids = delBin(bin), sel = typeof st.sel === 'number' ? st.sel : ids[0];
+var pista = document.getElementById('ed-pista'), cab = document.getElementById('ed-cabezal'), tcEl = document.getElementById('ed-tc');
+if (!pista || !cab) return;
+var el = document.getElementById('clip-' + sel); if (!el) return;
+var v = document.getElementById('ed-monitor'), c = CLIPS[sel];
+var t = 0, d = c.dur;
+if (c.video && v && v.duration) { t = v.currentTime; d = v.duration; }
+var p = d ? Math.min(1, t / d) : 0;
+cab.style.left = (el.offsetLeft + el.offsetWidth * p) + 'px';
+var antes = 0; ids.forEach(function (i) { if (i < sel) antes += CLIPS[i].dur; });
+if (tcEl) tcEl.textContent = tc(antes + t);
+if (c.video && v && v.ended && self.ultimo !== sel) { self.ultimo = sel; var k = ids.indexOf(sel); if (k < ids.length - 1) self.irA(ids[k + 1], 0); }
+};
+this.raf = requestAnimationFrame(loop);
+}
+componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); document.removeEventListener('scroll', this.onScroll, { capture: true }); cancelAnimationFrame(this.raf); }
+irA(i, frac) {
+var self = this; this.ultimo = null;
+this.setState({ sel: i });
+setTimeout(function () {
+var v = document.getElementById('ed-monitor'); if (!v || !CLIPS[i].video) return;
+var go = function () { if (frac && v.duration) { try { v.currentTime = frac * v.duration; } catch (err) {} } var q = v.play(); if (q && q.catch) q.catch(function () {}); };
+if (v.readyState >= 1) go(); else v.addEventListener('loadedmetadata', go, { once: true });
+}, 60);
+}
+renderVals() {
+var self = this, st = this.state || {};
+var bin = st.bin || 'aconcagua', ids = delBin(bin);
+var sel = typeof st.sel === 'number' && ids.indexOf(st.sel) >= 0 ? st.sel : ids[0];
+var c = CLIPS[sel], cu = cuenta(c.cuenta);
+var total = 0; ids.forEach(function (i) { total += CLIPS[i].dur; });
+var bins = CUENTAS.map(function (b) {
+var n = delBin(b.id).length, on = b.id === bin;
+return { n: b.n, color: b.color, sub: b.vacia ? b.sub : (n + (n === 1 ? ' pieza · ' : ' piezas · ') + b.sub), on: on ? 'true' : 'false', off: b.vacia ? 'true' : 'false', fondo: on ? '#164650' : 'transparent',
+elegir: function () { if (b.vacia || on) return; self.ultimo = null; self.setState({ bin: b.id, sel: delBin(b.id)[0] }); } };
+});
+var clips = ids.map(function (i) {
+var x = CLIPS[i];
+return { id: 'clip-' + i, titulo: x.titulo, tira: x.tira, peso: x.dur, audio: x.video ? '0.75' : '0.15', actual: i === sel ? 'true' : 'false', borde: i === sel ? '3px' : '0px',
+ir: function (e) { var el = e && e.currentTarget, f = 0; if (el && el.getBoundingClientRect && e.clientX) { var r = el.getBoundingClientRect(); f = Math.min(0.98, Math.max(0, (e.clientX - r.left) / r.width)); } self.irA(i, f); } };
+});
+var k = ids.indexOf(sel);
+var tabs = TABS.map(function (t) { var on = t[0] === 'Edicion.dc.html'; return { href: t[0], label: t[1], estilo: 'text-decoration: none; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 999px; font-weight: 600; ' + (on ? 'background: ' + t[2] + '; color: #071F24' : 'color: #B9D6DB') }; });
+return {
+barraFondo: st.bajo ? 'rgba(7,31,36,0.55)' : 'rgba(7,31,36,1)', barraBorde: st.bajo ? 'rgba(62,110,118,0.6)' : 'transparent',
+tabs: tabs, t2: letras('de video', 0),
+tools: ['Premiere Pro', 'After Effects', 'Photoshop'],
+tomas: TOMAS.map(function (s, j) { return { src: s, d: (j - TOMAS.length) + 's' }; }),
+bins: bins, clips: clips, secuenciaFin: mmss(total),
+mon: { titulo: c.titulo, tipo: c.tipo, desc: c.desc, video: c.video || '', poster: c.poster || '', img: c.img || '', esVideo: !!c.video, esImg: !c.video, cuenta: cu.n, color: cu.color },
+reproducir: function () { self.irA(sel, 0); },
+anterior: function () { self.irA(ids[(k - 1 + ids.length) % ids.length], 0); },
+siguiente: function () { self.irA(ids[(k + 1) % ids.length], 0); }
+};
+}
+}
+</script>
+<script src="morphdom.js"></script>
+<script src="dc-lite.js"></script>
+</body>
+</html>

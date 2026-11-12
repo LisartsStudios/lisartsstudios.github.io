@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lisarts Studios — Lisandro Martínez Mendoza</title>
+<meta name="description" content="Lisandro Martínez Mendoza · Lisarts Studios — Animación 2D/3D, Motion Graphics, Edición de video, Visualizers e Ilustración.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#071F24}
+a{color:#22C3D6}a:hover{color:#7FE3EE}
+html{scroll-behavior:smooth}
+@keyframes subir{from{transform:translateY(110%)}to{transform:none}}
+.mask{display:block;overflow:hidden;padding-bottom:.06em}
+.mask > span{display:inline-block;animation:subir .9s cubic-bezier(.7,0,.2,1) both;animation-delay:var(--d)}
+@keyframes entrar{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.entra{animation:entrar .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d)}
+@keyframes salto{0%{transform:translateY(0);animation-timing-function:cubic-bezier(.22,.61,.36,1)}50%{transform:translateY(var(--alto,-130px));animation-timing-function:cubic-bezier(.55,0,.78,.39)}100%{transform:translateY(0)}}
+@keyframes squash{0%,100%{transform:scale(1.28,.72)}7%,93%{transform:scale(.88,1.14)}20%,80%{transform:scale(1,1)}}
+@keyframes sombra{0%,100%{transform:scale(1);opacity:.5;animation-timing-function:cubic-bezier(.22,.61,.36,1)}50%{transform:scale(.4);opacity:.15;animation-timing-function:cubic-bezier(.55,0,.78,.39)}}
+.salto{animation:salto 1s infinite;will-change:transform}
+.squash{display:block;width:100%;height:100%;border-radius:50%;background:inherit;transform-origin:50% 100%;animation:squash 1s linear infinite}
+.sombra{animation:sombra 1s infinite}
+@keyframes morph{0%,100%{border-radius:8px;transform:rotate(0);background:#FFD23F}33%{border-radius:50%;transform:rotate(120deg) scale(.85);background:#FF7A5C}66%{border-radius:50% 8px 50% 8px;transform:rotate(240deg) scale(1.1);background:#B79CFF}}
+.morph{animation:morph 4s cubic-bezier(.7,0,.3,1) infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.gira{animation:gira 6s cubic-bezier(.7,0,.3,1) infinite}
+@keyframes camino{from{offset-distance:0%}to{offset-distance:100%}}
+.viaja{offset-path:path('M24,210 C70,40 190,30 230,150 S320,300 336,60');animation:camino 3.6s cubic-bezier(.7,0,.3,1) infinite alternate;offset-rotate:0deg}
+
+@keyframes pulso{0%,100%{transform:rotate(45deg) scale(1)}50%{transform:rotate(45deg) scale(1.25)}}
+.kf{animation:pulso 1.6s ease-in-out infinite}
+.tile{transition:transform .35s cubic-bezier(.3,1.5,.5,1),box-shadow .35s ease}
+.tile:hover,.tile:focus-visible{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,.35)}
+.tile:hover .ico,.tile:focus-visible .ico{transform:scale(1.15) rotate(-6deg)}
+.tile:focus-visible{outline:3px solid #FFFFFF;outline-offset:4px}
+.ico{transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+@keyframes corte{0%,100%{transform:translateX(0)}50%{transform:translateX(18px)}}
+.corte{animation:corte 1.8s cubic-bezier(.7,0,.3,1) infinite}
+@keyframes eq{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+.eq{animation:eq .9s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes trazo{0%{stroke-dashoffset:220}55%,80%{stroke-dashoffset:0}100%{stroke-dashoffset:-220}}
+.trazo{stroke-dasharray:220;animation:trazo 3s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ring{animation:spin 18s linear infinite}
+@keyframes flota{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.flota{animation:flota 5s ease-in-out infinite}
+@keyframes chip{0%,100%{translate:0 0;rotate:var(--r)}50%{translate:0 -8px;rotate:calc(var(--r) * -1)}}
+.chip{animation:chip 4.4s ease-in-out infinite;animation-delay:calc(var(--i) * -0.7s)}
+@keyframes llenar{from{width:0}}
+.barra{animation:llenar 1.6s cubic-bezier(.7,0,.2,1) both;animation-delay:calc(var(--i) * 120ms)}
+@keyframes palabras{0%,28%{transform:translateY(0)}33%,61%{transform:translateY(-1.1em)}66%,94%{transform:translateY(-2.2em)}100%{transform:translateY(-3.3em)}}
+.slot{display:inline-block;height:1.1em;overflow:hidden;vertical-align:bottom}
+.slot > span{display:flex;flex-direction:column;animation:palabras 6s cubic-bezier(.7,0,.3,1) infinite}
+.slot > span > span{height:1.1em;line-height:1.1em}
+.forma{transition:border-radius .5s cubic-bezier(.7,0,.3,1),transform .5s cubic-bezier(.3,1.6,.5,1)}
+.contacto:hover .forma,.contacto:focus-visible .forma{border-radius:50% !important;transform:rotate(180deg) scale(1.1)}
+.contacto{transition:transform .3s cubic-bezier(.3,1.5,.5,1)}
+.contacto:hover,.contacto:focus-visible{transform:translateY(-6px)}
+@keyframes crece{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.capa{transform-origin:0 50%;animation:crece 1s cubic-bezier(.7,0,.2,1) both;animation-delay:calc(var(--i) * 140ms)}
+@keyframes abrir{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
+.abre{animation:abrir .5s cubic-bezier(.2,1.1,.4,1) both}
+.btn{transition:transform .25s cubic-bezier(.3,1.6,.5,1)}.btn:hover,.btn:focus-visible{transform:translateY(-3px)}
+@keyframes trBall{0%{transform:translate(0,0)}14%{transform:translate(18vw,-42vh)}28%{transform:translate(36vw,0)}42%{transform:translate(50vw,-28vh)}56%{transform:translate(60vw,0)}100%{transform:translate(50vw,-30vh) scale(36)}}
+@keyframes trSquash{0%,100%{transform:scale(1)}26%,30%{transform:scale(1.35,.7)}54%,58%{transform:scale(1.35,.7)}14%,42%{transform:scale(.9,1.12)}}
+.tr-ball{animation:trBall 1.4s cubic-bezier(.5,0,.5,1) forwards}
+.tr-squash{transform-origin:50% 100%;animation:trSquash 1.4s linear forwards}
+@keyframes trLinea{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.tr-linea{transform:scaleX(0);animation:trLinea .55s cubic-bezier(.7,0,.2,1) forwards}
+@keyframes trTapa{from{opacity:0}to{opacity:1}}
+.tr-tapa{opacity:0;animation:trTapa .25s ease forwards}
+@keyframes trClip{from{transform:translateY(-105%)}to{transform:none}}
+.tr-clip{transform:translateY(-105%);animation:trClip .45s cubic-bezier(.7,0,.2,1.2) forwards}
+@keyframes trCab{from{left:-6px}to{left:100%}}
+.tr-cabezal{left:-6px;animation:trCab .5s linear .5s forwards}
+@keyframes trEq{0%{transform:scaleY(0)}55%{transform:scaleY(.95)}75%{transform:scaleY(.55)}100%{transform:scaleY(1)}}
+.tr-eq{transform:scaleY(0);transform-origin:50% 100%;animation:trEq .8s cubic-bezier(.3,1.4,.5,1) forwards}
+@keyframes trTrazo{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.tr-trazo{stroke-dasharray:1;stroke-dashoffset:1;animation:trTrazo 1s cubic-bezier(.6,0,.4,1) forwards}
+@media (prefers-reduced-motion:reduce){.mask > span,.entra,.salto,.squash,.sombra,.morph,.gira,.viaja,.kf,.corte,.eq,.trazo,.ring,.flota,.chip,.barra,.slot > span,.capa,.abre{animation:none}}
+</style>
+
+</head>
+<body>
+<div id="dc-root"></div>
+<template id="dc-tpl">
+
+<div style="font-family: Inter, system-ui, sans-serif; color: #E8F4F6; background: #071F24; min-height: 100vh; overflow-x: clip">
+
+<div style="position: sticky; top: 0; z-index: 100; background: {{barraFondo}}; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid {{barraBorde}}; transition: background .3s ease, border-color .3s ease">
+<header style="max-width: 1200px; margin: 0 auto; padding: 16px 24px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between">
+<span style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 18px; letter-spacing: 0.04em; color: #FFFFFF">LISARTS<span style="color: #FFD23F"> STUDIOS</span></span>
+<nav aria-label="Principal" style="display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font-size: 15px">
+<a href="#trabajos" style="color: #B9D6DB; text-decoration: none; padding: 0 12px; min-height: 44px; display: inline-flex; align-items: center">Trabajos</a>
+<a href="#sobre-mi" style="color: #B9D6DB; text-decoration: none; padding: 0 12px; min-height: 44px; display: inline-flex; align-items: center">Sobre mí</a>
+<a href="#contacto" class="btn" style="background: #FFD23F; color: #071F24; font-weight: 700; padding: 0 20px; min-height: 44px; display: inline-flex; align-items: center; border-radius: 999px; text-decoration: none">Hablemos</a>
+</nav>
+</header>
+</div>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: 40px 24px 32px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center">
+<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+<p class="entra" style="--d: 0s; margin: 0; display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #8FC3CB"><span class="kf" style="width: 10px; height: 10px; background: #FFD23F; transform: rotate(45deg)"></span>Animación · Motion Graphics · Edición</p>
+<h1 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 800; font-size: clamp(40px, 6.6vw, 88px); line-height: 1.02; letter-spacing: -0.02em; color: #FFFFFF">
+<span class="mask"><span style="--d: .1s">Lisandro</span></span>
+<span class="mask"><span style="--d: .22s; color: #22C3D6">Martínez</span></span>
+<span class="mask"><span style="--d: .34s">Mendoza</span></span>
+</h1>
+<p class="entra" style="--d: .6s; margin: 0; font-size: 19px; line-height: 1.55; color: #B9D6DB; max-width: 560px">Animador 2D/3D, motion designer y editor de video. Le doy movimiento a marcas, músicos e historias desde <b style="color: #FFFFFF">Lisarts Studios</b>.</p>
+<div class="entra" style="--d: .75s; display: flex; flex-wrap: wrap; gap: 12px">
+<a class="btn" href="#trabajos" style="background: #22C3D6; color: #071F24; font-weight: 700; padding: 0 24px; min-height: 52px; display: inline-flex; align-items: center; border-radius: 999px; text-decoration: none">Ver trabajos</a>
+<a class="btn" href="https://wa.me/5491158165994" style="border: 2px solid #3E6E76; color: #FFFFFF; font-weight: 700; padding: 0 24px; min-height: 52px; display: inline-flex; align-items: center; border-radius: 999px; text-decoration: none">WhatsApp</a>
+</div>
+</div>
+<div aria-hidden="true" style="flex: 1 1 340px; display: flex; justify-content: center">
+<div style="position: relative; width: 360px; height: 320px; max-width: 100%">
+<svg width="360" height="320" viewBox="0 0 360 320" style="position: absolute; inset: 0; overflow: visible"><path d="M24,210 C70,40 190,30 230,150 S320,300 336,60" fill="none" stroke="#3E6E76" stroke-width="2" stroke-dasharray="4 8"></path></svg>
+<span class="viaja" style="position: absolute; left: 0; top: 0; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 6px rgba(255,255,255,0.15)"></span>
+<span class="morph" style="position: absolute; left: 34px; top: 34px; width: 78px; height: 78px"></span>
+<svg class="gira" width="90" height="90" viewBox="0 0 90 90" style="position: absolute; right: 18px; top: 150px"><polygon points="45,8 84,78 6,78" fill="#5EE6A8"></polygon></svg>
+<span class="sombra" style="position: absolute; left: 150px; bottom: 6px; width: 70px; height: 12px; border-radius: 50%; background: #000000"></span>
+<span class="salto" style="position: absolute; left: 155px; bottom: 12px; width: 60px; height: 60px; --alto: -150px"><span class="squash" style="background: #22C3D6"></span></span>
+</div>
+</div>
+</section>
+
+<section aria-label="Graph editor interactivo" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 24px">
+<div style="border-radius: 20px; background: #0B2E35; padding: 20px 22px; display: flex; flex-wrap: wrap; gap: 22px; align-items: center">
+<div style="flex: 1 1 200px; max-width: 240px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-weight: 700; color: #FFFFFF; font-size: 16px">Graph editor</span>
+<span style="font-size: 13px; line-height: 1.4; color: #8FC3CB">Arrastrá las manijas amarillas y mirá cómo cambia el movimiento.</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{presets}}" as="p" hint-placeholder-count="5"><button type="button" onClick="{{p.set}}" style="min-height: 34px; padding: 0 10px; border-radius: 999px; border: 1.5px solid {{p.borde}}; background: {{p.fondo}}; color: {{p.texto}}; font: inherit; font-size: 12px; font-weight: 700; cursor: pointer">{{p.n}}</button></sc-for>
+</div>
+</div>
+<div id="ge-box" style="position: relative; flex: 2 1 300px; max-width: 560px; aspect-ratio: 300 / 160; background-image: repeating-linear-gradient(90deg, #164650 0 1px, transparent 1px 10%), repeating-linear-gradient(0deg, #164650 0 1px, transparent 1px 12.5%); border-radius: 8px; touch-action: none">
+<svg aria-hidden="true" viewBox="0 0 300 160" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible">
+<line x1="0" y1="130" x2="300" y2="130" stroke="#3E6E76" stroke-width="1" stroke-dasharray="3 4" vector-effect="non-scaling-stroke"></line>
+<line x1="0" y1="30" x2="300" y2="30" stroke="#3E6E76" stroke-width="1" stroke-dasharray="3 4" vector-effect="non-scaling-stroke"></line>
+<line x1="0" y1="130" x2="{{g.x1}}" y2="{{g.y1}}" stroke="#FFD23F" stroke-width="1.5" vector-effect="non-scaling-stroke"></line>
+<line x1="300" y1="30" x2="{{g.x2}}" y2="{{g.y2}}" stroke="#FFD23F" stroke-width="1.5" vector-effect="non-scaling-stroke"></line>
+<path d="{{g.d}}" fill="none" stroke="#22C3D6" stroke-width="3" vector-effect="non-scaling-stroke"></path>
+</svg>
+<span aria-hidden="true" style="position: absolute; left: 0; top: 81.25%; width: 14px; height: 14px; margin: -7px; background: #FFFFFF; transform: rotate(45deg)"></span>
+<span aria-hidden="true" style="position: absolute; left: 100%; top: 18.75%; width: 14px; height: 14px; margin: -7px; background: #FFFFFF; transform: rotate(45deg)"></span>
+<span id="ge-tiempo" aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: 0; width: 1px; background: rgba(255,122,92,0.6); pointer-events: none"></span>
+<span id="ge-punto" aria-hidden="true" style="position: absolute; left: 0; top: 81.25%; width: 14px; height: 14px; margin: -7px; border-radius: 50%; background: #FF7A5C; box-shadow: 0 0 0 4px rgba(255,122,92,0.3); pointer-events: none"></span>
+<button type="button" aria-label="Manija de salida" onPointerDown="{{agarrar1}}" style="position: absolute; left: {{g.l1}}; top: {{g.t1}}; width: 30px; height: 30px; margin: -15px; padding: 0; border: none; border-radius: 50%; background: transparent; cursor: grab; touch-action: none; display: flex; align-items: center; justify-content: center"><span style="width: 14px; height: 14px; border-radius: 50%; background: #FFD23F; box-shadow: 0 0 0 4px rgba(255,210,63,0.25)"></span></button>
+<button type="button" aria-label="Manija de llegada" onPointerDown="{{agarrar2}}" style="position: absolute; left: {{g.l2}}; top: {{g.t2}}; width: 30px; height: 30px; margin: -15px; padding: 0; border: none; border-radius: 50%; background: transparent; cursor: grab; touch-action: none; display: flex; align-items: center; justify-content: center"><span style="width: 14px; height: 14px; border-radius: 50%; background: #FFD23F; box-shadow: 0 0 0 4px rgba(255,210,63,0.25)"></span></button>
+</div>
+<div aria-hidden="true" style="flex: 1 1 220px; position: relative; height: 60px; border-radius: 999px; background: #071F24">
+<span id="ge-bola" style="position: absolute; top: 8px; left: 8px; width: 44px; height: 44px; border-radius: 50%; background: #FF7A5C"></span>
+</div>
+</div>
+</section>
+
+<section id="trabajos" style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 96px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; align-items: flex-end">
+<h2 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 800; font-size: clamp(32px, 5vw, 60px); line-height: 1.05; letter-spacing: -0.02em; color: #FFFFFF">¿Qué querés ver?</h2>
+<p style="margin: 0; color: #8FC3CB; font-size: 16px">Cada sección tiene sus trabajos.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 18px">
+
+<button type="button" class="tile" onClick="{{goAnim}}" style="all: unset; cursor: pointer; text-align: left; display: flex; flex-direction: column; gap: 14px; padding: 26px; border-radius: 24px; background: #22C3D6; color: #071F24; text-decoration: none; min-height: 250px; box-sizing: border-box">
+<span class="ico" aria-hidden="true" style="position: relative; width: 70px; height: 70px; border-radius: 18px; background: #071F24; display: block; overflow: hidden"><span class="salto" style="position: absolute; left: 23px; bottom: 8px; width: 24px; height: 24px; --alto: -30px"><span class="squash" style="background: #22C3D6"></span></span></span>
+<span style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em">01</span>
+<span style="font-family: Unbounded, sans-serif; font-size: 24px; font-weight: 800; line-height: 1.1">Animación 2D/3D</span>
+<span style="font-size: 15px; line-height: 1.45; flex-grow: 1">Cortos, secuencias animadas y dirección de animación.</span>
+<span style="font-weight: 700">Entrar →</span>
+</button>
+
+<button type="button" class="tile" onClick="{{goMotion}}" style="all: unset; cursor: pointer; text-align: left; display: flex; flex-direction: column; gap: 14px; padding: 26px; border-radius: 24px; background: #FFD23F; color: #071F24; text-decoration: none; min-height: 250px; box-sizing: border-box">
+<span class="ico" aria-hidden="true" style="width: 70px; height: 70px; border-radius: 18px; background: #071F24; display: flex; align-items: center; justify-content: center"><span class="morph" style="width: 30px; height: 30px"></span></span>
+<span style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em">02</span>
+<span style="font-family: Unbounded, sans-serif; font-size: 24px; font-weight: 800; line-height: 1.1">Motion Graphics</span>
+<span style="font-size: 15px; line-height: 1.45; flex-grow: 1">Piezas animadas para marcas, redes y publicidad.</span>
+<span style="font-weight: 700">Entrar →</span>
+</button>
+
+<button type="button" class="tile" onClick="{{goEdic}}" style="all: unset; cursor: pointer; text-align: left; display: flex; flex-direction: column; gap: 14px; padding: 26px; border-radius: 24px; background: #FF7A5C; color: #071F24; text-decoration: none; min-height: 250px; box-sizing: border-box">
+<span class="ico" aria-hidden="true" style="width: 70px; height: 70px; border-radius: 18px; background: #071F24; display: flex; flex-direction: column; justify-content: center; gap: 6px; padding: 0 10px; box-sizing: border-box"><span style="display: block; height: 8px; width: 60%; border-radius: 3px; background: #22C3D6"></span><span class="corte" style="display: block; height: 8px; width: 45%; border-radius: 3px; background: #FF7A5C"></span><span style="display: block; height: 8px; width: 80%; border-radius: 3px; background: #FFD23F"></span></span>
+<span style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em">03</span>
+<span style="font-family: Unbounded, sans-serif; font-size: 24px; font-weight: 800; line-height: 1.1">Edición de video</span>
+<span style="font-size: 15px; line-height: 1.45; flex-grow: 1">Reels, contenido de marca y corrección de color.</span>
+<span style="font-weight: 700">Entrar →</span>
+</button>
+
+<button type="button" class="tile" onClick="{{goMusic}}" style="all: unset; cursor: pointer; text-align: left; display: flex; flex-direction: column; gap: 14px; padding: 26px; border-radius: 24px; background: #B79CFF; color: #071F24; text-decoration: none; min-height: 250px; box-sizing: border-box">
+<span class="ico" aria-hidden="true" style="width: 70px; height: 70px; border-radius: 18px; background: #071F24; display: flex; align-items: flex-end; justify-content: center; gap: 5px; padding-bottom: 14px; box-sizing: border-box"><span class="eq" style="width: 7px; height: 36px; border-radius: 3px; background: #B79CFF"></span><span class="eq" style="width: 7px; height: 36px; border-radius: 3px; background: #B79CFF; animation-delay: -.3s"></span><span class="eq" style="width: 7px; height: 36px; border-radius: 3px; background: #B79CFF; animation-delay: -.6s"></span><span class="eq" style="width: 7px; height: 36px; border-radius: 3px; background: #B79CFF; animation-delay: -.15s"></span></span>
+<span style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em">04</span>
+<span style="font-family: Unbounded, sans-serif; font-size: 24px; font-weight: 800; line-height: 1.1">Visualizers Musicales</span>
+<span style="font-size: 15px; line-height: 1.45; flex-grow: 1">Visualizers, videoclips animados, covers y Spotify Canvas.</span>
+<span style="font-weight: 700">Entrar →</span>
+</button>
+
+<button type="button" class="tile" onClick="{{goIlus}}" style="all: unset; cursor: pointer; text-align: left; display: flex; flex-direction: column; gap: 14px; padding: 26px; border-radius: 24px; background: #5EE6A8; color: #071F24; text-decoration: none; min-height: 250px; box-sizing: border-box">
+<span class="ico" aria-hidden="true" style="width: 70px; height: 70px; border-radius: 18px; background: #071F24; display: flex; align-items: center; justify-content: center"><svg width="48" height="48" viewBox="0 0 48 48"><path class="trazo" d="M6,34 C12,10 20,10 24,24 S36,40 42,14" fill="none" stroke="#5EE6A8" stroke-width="4" stroke-linecap="round"></path></svg></span>
+<span style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em">05</span>
+<span style="font-family: Unbounded, sans-serif; font-size: 24px; font-weight: 800; line-height: 1.1">Ilustración y Storyboard</span>
+<span style="font-size: 15px; line-height: 1.45; flex-grow: 1">Desarrollo visual, personajes y storyboards.</span>
+<span style="font-weight: 700">Entrar →</span>
+</button>
+
+</div>
+</section>
+
+<section id="sobre-mi" style="background: #0B2E35; padding: 96px 24px">
+<div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 44px">
+<h2 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 800; font-size: clamp(32px, 5vw, 60px); line-height: 1.05; letter-spacing: -0.02em; color: #FFFFFF">Sobre mí</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
+<div style="flex: 1 1 300px; display: flex; justify-content: center">
+<div style="position: relative; width: 320px; height: 320px">
+<svg class="ring" aria-hidden="true" width="320" height="320" viewBox="0 0 320 320" style="position: absolute; inset: 0"><circle cx="160" cy="160" r="150" fill="none" stroke="#22C3D6" stroke-width="2" stroke-dasharray="6 14"></circle><rect x="153" y="3" width="14" height="14" fill="#FFD23F" transform="rotate(45 160 10)"></rect></svg>
+<img class="flota" src="media/ea31636870597fff01026ed6cb8503aa.png" alt="Lisandro Martínez Mendoza" style="position: absolute; left: 40px; top: 40px; width: 240px; height: 240px; border-radius: 50%; object-fit: cover; object-position: 50% 35%">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="4"><span class="chip" style="position: absolute; {{c.pos}}; --r: {{c.r}}; --i: {{c.i}}; background: {{c.bg}}; color: #071F24; font-weight: 700; font-size: 14px; padding: 8px 14px; border-radius: 999px; box-shadow: 0 8px 18px rgba(0,0,0,0.3); white-space: nowrap">{{c.t}}</span></sc-for>
+</div>
+</div>
+<div style="flex: 999 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<p style="margin: 0; font-size: 20px; line-height: 1.55; color: #E8F4F6">Soy animador 2D/3D, motion designer y editor de video. Estudio Cine de Animación y PostProducción en Escuela Da Vinci, y combino animación, edición y motion graphics para que cada pieza cuente algo y funcione donde se va a ver.</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #B9D6DB">Dirigí la animación del documental "El Punto" (Rueque Cine), trabajo con músicos dándole imagen a sus lanzamientos y hago contenido animado para marcas.</p>
+<div style="display: flex; flex-direction: column; gap: 12px; padding-top: 6px">
+<sc-for list="{{software}}" as="s" hint-placeholder-count="7">
+<div style="display: flex; align-items: center; gap: 14px">
+<span style="width: 120px; flex: 0 0 120px; font-size: 14px; font-weight: 600">{{s.n}}</span>
+<span style="flex: 1 1 auto; height: 10px; border-radius: 999px; background: #123C44; overflow: hidden"><span class="barra" style="display: block; height: 100%; width: {{s.w}}; border-radius: 999px; background: {{s.c}}; --i: {{s.i}}"></span></span>
+<span style="width: 92px; flex: 0 0 92px; font-size: 12px; color: #8FC3CB; text-transform: uppercase; letter-spacing: 0.08em">{{s.nivel}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: center; padding-top: 8px">
+<div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<span style="align-self: flex-start; padding: 6px 14px; border-radius: 999px; background: #FFD23F; color: #071F24; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase">Mi presentación</span>
+<h3 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 800; font-size: clamp(24px, 3vw, 36px); line-height: 1.1; color: #FFFFFF">Yo animo. Te lo cuento en video.</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #B9D6DB">Una presentación animada de lo que hago y las herramientas con las que trabajo.</p>
+</div>
+<div style="flex: 999 1 520px; min-width: 0; border-radius: 18px; overflow: hidden; border: 1.5px solid #164650; background: #020B0D; aspect-ratio: 16 / 9">
+<video src="media/5bce56341d1176ed76ae56045e51436c.mp4" poster="media/7908d5297a4ce5412d49812261d3c129.jpg" controls playsinline preload="none" style="width: 100%; height: 100%; display: block; object-fit: contain"></video>
+</div>
+</div>
+</div>
+</section>
+
+<section id="contacto" style="max-width: 1200px; margin: 0 auto; padding: 110px 24px 90px; display: flex; flex-direction: column; gap: 44px">
+<h2 aria-label="Hablemos y lo hacemos mover" style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 800; font-size: clamp(36px, 6.4vw, 84px); line-height: 1.1; letter-spacing: -0.02em; color: #FFFFFF"><span aria-hidden="true">Hablemos y<br><span class="slot" style="color: #22C3D6"><span><span>lo animamos.</span><span style="color: #FFD23F">lo editamos.</span><span style="color: #FF7A5C">lo hacemos mover.</span><span>lo animamos.</span></span></span></span></h2>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 16px">
+<sc-for list="{{contactos}}" as="k" hint-placeholder-count="4">
+<a class="contacto" href="{{k.href}}" style="display: flex; align-items: center; gap: 16px; padding: 18px; border-radius: 20px; background: #0B2E35; border: 1.5px solid #164650; text-decoration: none; color: #FFFFFF">
+<span class="forma" aria-hidden="true" style="flex: 0 0 56px; width: 56px; height: 56px; background: {{k.bg}}; border-radius: {{k.radio}}"></span>
+<span style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #8FC3CB">{{k.label}}</span>
+<span style="font-size: 17px; font-weight: 700; word-break: break-word">{{k.valor}}</span>
+</span>
+</a>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 0">
+<button type="button" class="btn" onClick="{{toggleCv}}" aria-expanded="{{cvOpen}}" style="align-self: center; min-height: 56px; display: inline-flex; align-items: center; gap: 12px; padding: 0 26px; border-radius: 999px; border: none; background: #FFD23F; color: #071F24; font: inherit; font-weight: 700; font-size: 17px; cursor: pointer"><span class="kf" aria-hidden="true" style="width: 12px; height: 12px; background: #071F24; transform: rotate(45deg)"></span>{{cvTexto}}</button>
+<sc-if value="{{cvOpen}}" hint-placeholder-val="{{ false }}">
+<div class="abre" style="margin-top: 24px; border-radius: 20px; background: #0B2E35; border: 1.5px solid #164650; overflow: hidden">
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; padding: 14px 18px; border-bottom: 1.5px solid #164650">
+<span style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8FC3CB">Mi recorrido · 2023 → hoy</span>
+<div style="display: flex; gap: 8px">
+<a href="#" class="btn" style="min-height: 44px; display: inline-flex; align-items: center; padding: 0 18px; border-radius: 999px; background: #22C3D6; color: #071F24; text-decoration: none; font-weight: 700; font-size: 14px">Descargar CV (PDF)</a>
+<button type="button" onClick="{{toggleCv}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid #8FC3CB; background: transparent; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">Cerrar ✕</button>
+</div>
+</div>
+<div style="overflow-x: auto">
+<div style="min-width: 720px; padding: 14px 18px 20px; display: flex; flex-direction: column; gap: 8px">
+<div aria-hidden="true" style="display: flex; padding-left: 260px; font-size: 12px; font-weight: 700; color: #8FC3CB">
+<sc-for list="{{anios}}" as="a" hint-placeholder-count="4"><span style="flex: 1 1 0; border-left: 1.5px solid #3E6E76; padding-left: 6px">{{a}}</span></sc-for>
+</div>
+<sc-for list="{{capas}}" as="c" hint-placeholder-count="5">
+<div style="display: flex; align-items: center; gap: 0; min-height: 52px; border-radius: 10px; background: #071F24">
+<div style="width: 260px; flex: 0 0 260px; display: flex; align-items: center; gap: 10px; padding: 8px 12px; box-sizing: border-box">
+<span style="width: 12px; height: 12px; border-radius: 3px; background: {{c.color}}; flex: 0 0 12px"></span>
+<span style="display: flex; flex-direction: column; min-width: 0"><span style="font-size: 14px; font-weight: 700">{{c.t}}</span><span style="font-size: 12px; color: #8FC3CB">{{c.r}}</span></span>
+</div>
+<div style="position: relative; flex: 1 1 auto; height: 52px">
+<span class="capa" style="position: absolute; top: 14px; height: 24px; left: {{c.left}}; width: {{c.width}}; border-radius: 6px; background: {{c.color}}; --i: {{c.i}}"></span>
+<span style="position: absolute; top: 20px; left: {{c.left}}; width: 12px; height: 12px; margin-left: -6px; background: #FFFFFF; transform: rotate(45deg)"></span>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+</div>
+</section>
+
+<a id="ir-Anim" href="Animacion.dc.html" tabindex="-1" aria-hidden="true" style="display: none">Animación</a>
+<a id="ir-Motion" href="Motion.dc.html" tabindex="-1" aria-hidden="true" style="display: none">Motion</a>
+<a id="ir-Edic" href="Edicion.dc.html" tabindex="-1" aria-hidden="true" style="display: none">Edición</a>
+<a id="ir-Music" href="MusicVisuals.dc.html" tabindex="-1" aria-hidden="true" style="display: none">Visualizers</a>
+<a id="ir-Ilus" href="Ilustracion.dc.html" tabindex="-1" aria-hidden="true" style="display: none">Ilustración</a>
+
+<sc-if value="{{tAnim}}" hint-placeholder-val="{{ false }}">
+<div aria-hidden="true" style="position: fixed; inset: 0; z-index: 300; pointer-events: none; overflow: hidden">
+<span class="tr-ball" style="position: absolute; left: -60px; bottom: 10vh; width: 110px; height: 110px"><span class="tr-squash" style="display: block; width: 100%; height: 100%; border-radius: 50%; background: #22C3D6"></span></span>
+</div>
+</sc-if>
+
+<sc-if value="{{tMotion}}" hint-placeholder-val="{{ false }}">
+<div aria-hidden="true" style="position: fixed; inset: 0; z-index: 300; pointer-events: none; overflow: hidden">
+<div style="position: absolute; inset: -40%; transform: rotate(-24deg)">
+<sc-for list="{{lineas}}" as="l" hint-placeholder-count="14"><span class="tr-linea" style="position: absolute; left: 0; right: 0; top: {{l.top}}; height: {{l.h}}; background: {{l.c}}; transform-origin: {{l.o}}; animation-delay: {{l.d}}"></span></sc-for>
+</div>
+<span class="tr-tapa" style="position: absolute; inset: 0; background: #FFD23F; animation-delay: .75s"></span>
+</div>
+</sc-if>
+
+<sc-if value="{{tEdic}}" hint-placeholder-val="{{ false }}">
+<div aria-hidden="true" style="position: fixed; inset: 0; z-index: 300; pointer-events: none; overflow: hidden; display: flex">
+<sc-for list="{{clips}}" as="c" hint-placeholder-count="6"><span class="tr-clip" style="flex: 1 1 0; background: {{c.c}}; animation-delay: {{c.d}}; border-right: 3px solid #071F24"></span></sc-for>
+<span class="tr-cabezal" style="position: absolute; top: 0; bottom: 0; width: 6px; background: #FFFFFF"></span>
+<span class="tr-tapa" style="position: absolute; inset: 0; background: #FF7A5C; animation-delay: .95s"></span>
+</div>
+</sc-if>
+
+<sc-if value="{{tMusic}}" hint-placeholder-val="{{ false }}">
+<div aria-hidden="true" style="position: fixed; inset: 0; z-index: 300; pointer-events: none; overflow: hidden; display: flex; align-items: flex-end; gap: 4px">
+<sc-for list="{{barras}}" as="b" hint-placeholder-count="24"><span class="tr-eq" style="flex: 1 1 0; height: 100%; background: {{b.c}}; animation-delay: {{b.d}}"></span></sc-for>
+<span class="tr-tapa" style="position: absolute; inset: 0; background: #B79CFF; animation-delay: .9s"></span>
+</div>
+</sc-if>
+
+<sc-if value="{{tIlus}}" hint-placeholder-val="{{ false }}">
+<div aria-hidden="true" style="position: fixed; inset: 0; z-index: 300; pointer-events: none; overflow: hidden">
+<svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none" style="position: absolute; inset: 0"><path class="tr-trazo" pathLength="1" d="M-10,8 C20,-4 60,20 110,6 M110,6 C70,30 20,14 -10,30 M-10,30 C30,50 70,28 110,48 M110,48 C60,70 30,52 -10,70 M-10,70 C30,90 70,72 110,92 M110,92 C60,110 20,96 -10,110" fill="none" stroke="#5EE6A8" stroke-width="26" stroke-linecap="round"></path></svg>
+<span class="tr-tapa" style="position: absolute; inset: 0; background: #5EE6A8; animation-delay: 1s"></span>
+</div>
+</sc-if>
+
+<footer style="border-top: 1px solid #164650; padding: 22px 24px">
+<div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 13px; color: #8FC3CB">
+<span>© 2026 Lisarts Studios — Lisandro Martínez Mendoza</span>
+<a href="#trabajos" style="color: #8FC3CB">volver arriba ↑</a>
+</div>
+</footer>
+</div>
+</template>
+<script type="text/plain" id="dc-src" data-props='{"$preview":{"width":1280,"height":3500}}'>
+var INICIO = 2023, FIN = 2027;
+function pct(x) { return ((x - INICIO) / (FIN - INICIO) * 100).toFixed(2) + '%'; }
+function capa(t, r, desde, hasta, color, i) { return { t: t, r: r, left: pct(desde), width: pct(INICIO + (hasta - desde)), color: color, i: i }; }
+var COLS = ['#FFD23F', '#22C3D6', '#FF7A5C', '#B79CFF', '#5EE6A8', '#FFFFFF'];
+var LINEAS = [];
+for (var i = 0; i < 14; i++) { LINEAS.push({ top: (i * 7.2) + '%', h: (3 + (i * 37 % 6)) + '%', c: COLS[i % COLS.length], o: i % 2 ? '100% 50%' : '0 50%', d: (i * 0.045) + 's' }); }
+var CLIPS = [];
+for (var j = 0; j < 6; j++) { CLIPS.push({ c: ['#FF7A5C', '#22C3D6', '#FFD23F', '#FF7A5C', '#B79CFF', '#5EE6A8'][j], d: ([0, 0.24, 0.08, 0.32, 0.16, 0.4][j]) + 's' }); }
+var BARRAS = [];
+for (var q = 0; q < 24; q++) { BARRAS.push({ c: q % 3 === 1 ? '#22C3D6' : '#B79CFF', d: (Math.abs(Math.sin(q * 2.3)) * 0.35).toFixed(2) + 's' }); }
+class Component extends DCLogic {
+componentDidMount() { var self = this; this.onScroll = function (e) { var t = e && e.target && e.target.scrollTop; var y = Math.max(window.scrollY || 0, document.documentElement.scrollTop || 0, t || 0); var on = y > 30; if (on !== !!(self.state && self.state.bajo)) self.setState({ bajo: on }); }; window.addEventListener('scroll', this.onScroll, { passive: true }); document.addEventListener('scroll', this.onScroll, { passive: true, capture: true }); 
+this.g = { a: { x: 0.65, y: 0 }, b: { x: 0.35, y: 1 } };
+var bx = function (s, p1, p2) { var u = 1 - s; return 3 * u * u * s * p1 + 3 * u * s * s * p2 + s * s * s; };
+var resolver = function (x, a, b) { var lo = 0, hi = 1, s = x; for (var k = 0; k < 30; k++) { var v = bx(s, a.x, b.x); if (Math.abs(v - x) < 1e-5) break; if (v < x) lo = s; else hi = s; s = (lo + hi) / 2; } return bx(s, a.y, b.y); };
+var T = 3400, t0 = performance.now();
+var paso = function (now) {
+var f = ((now - t0) % T) / T, x, ida;
+if (f < 0.42) { x = f / 0.42; ida = true; } else if (f < 0.5) { x = 1; ida = true; } else if (f < 0.92) { x = (f - 0.5) / 0.42; ida = false; } else { x = 1; ida = false; }
+var y = resolver(x, self.g.a, self.g.b);
+var pos = ida ? y : 1 - y;
+var bola = document.getElementById('ge-bola'), punto = document.getElementById('ge-punto'), tiempo = document.getElementById('ge-tiempo');
+if (bola) bola.style.left = 'calc(8px + ' + pos.toFixed(4) + ' * (100% - 60px))';
+if (punto) { punto.style.left = (x * 100) + '%'; punto.style.top = ((130 - y * 100) / 160 * 100) + '%'; }
+if (tiempo) tiempo.style.left = (x * 100) + '%';
+self.raf = requestAnimationFrame(paso);
+};
+var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!reduce) this.raf = requestAnimationFrame(paso);
+}
+componentWillUnmount() { cancelAnimationFrame(this.raf); window.removeEventListener('scroll', this.onScroll); document.removeEventListener('scroll', this.onScroll, { capture: true }); }
+renderVals() {
+var self = this;
+var open = !!(this.state && this.state.cv);
+var hoy = 2026.86;
+var ir = function (k) {
+return function (e) {
+if (e && e.preventDefault) e.preventDefault();
+var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var salir = function () { var a = document.getElementById('ir-' + k); if (a) a.click(); setTimeout(function () { self.setState({ trans: null }); }, 600); };
+if (reduce) { salir(); return; }
+self.setState({ trans: k });
+setTimeout(salir, k === 'Anim' ? 1450 : 1250);
+};
+};
+var g1 = (this.state && this.state.g1) || { x: 0.65, y: 0 };
+var g2 = (this.state && this.state.g2) || { x: 0.35, y: 1 };
+this.g = { a: g1, b: g2 };
+var r2 = function (n) { return Math.round(n * 100) / 100; };
+var X = function (p) { return p.x * 300; }, Y = function (p) { return 130 - p.y * 100; };
+var arrastrar = function (cual) {
+return function (e) {
+if (e && e.preventDefault) e.preventDefault();
+var box = document.getElementById('ge-box');
+if (!box) return;
+var mover = function (ev) {
+var r = box.getBoundingClientRect();
+var x = Math.min(1, Math.max(0, (ev.clientX - r.left) / r.width));
+var py = (ev.clientY - r.top) / r.height * 160;
+var y = Math.min(1.3, Math.max(-0.3, (130 - py) / 100));
+var o = {}; o[cual] = { x: r2(x), y: r2(y) }; o.preset = null;
+self.setState(o);
+};
+var soltar = function () { window.removeEventListener('pointermove', mover); window.removeEventListener('pointerup', soltar); };
+window.addEventListener('pointermove', mover);
+window.addEventListener('pointerup', soltar);
+};
+};
+var PRE = [['Lineal', 0, 0, 1, 1], ['Ease in', 0.55, 0, 1, 0.45], ['Ease out', 0, 0.55, 0.45, 1], ['Ease in-out', 0.65, 0, 0.35, 1], ['Rebote', 0.34, 1.3, 0.64, 1]];
+var actual = (this.state && this.state.preset !== undefined) ? this.state.preset : 'Ease in-out';
+var presets = PRE.map(function (q) { var on = actual === q[0]; return { n: q[0], fondo: on ? '#FFD23F' : 'transparent', texto: on ? '#071F24' : '#E8F4F6', borde: on ? '#FFD23F' : '#3E6E76', set: function () { self.setState({ g1: { x: q[1], y: q[2] }, g2: { x: q[3], y: q[4] }, preset: q[0] }); } }; });
+var t = (this.state && this.state.trans) || null;
+return {
+barraFondo: (this.state && this.state.bajo) ? 'rgba(7,31,36,0.55)' : 'rgba(7,31,36,1)', barraBorde: (this.state && this.state.bajo) ? 'rgba(62,110,118,0.6)' : 'transparent',
+bz: [g1.x, g1.y, g2.x, g2.y].map(r2).join(', '),
+g: { x1: X(g1), y1: Y(g1), x2: X(g2), y2: Y(g2), d: 'M0,130 C' + X(g1) + ',' + Y(g1) + ' ' + X(g2) + ',' + Y(g2) + ' 300,30', l1: (g1.x * 100) + '%', t1: (Y(g1) / 160 * 100) + '%', l2: (g2.x * 100) + '%', t2: (Y(g2) / 160 * 100) + '%' },
+presets: presets, agarrar1: arrastrar('g1'), agarrar2: arrastrar('g2'),
+goAnim: ir('Anim'), goMotion: ir('Motion'), goEdic: ir('Edic'), goMusic: ir('Music'), goIlus: ir('Ilus'),
+tAnim: t === 'Anim', tMotion: t === 'Motion', tEdic: t === 'Edic', tMusic: t === 'Music', tIlus: t === 'Ilus',
+lineas: LINEAS, clips: CLIPS, barras: BARRAS,
+chips: [
+{ t: '22 años', pos: 'left: -10px; top: 30px', r: '-6deg', i: 0, bg: '#FFD23F' },
+{ t: 'Buenos Aires, Argentina', pos: 'right: -60px; top: 70px', r: '5deg', i: 1, bg: '#5EE6A8' },
+{ t: 'Escuela Da Vinci', pos: 'left: -24px; bottom: 50px', r: '4deg', i: 2, bg: '#B79CFF' },
+{ t: 'ES · EN', pos: 'right: 0; bottom: 20px', r: '-5deg', i: 3, bg: '#FF7A5C' }
+],
+software: [
+{ n: 'After Effects', w: '92%', nivel: 'Avanzado', c: '#22C3D6', i: 0 },
+{ n: 'Krita', w: '92%', nivel: 'Avanzado', c: '#22C3D6', i: 1 },
+{ n: 'Blender', w: '90%', nivel: 'Avanzado', c: '#22C3D6', i: 2 },
+{ n: 'Premiere Pro', w: '88%', nivel: 'Avanzado', c: '#22C3D6', i: 3 },
+{ n: 'Photoshop', w: '85%', nivel: 'Avanzado', c: '#22C3D6', i: 4 },
+{ n: 'Maya', w: '62%', nivel: 'Intermedio', c: '#FFD23F', i: 5 },
+{ n: 'Toon Boom', w: '55%', nivel: 'Intermedio', c: '#FFD23F', i: 6 },
+{ n: 'Claude', w: '90%', nivel: 'IA', c: '#5EE6A8', i: 7 },
+{ n: 'ChatGPT', w: '78%', nivel: 'IA', c: '#5EE6A8', i: 8 }
+],
+contactos: [
+{ label: 'WhatsApp', valor: '+54 11 5816-5994', href: 'https://wa.me/5491158165994', bg: '#5EE6A8', radio: '50%' },
+{ label: 'Mail', valor: 'lisartsstudios@gmail.com', href: 'mailto:lisartsstudios@gmail.com', bg: '#FFD23F', radio: '10px' },
+{ label: 'Behance', valor: 'Portfolio 2025', href: 'https://www.behance.net/gallery/246740539/Portfolio-Animation-2025', bg: '#22C3D6', radio: '50% 10px 50% 10px' },
+{ label: 'LinkedIn', valor: 'Lisandro Martínez Mendoza', href: 'https://www.linkedin.com/in/lisandro-martinez-mendoza-819a853b5', bg: '#B79CFF', radio: '10px 50% 10px 50%' }
+],
+anios: ['2023', '2024', '2025', '2026'],
+capas: [
+capa('Escuela Da Vinci', 'Cine de Animación y PostProducción', 2023, 2026, '#5EE6A8', 0),
+capa('Branding & Advertising', 'Video editor y motion designer', 2024, hoy, '#FFD23F', 1),
+capa('Proyectos personales', 'Cortos 2D/3D · storytelling y edición', 2023, hoy, '#FF7A5C', 2),
+capa('"El Punto" — Rueque Cine', 'Director de animación · documental', 2024, 2026, '#22C3D6', 3),
+capa('Music Visualizers', 'Editor y motion designer · 6 artistas', 2024, hoy, '#B79CFF', 4)
+],
+cvOpen: open,
+cvTexto: open ? 'Cerrar mi recorrido' : 'Ver mi recorrido (CV)',
+toggleCv: function () { self.setState({ cv: !open }); }
+};
+}
+}
+</script>
+<script src="morphdom.js"></script>
+<script src="dc-lite.js"></script>
+</body>
+</html>

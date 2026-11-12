@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lisarts Studios — Animación 2D/3D</title>
+<meta name="description" content="Lisandro Martínez Mendoza · Lisarts Studios — Animación 2D/3D, Motion Graphics, Edición de video, Visualizers e Ilustración.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#071F24}
+a{color:#22C3D6}a:hover{color:#7FE3EE}
+html{scroll-behavior:smooth}
+@keyframes subir{from{transform:translateY(105%)}to{transform:none}}
+.mask{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.05em}
+.mask > span{display:inline-block;animation:subir .9s cubic-bezier(.7,0,.2,1) both;animation-delay:var(--d)}
+@keyframes entrar{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.entra{animation:entrar .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d)}
+@keyframes cuadro{0%,8.3%{background:#22C3D6;border-color:#22C3D6;opacity:1}8.4%,100%{background:transparent;border-color:#22C3D6;opacity:var(--o)}}
+.fantasma{animation:cuadro 1.4s step-end infinite;animation-delay:var(--d)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.track{animation:marquee 30s linear infinite}
+@keyframes flota{0%,100%{translate:0 0;rotate:-6deg}50%{translate:0 -10px;rotate:4deg}}
+.sticker{animation:flota 4.2s ease-in-out infinite}
+.sticker.s2{animation-delay:-1.4s;animation-duration:5s}
+@keyframes bota{0%,100%{translate:0 0}45%{translate:0 -8px}60%{translate:0 -5px}}
+.bota{animation:bota 3.2s ease-in-out infinite}
+.bota:nth-child(2n){animation-delay:-.8s}.bota:nth-child(3n){animation-delay:-1.7s}
+@keyframes escribir{0%{clip-path:inset(-20% 100% -20% 0)}50%,85%{clip-path:inset(-20% 0 -20% 0);opacity:1}95%{opacity:0}100%{clip-path:inset(-20% 100% -20% 0);opacity:0}}
+.escribe{display:inline-block;animation:escribir 5s cubic-bezier(.45,.05,.55,.95) infinite}
+.fila{scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#3E6E76 transparent}
+.peli{transition:transform .3s cubic-bezier(.3,1.5,.5,1)}
+.peli:hover,.peli:focus-visible{transform:translateY(-6px) rotate(-1deg)}
+.peli:focus-visible{outline:3px solid #FFFFFF;outline-offset:3px}
+@keyframes pulso{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.play{animation:pulso 1.8s ease-in-out infinite}
+@keyframes abrir{from{opacity:0;transform:scale(.94) translateY(20px)}to{opacity:1;transform:none}}
+.abre{animation:abrir .45s cubic-bezier(.2,1.2,.4,1) both}
+.btn{transition:transform .25s cubic-bezier(.3,1.6,.5,1)}.btn:hover,.btn:focus-visible{transform:translateY(-3px) rotate(-1.5deg)}
+@keyframes revela{from{clip-path:circle(150% at 50% 50%)}to{clip-path:circle(0% at 50% 50%)}}
+.revela{animation:revela .8s cubic-bezier(.7,0,.2,1) .1s both}
+@keyframes ola{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-.07em) rotate(-3deg)}}
+.lt{display:inline-block;animation:ola 2.8s ease-in-out infinite;animation-delay:calc(var(--i) * -0.14s);will-change:transform}
+.mosaico{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:190px;grid-auto-flow:dense;gap:12px}
+.mosaico .tile{all:unset;cursor:pointer;position:relative;overflow:hidden;border-radius:18px;box-sizing:border-box;border:2px solid #164650;animation:entraTile .6s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d);transition:transform .35s cubic-bezier(.3,1.4,.5,1),opacity .3s ease,border-color .3s ease}
+.mosaico .g{grid-column:span 2;grid-row:span 2}.mosaico .w{grid-column:span 2}.mosaico .a{grid-row:span 2}
+.mosaico:hover .tile:not(:hover){opacity:.55}
+.mosaico .tile:hover,.mosaico .tile:focus-visible{transform:scale(1.03);z-index:2;border-color:#FFFFFF}
+.mosaico .tile:focus-visible{outline:3px solid #FFFFFF;outline-offset:3px}
+.mosaico .info{transform:translateY(100%);transition:transform .35s cubic-bezier(.3,1.3,.5,1)}
+.mosaico .tile:hover .info,.mosaico .tile:focus-visible .info{transform:none}
+@keyframes entraTile{from{opacity:0;transform:scale(.9) translateY(20px)}to{opacity:1;transform:none}}
+@media (max-width:760px){.mosaico{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:150px}.mosaico .info{transform:none}}
+@keyframes viaja{from{stroke-dashoffset:0}to{stroke-dashoffset:-2400}}
+.lapiz{stroke-dasharray:260 2140;opacity:.45;animation:viaja var(--dur) linear infinite;animation-delay:var(--d)}
+@keyframes garabato{0%{stroke-dashoffset:300}35%,70%{stroke-dashoffset:0}100%{stroke-dashoffset:-300}}
+.garabato{stroke-dasharray:300;stroke-dashoffset:300;opacity:.55;animation:garabato 6s ease-in-out infinite;animation-delay:var(--d)}
+@media (prefers-reduced-motion:reduce){.lapiz,.garabato{animation:none;stroke-dasharray:none;stroke-dashoffset:0}}
+.fl{display:inline-block;animation-duration:1s;animation-timing-function:steps(1,end);animation-iteration-count:infinite}
+.v0{animation-name:fl0}.v1{animation-name:fl1}.v2{animation-name:fl2}
+@keyframes fl0{0%{transform:translate(0,0) rotate(0)}25%{transform:translate(1px,-2px) rotate(-2deg)}50%{transform:translate(-1px,1px) rotate(1.5deg)}75%{transform:translate(1px,1px) rotate(-1deg)}}
+@keyframes fl1{0%{transform:translate(0,1px) rotate(1deg)}25%{transform:translate(-1px,-1px) rotate(-1.5deg)}50%{transform:translate(1px,-2px) rotate(2deg)}75%{transform:translate(0,0) rotate(0)}}
+@keyframes fl2{0%{transform:translate(-1px,0) rotate(-1.5deg)}25%{transform:translate(0,1px) rotate(1deg)}50%{transform:translate(1px,0) rotate(-0.5deg)}75%{transform:translate(-1px,-2px) rotate(2deg)}}
+@media (prefers-reduced-motion:reduce){.fl{animation:none}}
+@keyframes boil{0%{filter:url(#boil1)}33%{filter:url(#boil2)}66%{filter:url(#boil3)}}
+.boil{animation:boil .75s steps(1) infinite}
+@keyframes escribir{from{clip-path:inset(-10% 100% -10% -5%)}to{clip-path:inset(-10% -5% -10% -5%)}}
+.escribir{clip-path:inset(-10% 100% -10% -5%);animation:escribir .8s cubic-bezier(.45,.05,.55,.95) forwards;animation-delay:var(--d)}
+@keyframes trazo{to{stroke-dashoffset:0}}
+.trazo-l{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:trazo .7s cubic-bezier(.6,0,.3,1) forwards;animation-delay:var(--d)}
+@media (prefers-reduced-motion:reduce){.boil{animation:none}.escribir{clip-path:none;animation:none}.trazo-l{stroke-dashoffset:0;animation:none}}
+@media (prefers-reduced-motion:reduce){.lt,.mosaico .tile,.mask > span,.entra,.fantasma,.track,.sticker,.bota,.escribe,.play,.abre{animation:none}.revela{display:none}}
+</style>
+
+</head>
+<body>
+<div id="dc-root"></div>
+<template id="dc-tpl">
+
+<div style="font-family: Inter, system-ui, sans-serif; color: #E8F4F6; background: #071F24; position: relative; isolation: isolate; min-height: 100vh; overflow-x: clip">
+<div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden">
+<svg class="boil" viewBox="0 0 1000 3000" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%">
+<path class="lapiz" style="--dur: 9s; --d: 0s" d="M-20,140 C120,60 220,260 360,170 S560,40 700,150 S900,260 1020,120" fill="none" stroke="#B9D6DB" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+<path class="lapiz" style="--dur: 11s; --d: -3s" d="M1020,420 C880,520 760,330 640,450 S420,600 300,470 S100,380 -20,520" fill="none" stroke="#22C3D6" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+<path class="lapiz" style="--dur: 10s; --d: -6s" d="M-20,900 C80,820 160,980 260,900 C320,850 300,800 260,820 C220,840 250,920 340,930 S560,860 700,940 S900,1020 1020,900" fill="none" stroke="#FFD23F" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+<path class="lapiz" style="--dur: 12s; --d: -2s" d="M1020,1350 C900,1250 820,1450 700,1360 S480,1240 380,1380 S160,1480 -20,1360" fill="none" stroke="#B9D6DB" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+<path class="lapiz" style="--dur: 9.5s; --d: -5s" d="M-20,1850 C140,1760 200,1950 330,1880 C390,1846 380,1800 340,1810 C300,1822 320,1900 420,1910 S700,1820 820,1900 S960,1960 1020,1880" fill="none" stroke="#22C3D6" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+<path class="lapiz" style="--dur: 11.5s; --d: -8s" d="M1020,2350 C860,2440 760,2260 620,2360 S380,2480 260,2370 S80,2300 -20,2400" fill="none" stroke="#FFD23F" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+<path class="lapiz" style="--dur: 10.5s; --d: -1s" d="M-20,2800 C120,2720 240,2880 380,2790 S620,2700 760,2810 S920,2880 1020,2780" fill="none" stroke="#B9D6DB" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+</svg>
+<svg class="boil" viewBox="0 0 100 100" style="position: absolute; left: 4%; top: 640px; width: 70px; height: 70px"><path class="garabato" style="--d: 0s" d="M50,8 l10,28 l30,2 l-24,18 l9,30 l-25,-18 l-25,18 l9,-30 l-24,-18 l30,-2 z" fill="none" stroke="#FFD23F" stroke-width="3" stroke-linejoin="round"></path></svg>
+<svg class="boil" viewBox="0 0 100 100" style="position: absolute; right: 5%; top: 1250px; width: 80px; height: 80px"><path class="garabato" style="--d: -2s" d="M50,50 m-6,0 a6,6 0 1,1 12,0 a12,12 0 1,1 -24,0 a18,18 0 1,1 36,0 a24,24 0 1,1 -48,0 a30,30 0 1,1 60,0" fill="none" stroke="#22C3D6" stroke-width="3" stroke-linecap="round"></path></svg>
+<svg class="boil" viewBox="0 0 120 60" style="position: absolute; left: 6%; top: 2050px; width: 110px; height: 55px"><path class="garabato" style="--d: -4s" d="M5,40 C25,10 45,10 55,30 S85,55 110,20 M96,16 l14,4 l-6,13" fill="none" stroke="#B9D6DB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<svg class="boil" viewBox="0 0 100 100" style="position: absolute; right: 8%; top: 2600px; width: 70px; height: 70px"><path class="garabato" style="--d: -1s" d="M20,80 C10,40 40,10 60,30 C80,50 50,70 40,50 C30,30 70,10 85,25" fill="none" stroke="#FFD23F" stroke-width="3" stroke-linecap="round"></path></svg>
+</div>
+
+
+<div style="position: sticky; top: 0; z-index: 100; background: {{barraFondo}}; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid {{barraBorde}}; transition: background .3s ease, border-color .3s ease">
+<header style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between">
+<a href="Main.dc.html" class="btn" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px; background: #E8F4F6; color: #071F24; text-decoration: none; font-weight: 600; font-size: 14px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Volver al inicio</a>
+<nav aria-label="Secciones" style="display: flex; flex-wrap: wrap; gap: 4px; font-size: 14px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5"><a href="{{t.href}}" style="{{t.estilo}}">{{t.label}}</a></sc-for>
+</nav>
+</header>
+</div>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: 40px 24px 48px; display: flex; flex-wrap: wrap; gap: 36px; align-items: center">
+<div style="position: relative; flex: 999 1 540px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<svg aria-hidden="true" width="0" height="0" style="position: absolute">
+<filter id="boil1"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="1" seed="1"></feTurbulence><feDisplacementMap in="SourceGraphic" scale="1.6"></feDisplacementMap></filter>
+<filter id="boil2"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="1" seed="7"></feTurbulence><feDisplacementMap in="SourceGraphic" scale="1.6"></feDisplacementMap></filter>
+<filter id="boil3"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="1" seed="13"></feTurbulence><feDisplacementMap in="SourceGraphic" scale="1.6"></feDisplacementMap></filter>
+</svg>
+<p class="entra" style="--d: 0s; margin: 0; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: #8FC3CB">Sección 01 / 05</p>
+<div style="position: relative; align-self: flex-start">
+<h1 class="boil" aria-label="Animación 2D/3D" style="margin: 0; font-family: 'Permanent Marker', 'Caveat', cursive; font-weight: 400; font-size: clamp(50px, 8.4vw, 112px); line-height: 1.02; letter-spacing: 0.01em; color: #FFFFFF; transform: rotate(-2deg)"><span class="escribir" aria-hidden="true" style="--d: .15s; display: block"><span class="fl v0" style="animation-delay: 0s">A</span><span class="fl v1" style="animation-delay: -0.25s">n</span><span class="fl v2" style="animation-delay: -0.5s">i</span><span class="fl v0" style="animation-delay: -0.75s">m</span><span class="fl v1" style="animation-delay: 0s">a</span><span class="fl v2" style="animation-delay: -0.25s">c</span><span class="fl v0" style="animation-delay: -0.5s">i</span><span class="fl v1" style="animation-delay: -0.75s">ó</span><span class="fl v2" style="animation-delay: 0s">n</span></span><span class="escribir" aria-hidden="true" style="--d: .85s; display: block; color: #22C3D6; padding-left: .4em"><span class="fl v0" style="animation-delay: -0.25s">2</span><span class="fl v1" style="animation-delay: -0.5s">D</span><span class="fl v2" style="animation-delay: -0.75s">/</span><span class="fl v0" style="animation-delay: 0s">3</span><span class="fl v1" style="animation-delay: -0.25s">D</span></span></h1>
+<svg class="boil" aria-hidden="true" viewBox="0 0 600 260" preserveAspectRatio="none" style="position: absolute; left: -2%; top: -6%; width: 108%; height: 116%; overflow: visible; pointer-events: none">
+<path class="trazo-l" style="--d: 1.5s; --len: 520" d="M120,232 C220,214 340,250 470,222 C500,216 530,214 560,220" fill="none" stroke="#FFD23F" stroke-width="5" stroke-linecap="round"></path>
+<path class="trazo-l" style="--d: 1.8s; --len: 420" d="M140,240 C260,234 360,246 520,234" fill="none" stroke="#FFD23F" stroke-width="3" stroke-linecap="round"></path>
+<path class="trazo-l" style="--d: 2.1s; --len: 300" d="M548,40 l10,-26 l8,26 l26,4 l-22,14 l6,26 l-18,-16 l-22,12 l8,-24 l-18,-16 z" fill="none" stroke="#B9D6DB" stroke-width="3" stroke-linejoin="round"></path>
+<path class="trazo-l" style="--d: 2.4s; --len: 160" d="M-6,40 l-16,-14 M-4,62 l-24,0 M-6,84 l-16,14" fill="none" stroke="#B9D6DB" stroke-width="3" stroke-linecap="round"></path>
+</svg>
+</div>
+<div class="boil" style="display: flex; align-items: center; gap: 10px">
+<svg aria-hidden="true" width="64" height="34" viewBox="0 0 64 34" style="flex: 0 0 64px; overflow: visible"><path class="trazo-l" style="--d: 2.6s; --len: 110" d="M4,6 C14,30 34,30 54,20 M44,12 l12,8 l-12,8" fill="none" stroke="#22C3D6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<p class="entra" style="--d: .45s; margin: 0; font-family: Caveat, cursive; font-size: 32px; color: #22C3D6; transform: rotate(-2deg)">cuadro a cuadro, se cuenta una historia</p>
+</div>
+<p class="entra" style="--d: .55s; margin: 0; font-size: 18px; line-height: 1.55; color: #B9D6DB; max-width: 600px">Animación 2D y 3D con formación en Cine de Animación y Postproducción: storytelling, composición y dirección de animación, desde el primer boceto hasta la pieza final.</p>
+<div class="entra" style="--d: .7s; display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="5"><span class="bota" style="padding: 9px 16px; border-radius: 999px; border: 1.5px solid #3E6E76; font-size: 14px; font-weight: 500">{{t}}</span></sc-for>
+</div>
+</div>
+<div aria-hidden="true" style="flex: 1 1 320px; display: flex; justify-content: center">
+<div style="border-radius: 22px; background: #0B2E35; padding: 24px 24px 16px; display: flex; flex-direction: column; align-items: center; gap: 10px">
+<div style="position: relative; width: 300px; height: 196px">
+<span style="position: absolute; left: 0; right: 0; top: 186px; height: 2px; background: #3E6E76"></span>
+<sc-for list="{{fantasmas}}" as="f" hint-placeholder-count="12"><span class="fantasma" style="position: absolute; left: {{f.x}}px; top: {{f.y}}px; width: 30px; height: 30px; margin: -15px 0 0 -15px; box-sizing: border-box; border-radius: 50%; border: 2px solid #22C3D6; --o: {{f.o}}; opacity: {{f.o}}; --d: {{f.d}}; transform: {{f.forma}}; transform-origin: 50% 100%"></span></sc-for>
+</div>
+<span style="font-family: Caveat, cursive; font-size: 22px; color: #8FC3CB">12 cuadros · papel cebolla</span>
+</div>
+</div>
+</section>
+
+<div aria-hidden="true" style="overflow: hidden; background: #FFD23F; color: #071F24; padding: 14px 0">
+<div class="track" style="display: flex; gap: 36px; width: max-content; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; text-transform: uppercase; white-space: nowrap">
+<sc-for list="{{cinta}}" as="c" hint-placeholder-count="14"><span>{{c}}</span></sc-for>
+</div>
+</div>
+
+<section style="position: relative; max-width: 1200px; margin: 0 auto; padding: 72px 24px 24px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; align-items: baseline">
+<h2 aria-label="Videoteca" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(36px, 5.4vw, 68px); line-height: 1; letter-spacing: -0.02em; color: #FFFFFF"><sc-for list="{{tVideoteca}}" as="l" hint-placeholder-count="9"><span class="lt" aria-hidden="true" style="--i: {{l.i}}; color: {{l.color}}">{{l.c}}</span></sc-for></h2>
+<p style="margin: 0; font-family: Caveat, cursive; font-size: 26px; color: #22C3D6; transform: rotate(-2deg)">todo se mueve · tocá uno para verlo con sonido</p>
+</div>
+<div class="sticker" aria-hidden="true" style="position: absolute; right: 2%; top: 4px; z-index: 5; pointer-events: none; width: 116px; height: 116px; border-radius: 50%; background: #FFD23F; color: #071F24; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-shadow: 0 14px 30px rgba(0,0,0,0.35)"><span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 26px; line-height: 1">{{totalObras}}</span><span style="font-size: 12px; max-width: 80%; line-height: 1.2">trabajos animados</span></div>
+<div role="group" aria-label="Filtrar por categoría" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{filtros}}" as="f" hint-placeholder-count="7"><button type="button" class="btn" onClick="{{f.elegir}}" aria-pressed="{{f.on}}" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1.5px solid {{f.borde}}; background: {{f.fondo}}; color: {{f.texto}}; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{f.n}} <span style="opacity: .65">{{f.cant}}</span></button></sc-for>
+</div>
+<div class="mosaico">
+<sc-for list="{{mosaico}}" as="o" hint-placeholder-count="10">
+<button type="button" class="tile {{o.tam}}" onClick="{{o.abrir}}" aria-label="Ver {{o.titulo}}" style="--d: {{o.d}}; background: {{o.fondo}}">
+<sc-if value="{{o.hayVideo}}" hint-placeholder-val="{{ false }}"><video src="{{o.prev}}" poster="{{o.poster}}" autoplay muted loop playsinline preload="auto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video></sc-if>
+<sc-if value="{{o.esImg}}" hint-placeholder-val="{{ false }}"><img src="{{o.img}}" alt="{{o.titulo}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></sc-if>
+<sc-if value="{{o.sinVideo}}" hint-placeholder-val="{{ true }}"><span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center"><span class="play" style="width: 54px; height: 54px; border-radius: 50%; background: #071F24; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="{{o.color}}"><path d="M8 5v14l11-7z"></path></svg></span></span></sc-if>
+<span style="position: absolute; left: 10px; top: 10px; padding: 4px 10px; border-radius: 999px; background: #071F24; color: {{o.color}}; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase">{{o.cat}}</span>
+<span class="info" style="position: absolute; left: 0; right: 0; bottom: 0; padding: 12px 14px; background: #071F24; display: flex; flex-direction: column; gap: 2px; text-align: left">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 16px; color: #FFFFFF">{{o.titulo}}</span>
+<span style="font-size: 12px; color: #8FC3CB">{{o.anio}} · {{o.rol}}</span>
+</span>
+</button>
+</sc-for>
+</div>
+</section>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: 56px 24px 24px; display: flex; flex-direction: column; gap: 20px">
+<h2 aria-label="Qué puedo hacer por vos" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(30px, 4vw, 44px); color: #FFFFFF"><sc-for list="{{tServicios}}" as="l" hint-placeholder-count="20"><span class="lt" aria-hidden="true" style="--i: {{l.i}}; color: {{l.color}}">{{l.c}}</span></sc-for></h2>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<sc-for list="{{servicios}}" as="x" hint-placeholder-count="4"><span class="bota" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 22px; border-radius: 18px; background: #0B2E35; font-size: 17px; font-weight: 500"><span style="width: 12px; height: 12px; border-radius: 50%; background: #22C3D6"></span>{{x}}</span></sc-for>
+</div>
+</section>
+
+<section style="padding: 40px 24px 64px">
+<div style="max-width: 1200px; margin: 0 auto; box-sizing: border-box; background: #22C3D6; color: #071F24; border-radius: 28px; padding: clamp(28px, 4vw, 52px); display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between">
+<div style="flex: 1 1 380px; display: flex; flex-direction: column; gap: 6px">
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.05">¿Tenés una historia para animar?</h2>
+<p style="margin: 0; font-family: Caveat, cursive; font-size: 26px"><span class="escribe">armemos algo juntos</span></p>
+</div>
+<a class="btn" href="https://wa.me/5491158165994" style="background: #071F24; color: #FFFFFF; font-weight: 600; padding: 0 26px; min-height: 54px; display: inline-flex; align-items: center; border-radius: 999px; text-decoration: none">Escribime por WhatsApp</a>
+</div>
+</section>
+
+<nav aria-label="Anterior y siguiente" style="border-top: 1px solid #164650; padding: 18px 24px">
+<div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; font-weight: 600">
+<a href="Main.dc.html" style="color: #B9D6DB; text-decoration: none; padding: 12px 0">← Inicio</a>
+<a href="Motion.dc.html" style="color: #FFFFFF; text-decoration: none; padding: 12px 0">Motion Graphics →</a>
+</div>
+</nav>
+
+<sc-if value="{{hayVisor}}" hint-placeholder-val="{{ false }}">
+<div role="dialog" aria-modal="true" aria-label="{{visor.titulo}}" style="position: fixed; inset: 0; z-index: 200; background: rgba(2,11,13,0.9); display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box">
+<div class="abre" style="width: min(100%, 980px); max-height: 100%; overflow: auto; background: #0B2E35; border-radius: 24px; padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px">
+<div style="position: relative; aspect-ratio: {{visor.ratio}}; max-height: 70vh; width: 100%; margin: 0 auto; border-radius: 14px; overflow: hidden; background: #000000; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{visor.hayVideo}}" hint-placeholder-val="{{ false }}"><video src="{{visor.video}}" poster="{{visor.poster}}" controls autoplay playsinline style="width: 100%; height: 100%; object-fit: contain; display: block"></video></sc-if>
+<sc-if value="{{visor.esImg}}" hint-placeholder-val="{{ false }}"><img src="{{visor.img}}" alt="{{visor.titulo}}" style="width: 100%; height: 100%; object-fit: contain; display: block"></sc-if>
+<sc-if value="{{visor.sinVideo}}" hint-placeholder-val="{{ true }}"><span style="font-size: 14px; color: #8FC3CB; text-align: center; padding: 20px">[Acá va el video de "{{visor.titulo}}"]</span></sc-if>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 3px; flex: 1 1 320px; min-width: 0">
+<span style="align-self: flex-start; padding: 3px 10px; border-radius: 999px; background: {{visor.color}}; color: #071F24; font-size: 12px; font-weight: 700">{{visor.cat}}</span>
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: #FFFFFF">{{visor.titulo}}</span>
+<span style="font-size: 14px; color: #B9D6DB">{{visor.anio}} · {{visor.rol}}</span>
+<span style="font-size: 14px; line-height: 1.5; color: #8FC3CB">{{visor.desc}}</span>
+</div>
+<div style="display: flex; gap: 8px; align-items: center">
+<button type="button" class="btn" onClick="{{anterior}}" aria-label="Trabajo anterior" style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #3E6E76; background: transparent; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">←</button>
+<button type="button" class="btn" onClick="{{siguiente}}" aria-label="Trabajo siguiente" style="width: 44px; height: 44px; border-radius: 50%; border: none; background: #22C3D6; color: #071F24; font: inherit; font-weight: 700; cursor: pointer">→</button>
+<button type="button" onClick="{{cerrar}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid #8FC3CB; background: transparent; color: #FFFFFF; font: inherit; font-weight: 600; cursor: pointer">Cerrar ✕</button>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<div class="revela" aria-hidden="true" style="position: fixed; inset: 0; z-index: 300; pointer-events: none; background: #22C3D6"></div>
+</div>
+</template>
+<script type="text/plain" id="dc-src" data-props='{"$preview":{"width":1280,"height":3000}}'>
+var ESTANTES = [
+{ id: 'tesis', n: 'Tesis', nota: 'mi proyecto final', color: '#22C3D6' },
+{ id: 'punto', n: '"El Punto"', nota: 'documental · Rueque Cine', color: '#FFD23F' },
+{ id: 'dios', n: 'Solo le pido a Dios', nota: 'videoclip animado', color: '#FF7A5C' },
+{ id: 'personales', n: 'Personales', nota: 'lo que animo porque sí', color: '#B79CFF' },
+{ id: 'facultad', n: 'Facultad', nota: 'Escuela Da Vinci', color: '#5EE6A8' },
+{ id: 'portfolio', n: 'Portfolio 2025', nota: 'lo mejor del reel', color: '#F2F7F8' }
+];
+// Completar video (y opcional poster) cuando lleguen los archivos. ratio: '16 / 9', '9 / 16' o '1 / 1'.
+var OBRAS = [
+{ cat: 'tesis', titulo: 'Stars in the City', anio: '2025', rol: 'Tesis · animación', desc: 'Mi proyecto de tesis.', prev: 'media/f46074523e825b90e94282e1875ce40b.mp4', poster: 'media/8d073f84d8ff6fe29003c3b1f6924025.jpg', video: 'media/760f3afe5ec1e41b3b4291cf4b7ffb59.mp4', tam: 'g', ratio: '16 / 9' },
+{ cat: 'punto', titulo: 'Teaser "El Punto"', anio: '2026', rol: 'Director de animación', desc: 'Teaser vertical del documental.', prev: 'media/8a7e526866bc9367d09a55640138be5c.mp4', poster: 'media/c2cd201fdce83143a66be9c5bb11b6b8.jpg', video: 'media/aca28610ca8178528e393e7aabd44afe.mp4', tam: 'a', ratio: '9 / 16' },
+{ cat: 'tesis', titulo: 'Stars in the City — el gato en la luna', anio: '2025', rol: 'Escenario 3D · zoom in a 12 fps', desc: 'Plano del escenario 3D de la tesis: zoom in lento sobre el gato y la luna, animado a 12 cuadros por segundo.', prev: 'media/fa43df188dda30fa9e4aa6a5949a36e9.mp4', poster: 'media/3372ccb59b09780bf7a70c2a5c07bbd0.jpg', video: 'media/dabcf5c8848159fc69a02e1542cc3d4b.mp4', tam: 'w', ratio: '16 / 9' },
+{ cat: 'tesis', titulo: 'Stars in the City — la calle', anio: '2025', rol: 'Escenario 3D · render', desc: 'Render del escenario 3D de la tesis: la calle con el tránsito de noche.', img: 'media/f03411ac52cde306fedb8174230b3c4b.jpg', tam: 'n', ratio: '16 / 9' },
+{ cat: 'tesis', titulo: 'Stars in the City — del dibujo al render', anio: '2025', rol: 'Proceso: líneas y render', desc: 'Cómo pasa un plano del dibujo de líneas al render final.', prev: 'media/d09a8f92265ab859e4cce9481855f89e.mp4', poster: 'media/996992ab5f2b0a7d8aed72b9602f4839.jpg', video: 'media/0f32bbdb87c432d9dff1e226321bdccd.mp4', tam: 'n', ratio: '16 / 9' },
+{ cat: 'punto', titulo: '"El Punto" — Secuencia 1', anio: '2024', rol: 'Director de animación', desc: 'Secuencias animadas para el documental de Rueque Cine, con estreno previsto en 2026.', prev: 'media/d9b992becd3ae0bbc79d7f2dffb21e76.mp4', poster: 'media/b3625f2df602ca1dacea80ddf332ec1b.jpg', video: 'media/a5d9dd718b559153f352dc51c0b45f10.mp4', tam: 'w', ratio: '16 / 9' },
+{ cat: 'dios', titulo: 'Chiedo Solo a Dio — Teaser', anio: '2026', rol: 'Videoclip animado', desc: 'Teaser del videoclip animado de "Solo le pido a Dios" en italiano, de Diego Smolovich y Lito Vitale.', prev: 'media/e3a5c7b50c59a51effcab77e2355e9b3.mp4', poster: 'media/b764ecd8b97fe369a40ab540e1592b5f.jpg', video: 'media/b7921f337c177bc145f226bf6da77557.mp4', tam: 'g', ratio: '16 / 9' },
+{ cat: 'personales', titulo: 'Reel Tren', anio: '2026', rol: 'Animación 2D', desc: 'Reel animado para redes.', prev: 'media/5892d6d36ce4374c1799bbddcbc0af4d.mp4', poster: 'media/7ce1aeae66ebed027b7405e2a4365a90.jpg', video: 'media/2e6cb54bb9a9d4261ffba91a04531c22.mp4', tam: 'a', ratio: '9 / 16' },
+{ cat: 'punto', titulo: '"El Punto" — Secuencia 2', anio: '2024', rol: 'Director de animación', desc: 'Secuencias animadas para el documental de Rueque Cine.', prev: 'media/6ecab3a8ad2d4bc5371c549516f5e556.mp4', poster: 'media/6b541eef4d61993d303d3fd9111178cb.jpg', video: 'media/284d0c6ce80107fdd7a39b2d08f66ce4.mp4', tam: 'n', ratio: '16 / 9' },
+{ cat: 'facultad', titulo: 'La Manzana de Cristal', anio: '2025', rol: 'Animación 2D · Pangolin Studios', desc: 'Cortometraje animado en 2D.', prev: 'media/fd0c4b9a57f6c257c2cd0aa59add241c.mp4', poster: 'media/c6a77b276896f6146a5b5f6f6ce832da.jpg', video: 'media/022f22516d1b2a6b5193507504abd0bd.mp4', tam: 'w', ratio: '16 / 9' },
+{ cat: 'facultad', titulo: 'La Pelota', anio: '2025', rol: 'Animación 2D', desc: 'Corto basado en el cuento de Felisberto Hernández.', prev: 'media/f15cfe60d316db4f3a0076c83a01657e.mp4', poster: 'media/71649a51431848b3def61f46af9b364c.jpg', video: 'media/4ce29512a9181fd7ea6767f01be0f0ab.mp4', tam: 'n', ratio: '16 / 9' },
+{ cat: 'facultad', titulo: 'El caminante sobre el mar de nubes', anio: '2025', rol: 'Animación 2D · Pangolin Studios', desc: 'Corto animado inspirado en la pintura de Caspar David Friedrich.', prev: 'media/046d5bc4f08a0f2bdf1a026546a4535c.mp4', poster: 'media/316b368ce9ba5e29303c4fb8c463449f.jpg', video: 'media/ced69bba0bb57767aa330594b91ca1cd.mp4', tam: 'n', ratio: '16 / 9' },
+{ cat: 'facultad', titulo: 'NO ENTENDO', anio: '2025', rol: 'Cortometraje · BIGBANG 2025', desc: 'Cortometraje animado.', prev: 'media/3a5bf195f670bfbb122455ec7e4aaea8.mp4', poster: 'media/329b7dca8a0a96e5eae49982886d0e4a.jpg', video: 'media/c8ed08f9f9fd3363f6771e30d3052586.mp4', tam: 'w', ratio: '16 / 9' },
+{ cat: 'personales', titulo: 'Reels Lisarts #1', anio: '2026', rol: 'Animación 2D', desc: 'Animaciones cortas para redes.', prev: 'media/e9838063608aa1b4c0cbbb744627c619.mp4', poster: 'media/6b00edbf1c959140989da1351f6cc22f.jpg', video: 'media/8787abc02ee2875e57f9069dffa1141f.mp4', tam: 'a', ratio: '9 / 16' },
+{ cat: 'portfolio', titulo: 'Demo Reel 2025 — Animación 2D', anio: '2025', rol: 'Demo reel', desc: 'Lo mejor de mi animación 2D de 2025.', prev: 'media/77c002448f482d41382ac4c7b94bd1fb.mp4', poster: 'media/c24aef6784133fe0c1f113e60b2e5590.jpg', video: 'media/1273d3e2f6507055379f70a646b8fd40.mp4', tam: 'g', ratio: '16 / 9' },
+{ cat: 'facultad', titulo: 'La Mudanza', anio: '[año]', rol: 'Cortometraje 3D', desc: 'Cortometraje animado en 3D de la facultad.', prev: 'media/6fae8ea55509450246e8dcb3c7903064.mp4', poster: 'media/db554807056a68950b60fe21e0bd12a9.jpg', video: 'media/a99f96d5ea685dda0e3d049306d5b38d.mp4', tam: 'w', ratio: '16 / 9' },
+{ cat: 'facultad', titulo: 'Estilo Libre', anio: '2026', rol: 'Animación 3D · motion capture', desc: 'Animación 3D con captura de movimiento.', prev: 'media/0780a9d13571e68c8adfaab1e44dc0cf.mp4', poster: 'media/297c6d9a5650b4120291c01bfe279e44.jpg', video: 'media/5b3673a3e8622f995c9861fcbf28e4e9.mp4', tam: 'n', ratio: '16 / 9' },
+{ cat: 'facultad', titulo: 'La Sombra', anio: '2025', rol: 'Cortometraje 3D en equipo', desc: 'Cortometraje animado en 3D de la facultad.', prev: 'media/71c3930d1dffa7200ec245df85d028e9.mp4', poster: 'media/8081b7df3dbcbe2b78fe01c52553a73a.jpg', video: 'media/8a8e1ca1179735441ca5ffa15f823dda.mp4', tam: 'n', ratio: '16 / 9' },
+{ cat: 'personales', titulo: 'Reels Lisarts #2', anio: '2026', rol: 'Animación 2D', desc: 'Animaciones cortas para redes.', prev: 'media/085fc86c12cd467f0b893d5e8277be64.mp4', poster: 'media/399dd5ece241cedd948f6e1c68c1ee58.jpg', video: 'media/73dfcd6206bb22ef80dfb328468b104b.mp4', tam: 'a', ratio: '9 / 16' },
+{ cat: 'personales', titulo: 'Reels Lisarts #3', anio: '2026', rol: 'Animación 2D', desc: 'Animaciones cortas para redes.', prev: 'media/8834905d7fe2b61e5766796aab344712.mp4', poster: 'media/e0b4784012a4d363df5ffa7f689b86fb.jpg', video: 'media/2f1151118b1f38201363152821344a32.mp4', tam: 'a', ratio: '9 / 16' },
+{ cat: 'facultad', titulo: 'Ejercicio de animación 3D', anio: '2024', rol: 'Animación 3D', desc: 'Ejercicio de animación de personaje en 3D.', prev: 'media/8c594759f64c231833dd474d39dbdd32.mp4', poster: 'media/99dcb7edcb7f74dd4d9012688d0f4253.jpg', video: 'media/fc753ffadde2b44c18593e19f1e33994.mp4', tam: 'n', ratio: '16 / 9' },
+{ cat: 'facultad', titulo: 'Donut 3D', anio: '2025', rol: 'Modelado y render 3D', desc: 'Modelado, shading y render en Blender.', prev: 'media/441c2a515ee37fe4eee214c16ba07c34.mp4', poster: 'media/aa4bf0874f73f29b073f678868fb3aac.jpg', video: 'media/c0c8d68a1f8f814417dd0f648c4cd4bc.mp4', tam: 'n', ratio: '16 / 9' },
+{ cat: 'personales', titulo: 'Reels Lisarts #4', anio: '2026', rol: 'Animación 2D', desc: 'Animaciones cortas para redes.', prev: 'media/1b15edac581bf1b455459df48c7da240.mp4', poster: 'media/6eeeb963f82e9a3c1c4bf7a7a113b26f.jpg', video: 'media/5347fd5250cef94f3c00bbbe4e5b5a4c.mp4', tam: 'a', ratio: '9 / 16' },
+{ cat: 'personales', titulo: 'Reels Lisarts #5', anio: '2026', rol: 'Animación 2D', desc: 'Animaciones cortas para redes.', prev: 'media/3bd471ba89fdf36580359537913589e8.mp4', poster: 'media/e40886432824e4ba6a56d666321020b2.jpg', video: 'media/573a67c19d8969062f1a0f7dfcdd0ca9.mp4', tam: 'a', ratio: '9 / 16' },
+{ cat: 'portfolio', titulo: 'Demo Reel 2024–2025', anio: '2025', rol: 'Fragmento del reel', desc: 'Un fragmento del demo reel 2024–2025.', prev: 'media/ae8bcea153a6eff0889e1bd39c31b150.mp4', poster: 'media/7d9da7b2858587e17de8532127dd781d.jpg', video: 'media/4595acc9d5fb3e95508b51c16908dbd7.mp4', tam: 'n', ratio: '16 / 9' }
+];
+var TABS = [['Animacion.dc.html', 'Animación', '#22C3D6'], ['Motion.dc.html', 'Motion', '#FFD23F'], ['Edicion.dc.html', 'Edición', '#FF7A5C'], ['MusicVisuals.dc.html', 'Visualizers', '#B79CFF'], ['Ilustracion.dc.html', 'Ilustración', '#5EE6A8']];
+var FANTASMAS = [];
+(function () {
+var arco = function (p, u) { var v = 1 - u; return [v * v * v * p[0][0] + 3 * v * v * u * p[1][0] + 3 * v * u * u * p[2][0] + u * u * u * p[3][0], v * v * v * p[0][1] + 3 * v * v * u * p[1][1] + 3 * v * u * u * p[2][1] + u * u * u * p[3][1]]; };
+var A = [[18, 171], [60, 0], [120, 0], [160, 171]], B = [[160, 171], [195, 60], [245, 60], [280, 171]];
+for (var i = 0; i < 12; i++) {
+var t = i / 11, q = t <= 0.55 ? arco(A, t / 0.55) : arco(B, (t - 0.55) / 0.45);
+var suelo = q[1] > 160;
+FANTASMAS.push({ x: q[0].toFixed(1), y: q[1].toFixed(1), o: (0.18 + i * 0.04).toFixed(2), d: (i * 1.4 / 12).toFixed(3) + 's', forma: suelo ? 'scale(1.25, .78)' : 'none' });
+}
+})();
+function cat(id) { for (var i = 0; i < ESTANTES.length; i++) { if (ESTANTES[i].id === id) return ESTANTES[i]; } return ESTANTES[0]; }
+class Component extends DCLogic {
+componentDidMount() { var self = this; this.onScroll = function (e) { var t = e && e.target && e.target.scrollTop; var y = Math.max(window.scrollY || 0, document.documentElement.scrollTop || 0, t || 0); var on = y > 30; if (on !== !!(self.state && self.state.bajo)) self.setState({ bajo: on }); }; window.addEventListener('scroll', this.onScroll, { passive: true }); document.addEventListener('scroll', this.onScroll, { passive: true, capture: true }); }
+componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); document.removeEventListener('scroll', this.onScroll, { capture: true }); }
+renderVals() {
+var self = this;
+var st = this.state || {};
+var filtro = st.filtro || 'todos';
+var TAM = ['g', 'n', 'n', 'w', 'n', 'a', 'n', 'n', 'w', 'n', 'g', 'n', 'n'];
+var lista = [];
+OBRAS.forEach(function (o, i) { if (filtro === 'todos' || o.cat === filtro) lista.push({ o: o, i: i }); });
+var mosaico = lista.map(function (x, k) {
+var o = x.o, c = cat(o.cat);
+return { titulo: o.titulo, anio: o.anio, rol: o.rol, cat: c.n.replace(/"/g, ''), color: c.color, prev: o.prev, poster: o.poster, img: o.img, esImg: !!o.img, hayVideo: !!o.prev, sinVideo: !o.prev && !o.img, fondo: o.prev ? '#000000' : (k % 2 ? '#0B2E35' : '#123C44'), tam: (filtro === 'todos' && o.tam) ? o.tam : (o.ratio === '9 / 16' ? 'a' : TAM[k % TAM.length]), d: (k * 0.06).toFixed(2) + 's', abrir: function () { self.setState({ abierto: x.i }); } };
+});
+var filtros = [{ id: 'todos', n: 'Todos', color: '#E8F4F6' }].concat(ESTANTES).map(function (e) {
+var on = filtro === e.id;
+var cant = OBRAS.filter(function (o) { return e.id === 'todos' || o.cat === e.id; }).length;
+return { n: e.n.replace(/"/g, ''), cant: cant, on: on ? 'true' : 'false', fondo: on ? e.color : 'transparent', texto: on ? '#071F24' : '#E8F4F6', borde: on ? e.color : '#3E6E76', elegir: function () { self.setState({ filtro: e.id }); } };
+});
+var letras = function (txt, desde, pinta) { return txt.split('').map(function (ch, k) { return { c: ch === ' ' ? '\u00A0' : ch, i: desde + k, color: pinta || '#FFFFFF' }; }); };
+var ab = st.abierto;
+var hay = typeof ab === 'number';
+var o = hay ? OBRAS[ab] : OBRAS[0];
+var c = cat(o.cat);
+var cinta = [];
+for (var r = 0; r < 2; r++) { ESTANTES.forEach(function (e) { cinta.push(e.n.replace(/"/g, '')); cinta.push('✦'); }); }
+var tabs = TABS.map(function (t) { var on = t[0] === 'Animacion.dc.html'; return { href: t[0], label: t[1], estilo: 'text-decoration: none; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 999px; font-weight: 600; ' + (on ? 'background: ' + t[2] + '; color: #071F24' : 'color: #B9D6DB') }; });
+return {
+barraFondo: st.bajo ? 'rgba(7,31,36,0.55)' : 'rgba(7,31,36,1)', barraBorde: st.bajo ? 'rgba(62,110,118,0.6)' : 'transparent',
+tabs: tabs,
+tools: ['Toon Boom', 'Krita', 'Maya', 'Blender', 'After Effects'],
+fantasmas: FANTASMAS,
+cinta: cinta,
+totalObras: OBRAS.length,
+mosaico: mosaico, filtros: filtros,
+tLinea1: letras('Animación', 0), tLinea2: letras('2D/3D', 9, '#22C3D6'), tVideoteca: letras('Videoteca', 0), tServicios: letras('Qué puedo hacer por vos', 0),
+servicios: ['Animación 2D', 'Animación 3D', 'Dirección de animación', 'Secuencias para cine y documental', 'Videoclips animados'],
+hayVisor: hay,
+visor: { titulo: o.titulo, anio: o.anio, rol: o.rol, desc: o.desc, video: o.video, poster: o.poster, img: o.img, esImg: !!o.img, hayVideo: !!o.video, sinVideo: !o.video && !o.img, ratio: o.ratio, cat: c.n.replace(/"/g, ''), color: c.color },
+siguiente: function () { var k = 0; lista.forEach(function (x, j) { if (x.i === ab) k = j; }); self.setState({ abierto: lista[(k + 1) % lista.length].i }); },
+anterior: function () { var k = 0; lista.forEach(function (x, j) { if (x.i === ab) k = j; }); self.setState({ abierto: lista[(k - 1 + lista.length) % lista.length].i }); },
+cerrar: function () { self.setState({ abierto: null }); }
+};
+}
+}
+</script>
+<script src="morphdom.js"></script>
+<script src="dc-lite.js"></script>
+</body>
+</html>
