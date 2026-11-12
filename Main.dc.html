@@ -59,6 +59,8 @@ html{scroll-behavior:smooth}
 .contacto:hover .forma,.contacto:focus-visible .forma{border-radius:50% !important;transform:rotate(180deg) scale(1.1)}
 .contacto{transition:transform .3s cubic-bezier(.3,1.5,.5,1)}
 .contacto:hover,.contacto:focus-visible{transform:translateY(-6px)}
+@keyframes hoyLat{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.4}}
+.hoy-punto{animation:hoyLat 1.4s ease-in-out infinite}
 @keyframes crece{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .capa{transform-origin:0 50%;animation:crece 1s cubic-bezier(.7,0,.2,1) both;animation-delay:calc(var(--i) * 140ms)}
 @keyframes abrir{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
@@ -80,7 +82,7 @@ html{scroll-behavior:smooth}
 .tr-eq{transform:scaleY(0);transform-origin:50% 100%;animation:trEq .8s cubic-bezier(.3,1.4,.5,1) forwards}
 @keyframes trTrazo{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 .tr-trazo{stroke-dasharray:1;stroke-dashoffset:1;animation:trTrazo 1s cubic-bezier(.6,0,.4,1) forwards}
-@media (prefers-reduced-motion:reduce){.mask > span,.entra,.salto,.squash,.sombra,.morph,.gira,.viaja,.kf,.corte,.eq,.trazo,.ring,.flota,.chip,.barra,.slot > span,.capa,.abre{animation:none}}
+@media (prefers-reduced-motion:reduce){.hoy-punto{animation:none}.mask > span,.entra,.salto,.squash,.sombra,.morph,.gira,.viaja,.kf,.corte,.eq,.trazo,.ring,.flota,.chip,.barra,.slot > span,.capa,.abre{animation:none}}
 </style>
 
 </head>
@@ -101,6 +103,29 @@ html{scroll-behavior:smooth}
 </header>
 </div>
 
+<section aria-label="Los trabajos de hoy" style="max-width: 1200px; margin: 0 auto; padding: 28px 24px 8px">
+<div style="border-radius: 24px; background: #0B2E35; border: 1.5px solid #164650; padding: clamp(18px, 3vw, 28px); display: flex; flex-wrap: wrap; gap: 22px; align-items: center">
+<div style="flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: #FFD23F; color: #071F24; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase"><span class="hoy-punto" style="width: 8px; height: 8px; border-radius: 50%; background: #FF7A5C"></span>Hoy · Food Delivery Day</span>
+<h2 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 800; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.05; color: #FFFFFF">Los trabajos de hoy:</h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #B9D6DB">El video del tótem de Eco Bolsas que está en la expo y el teaser de un videoclip animado.</p>
+</div>
+<div style="flex: 0 0 auto; width: min(100%, 210px); margin: 0 auto; display: flex; flex-direction: column; gap: 8px">
+<div style="border-radius: 16px; padding: 7px; background: #071F24; border: 1.5px solid #5EE6A8">
+<video src="media/d56af9268009e2d1d4bc49164db33749.mp4" poster="media/85dbe7c2dfa1e1438897114c5b28d771.jpg" autoplay muted loop playsinline controls preload="metadata" style="width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 10px; display: block; background: #020B0D"></video>
+</div>
+<span style="font-weight: 700; font-size: 15px; color: #FFFFFF">Eco Bolsas</span>
+<span style="font-size: 13px; color: #8FC3CB">Video para tótem · motion graphics</span>
+</div>
+<div style="flex: 2 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<div style="border-radius: 16px; padding: 7px; background: #071F24; border: 1.5px solid #FF7A5C">
+<video src="media/b7921f337c177bc145f226bf6da77557.mp4" poster="media/b764ecd8b97fe369a40ab540e1592b5f.jpg" controls playsinline preload="none" style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; display: block; background: #020B0D"></video>
+</div>
+<span style="font-weight: 700; font-size: 15px; color: #FFFFFF">Chiedo Solo a Dio — Teaser</span>
+<span style="font-size: 13px; color: #8FC3CB">Videoclip animado de "Solo le pido a Dios" en italiano</span>
+</div>
+</div>
+</section>
 <section style="max-width: 1200px; margin: 0 auto; padding: 40px 24px 32px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center">
 <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
 <p class="entra" style="--d: 0s; margin: 0; display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #8FC3CB"><span class="kf" style="width: 10px; height: 10px; background: #FFD23F; transform: rotate(45deg)"></span>Animación · Motion Graphics · Edición</p>
