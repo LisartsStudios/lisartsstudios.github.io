@@ -167,7 +167,7 @@ html{scroll-behavior:smooth}
 <button type="button" class="funda" onClick="{{f.elegir}}" aria-pressed="{{f.on}}" aria-label="Poner {{f.titulo}} de {{f.artista}}" style="--c: {{f.color}}">
 <span style="position: relative; display: block">
 <span class="disco" aria-hidden="true"></span>
-<span class="tapa"><img src="{{f.poster}}" alt="" loading="lazy"><span style="position: absolute; left: 8px; top: 8px; padding: 2px 7px; border-radius: 5px; background: rgba(7,31,36,0.85); color: {{f.color}}; font-family: 'JetBrains Mono', monospace; font-size: 11px">{{f.lado}}</span></span>
+<span class="tapa"><sc-if value="{{f.sinTv}}" hint-placeholder-val="{{ true }}"><img src="{{f.poster}}" alt="" loading="lazy"></sc-if><sc-if value="{{f.hayTv}}" hint-placeholder-val="{{ false }}"><video src="{{f.tv}}" poster="{{f.poster}}" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; display: block"></video></sc-if><span style="position: absolute; left: 8px; top: 8px; padding: 2px 7px; border-radius: 5px; background: rgba(7,31,36,0.85); color: {{f.color}}; font-family: 'JetBrains Mono', monospace; font-size: 11px">{{f.lado}}</span></span>
 </span>
 <span style="display: flex; flex-direction: column; gap: 2px; text-align: left">
 <span style="font-weight: 700; font-size: 14px; color: #FFFFFF; line-height: 1.25">{{f.titulo}}</span>
@@ -221,11 +221,11 @@ var DISCOS = [
 { yt: '5t_MZnyi0gs', titulo: 'SISEPUEDENCOPIARDELILYACHTYYOTAMBIEN', feat: 'prod. TW2NTY0' },
 { yt: 'ZIV2Gyd6aJk', titulo: 'Te vi bailar', feat: 'ft. Nahuemtt' }
 ] },
-{ yt: 'ejLrYQq5J-A', titulo: 'Ayer hablé con Dios', artista: 'Sanxhezz w/ Nahuemtt', tipo: 'Visualizer', color: '#B79CFF' },
-{ yt: 'bBr6OaKDWQ4', titulo: 'Glu Glu (Lost Tape)', artista: 'Sanxhezz w/ Tanqueturu', tipo: 'Visualizer', color: '#22C3D6' },
-{ yt: 'nra6BhQPEBo', titulo: 'Blueberry', artista: 'MFLW', tipo: 'Visualizer', color: '#5EE6A8' },
-{ yt: '8His9AKpXkA', titulo: 'Como las de antes', artista: 'Chill Boy · Bleur¿', tipo: 'Visualizer animado', color: '#FFD23F' },
-{ yt: 'JBvWOcuXPZk', titulo: 'Cart4s para v0s', artista: 'LICHA ft. Sanxhezz', tipo: 'Visualizer', color: '#FF7A5C' },
+{ yt: 'ejLrYQq5J-A', tapa: 'media/11c5105a9fb07759ccf0aaeaa160fbda.jpg', titulo: 'Ayer hablé con Dios', artista: 'Sanxhezz w/ Nahuemtt', tipo: 'Visualizer', color: '#B79CFF' },
+{ yt: 'bBr6OaKDWQ4', tapa: 'media/5cdb18d9e185dd8c5c49cb78f285f8a0.jpg', titulo: 'Glu Glu (Lost Tape)', artista: 'Sanxhezz w/ Tanqueturu', tipo: 'Visualizer', color: '#22C3D6' },
+{ yt: 'nra6BhQPEBo', tapa: 'media/abf13152193e2123c30c1130d7dd9781.jpg', tapaVideo: 'media/7d6b0c19805020e29fe52ca935379f53.mp4', titulo: 'Blueberry', artista: 'MFLW', tipo: 'Visualizer', color: '#5EE6A8' },
+{ yt: '8His9AKpXkA', tapa: 'media/69d842cde352523e86a31bb17feaa377.jpg', titulo: 'Como las de antes', artista: 'Chill Boy · Bleur¿', tipo: 'Visualizer animado', color: '#FFD23F' },
+{ yt: 'JBvWOcuXPZk', tapa: 'media/01899f16af5ec428a2e7befb9b60944d.jpg', titulo: 'Cart4s para v0s', artista: 'LICHA ft. Sanxhezz', tipo: 'Visualizer', color: '#FF7A5C' },
 { video: 'media/b7921f337c177bc145f226bf6da77557.mp4', poster: 'media/b764ecd8b97fe369a40ab540e1592b5f.jpg', titulo: 'Chiedo Solo a Dio', artista: 'Diego Smolovich y Lito Vitale', tipo: 'Trailer · videoclip animado', color: '#E8F4F6' }
 ];
 var TABS = [['Animacion.dc.html', 'Animación', '#22C3D6'], ['Motion.dc.html', 'Motion', '#FFD23F'], ['Edicion.dc.html', 'Edición', '#FF7A5C'], ['MusicVisuals.dc.html', 'Visualizers', '#B79CFF'], ['Ilustracion.dc.html', 'Ilustración', '#5EE6A8']];
@@ -250,13 +250,13 @@ tabs: tabs, t1: letras('Visualizers', 0), t2: letras('Musicales', 11),
 tools: ['After Effects', 'Premiere Pro', 'Photoshop', 'Krita'],
 barras: barras, cantidad: DISCOS.length,
 pant: {
-titulo: d.titulo, artista: d.artista, tipo: d.tipo, color: d.color, lado: lado(sel), poster: tapa(d), etiqueta: tapa(D), esAlbum: !!D.album,
+titulo: d.titulo, artista: d.artista, tipo: d.tipo, color: d.color, lado: lado(sel), poster: d.yt ? yth(d.yt) : tapa(d), etiqueta: tapa(D), esAlbum: !!D.album,
 ytOn: on && !!d.yt, videoOn: on && !!d.video, tapaOn: !on,
 yt: d.yt ? 'https://www.youtube-nocookie.com/embed/' + d.yt + '?autoplay=1&rel=0&modestbranding=1' : '',
 video: d.video || '', hayLink: !!d.yt, link: d.yt ? 'https://www.youtube.com/watch?v=' + d.yt : '',
 quieto: on ? '' : 'quieto', accion: on ? 'Sonando…' : '▶ Poner el disco'
 },
-fundas: DISCOS.map(function (x, i) { return { titulo: x.titulo, artista: x.artista, color: x.color, poster: tapa(x), lado: lado(i), on: i === sel ? 'true' : 'false', elegir: function () { poner(i); } }; }),
+fundas: DISCOS.map(function (x, i) { return { titulo: x.titulo, artista: x.artista, color: x.color, poster: tapa(x), tv: x.tapaVideo || '', hayTv: !!x.tapaVideo, sinTv: !x.tapaVideo, lado: lado(i), on: i === sel ? 'true' : 'false', elegir: function () { poner(i); } }; }),
 reproducir: function () { self.setState({ suena: true }); },
 temas: D.album ? D.tracks.map(function (x, j) { var a = j === pista; return { n: j + 1, titulo: x.titulo, feat: x.feat, actual: a ? 'true' : 'false', fondo: a ? D.color : 'transparent', texto: a ? '#071F24' : '#E8F4F6', elegir: function () { self.setState({ pista: j, suena: true }); } }; }) : [],
 anterior: function () { if (D.album && pista > 0) { self.setState({ pista: pista - 1, suena: true }); return; } poner((sel - 1 + DISCOS.length) % DISCOS.length); },
