@@ -58,6 +58,8 @@ html{scroll-behavior:smooth}
 .bin:focus-visible{outline:3px solid #FFFFFF;outline-offset:-3px}
 .bin[aria-disabled="true"]{cursor:default;opacity:.55}
 .bin[aria-disabled="true"]:hover{background:transparent}
+#ed-cabezal .agarre:hover~.cabeza,#ed-cabezal.arrastrando .cabeza{transform:scale(1.25);transform-origin:50% 0}
+.cabeza{transition:transform .15s}
 .clip{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:block;height:64px;min-width:84px;border-radius:7px;overflow:hidden;background-color:#123C44;background-repeat:repeat-x;background-size:auto 100%;transition:filter .2s,transform .2s}
 .clip:hover{filter:brightness(1.15)}
 .clip:focus-visible{outline:3px solid #FFFFFF;outline-offset:2px}
@@ -114,7 +116,7 @@ html{scroll-behavior:smooth}
 <section aria-label="Sala de montaje" style="max-width: 1200px; margin: 0 auto; padding: 32px 24px 24px; display: flex; flex-direction: column; gap: 18px">
 <div style="display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; align-items: baseline">
 <h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(36px, 5.4vw, 68px); line-height: 1; letter-spacing: -0.02em; color: #FFFFFF">Sala de montaje</h2>
-<p style="margin: 0; font-family: Caveat, cursive; font-size: 26px; color: #FFD23F; transform: rotate(-2deg)">elegí una cuenta · tocá cualquier clip de la línea de tiempo</p>
+<p style="margin: 0; font-family: Caveat, cursive; font-size: 26px; color: #FFD23F; transform: rotate(-2deg)">elegí una cuenta · arrastrá el cabezal o tocá un clip</p>
 </div>
 
 <div style="border-radius: 18px; background: #0B2E35; border: 1.5px solid #164650; overflow: hidden">
@@ -154,7 +156,7 @@ html{scroll-behavior:smooth}
 <div style="border-top: 1.5px solid #164650; background: #06191D; overflow-x: auto">
 <div style="min-width: 720px; padding: 10px 14px 14px; display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 6px 8px; align-items: center">
 <span></span>
-<div aria-hidden="true" style="display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8FC3CB; padding-bottom: 2px; background-image: repeating-linear-gradient(90deg, #3E6E76 0 1px, transparent 1px 5%); background-size: 100% 6px; background-repeat: no-repeat; background-position: 0 100%"><span>00:00</span><span>{{secuenciaFin}}</span></div>
+<div id="ed-regla" aria-hidden="true" style="cursor: ew-resize; touch-action: none; user-select: none; -webkit-user-select: none; display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8FC3CB; padding: 6px 0 4px; background-image: repeating-linear-gradient(90deg, #3E6E76 0 1px, transparent 1px 5%); background-size: 100% 6px; background-repeat: no-repeat; background-position: 0 100%"><span>00:00</span><span>{{secuenciaFin}}</span></div>
 <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #FF7A5C">V1</span>
 <div id="ed-pista" style="position: relative; display: flex; gap: 3px">
 <sc-for list="{{clips}}" as="c" hint-placeholder-count="6">
@@ -162,7 +164,7 @@ html{scroll-behavior:smooth}
 <span style="position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 7px 5px; background: linear-gradient(180deg, transparent, rgba(2,11,13,0.92)); font-size: 11px; font-weight: 600; color: #FFFFFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: left">{{c.titulo}}</span>
 </button>
 </sc-for>
-<span id="ed-cabezal" aria-hidden="true" style="position: absolute; top: -26px; bottom: -48px; left: 0; width: 2px; background: #FF7A5C; z-index: 3; pointer-events: none; transition: left .12s linear"><span style="position: absolute; top: 0; left: -6px; width: 14px; height: 12px; background: #FF7A5C; clip-path: polygon(0 0, 100% 0, 100% 60%, 50% 100%, 0 60%)"></span></span>
+<span id="ed-cabezal" aria-hidden="true" title="Arrastrá el cabezal" style="position: absolute; top: -26px; bottom: -48px; left: 0; width: 2px; background: #FF7A5C; z-index: 3; pointer-events: none"><span class="agarre" style="position: absolute; top: -6px; bottom: 0; left: -11px; width: 24px; cursor: ew-resize; pointer-events: auto; touch-action: none"></span><span class="cabeza" style="position: absolute; top: -2px; left: -9px; width: 20px; height: 18px; background: #FF7A5C; clip-path: polygon(0 0, 100% 0, 100% 60%, 50% 100%, 0 60%); pointer-events: none"></span></span>
 </div>
 <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5EE6A8">A1</span>
 <div aria-hidden="true" style="display: flex; gap: 3px">
@@ -216,7 +218,7 @@ var CUENTAS = [
 { id: 'aconcagua', n: 'Aconcagua Beach Voley', color: '#22C3D6', sub: 'cuenta actual' },
 { id: 'molten', n: 'Molten', color: '#FFD23F', sub: 'sponsor · Aconcagua' },
 { id: 'lisarts', n: 'Lisarts Studios', color: '#B79CFF', sub: 'mi cuenta' },
-{ id: 'arcoiris', n: 'Arcoiris Colchones', color: '#5EE6A8', sub: '3 videos · en camino', vacia: true }
+{ id: 'arcoiris', n: 'Arcoiris Colchones', color: '#5EE6A8', sub: 'colchones y sommiers' }
 ];
 var CLIPS = [
 { cuenta: 'aconcagua', titulo: 'Se acercan los torneos', tipo: 'Reel vertical · 2026', desc: 'Reel de entrenamiento con texto que acompaña el corte, para anunciar la temporada de torneos.', video: 'media/ee4ebb1d646941e13bb5c451feda75d0.mp4', poster: 'media/2952803f9d33fdb73a90b6ca6d8bd823.jpg', tira: 'media/cd27eab7f82a476f47d0d955e5e68daa.jpg', dur: 21 },
@@ -225,6 +227,8 @@ var CLIPS = [
 { cuenta: 'aconcagua', titulo: '¿El sol hace que entrenemos mejor?', tipo: 'Reel vertical · 2026', desc: 'Reel corto con pregunta para generar comentarios.', video: 'media/6bce1629a2500869a0d3426ff6a675d5.mp4', poster: 'media/1d221f988541db48ee215e086ea611df.jpg', tira: 'media/a5d43ea06dffde5b16ecdad5a5f11134.jpg', dur: 6 },
 { cuenta: 'aconcagua', titulo: 'Sponsors en la cancha', tipo: 'Reel vertical · 2026', desc: 'Reel que muestra a los sponsors del club en el día a día de la cancha.', video: 'media/fd0379bd8d51887cfca41502b6a36ac6.mp4', poster: 'media/f51a45e7dc10f6d055437653738294f9.jpg', tira: 'media/ac863d9f5376966879550d502be79ed0.jpg', dur: 55 },
 { cuenta: 'molten', titulo: 'Molten — feel the emotion', tipo: 'Video para sponsor · 2026', desc: 'Video para Molten, sponsor de Aconcagua Beach Voley, con la pelota como protagonista.', video: 'media/37c49347dbea1e340d54d9de601e6dab.mp4', poster: 'media/968cc96a5019d7516c7c102d1246900b.jpg', tira: 'media/dabd55e3431e45fbad7e5b9c5725d48c.jpg', dur: 49 },
+{ cuenta: 'arcoiris', titulo: 'En Vicente López están durmiendo cómodos', tipo: 'Reel vertical · 2026', desc: 'Reel para la sucursal de Vicente López de Arcoiris Colchones: arranca con un cartel en la calle y recorre el local.', video: 'media/027bda6f31745b7c905d2b94a5a38939.mp4', poster: 'media/e9635bb187f959d999ce85ef06bca6bb.jpg', tira: 'media/d604284b770ef7f26fc6707494affa1f.jpg', dur: 32 },
+{ cuenta: 'arcoiris', titulo: '+50 años en el rubro', tipo: 'Reel vertical · 2026', desc: 'Reel de un local de Arcoiris Colchones: colchones infantiles, fabricación propia y más de 50 años en el rubro.', video: 'media/3574882490fe41c74fb25fedd05a44d0.mp4', poster: 'media/25302fb2a3ce22722b0adcc5b178e031.jpg', tira: 'media/21c231b24a762a3d808bd7671d2e4ba9.jpg', dur: 35 },
 { cuenta: 'lisarts', titulo: 'Reels Lisarts #1', tipo: 'Reel para mi cuenta · 2026', desc: 'Contenido para la cuenta de Lisarts Studios.', video: 'media/8787abc02ee2875e57f9069dffa1141f.mp4', poster: 'media/6b00edbf1c959140989da1351f6cc22f.jpg', tira: 'media/6b00edbf1c959140989da1351f6cc22f.jpg', dur: 12 },
 { cuenta: 'lisarts', titulo: 'Reels Lisarts #2', tipo: 'Reel para mi cuenta · 2026', desc: 'Contenido para la cuenta de Lisarts Studios.', video: 'media/73dfcd6206bb22ef80dfb328468b104b.mp4', poster: 'media/399dd5ece241cedd948f6e1c68c1ee58.jpg', tira: 'media/399dd5ece241cedd948f6e1c68c1ee58.jpg', dur: 12 },
 { cuenta: 'lisarts', titulo: 'Reels Lisarts #3', tipo: 'Reel para mi cuenta · 2026', desc: 'Contenido para la cuenta de Lisarts Studios.', video: 'media/2f1151118b1f38201363152821344a32.mp4', poster: 'media/e0b4784012a4d363df5ffa7f689b86fb.jpg', tira: 'media/e0b4784012a4d363df5ffa7f689b86fb.jpg', dur: 12 },
@@ -249,19 +253,52 @@ self.raf = requestAnimationFrame(loop);
 var st = self.state || {}, bin = st.bin || 'aconcagua', ids = delBin(bin), sel = typeof st.sel === 'number' ? st.sel : ids[0];
 var pista = document.getElementById('ed-pista'), cab = document.getElementById('ed-cabezal'), tcEl = document.getElementById('ed-tc');
 if (!pista || !cab) return;
+var pv = document.getElementById('ed-monitor'), pd = self.pend;
+if (pd && pv && CLIPS[pd.idx].video && pv.getAttribute('src') === CLIPS[pd.idx].video && pv.readyState >= 1 && pv.duration) {
+self.pend = null; try { pv.currentTime = pd.f * pv.duration; } catch (e) {}
+if (pd.play) { var q = pv.play(); if (q && q.catch) q.catch(function () {}); } else if (!pv.paused) pv.pause();
+}
 var el = document.getElementById('clip-' + sel); if (!el) return;
 var v = document.getElementById('ed-monitor'), c = CLIPS[sel];
 var t = 0, d = c.dur;
 if (c.video && v && v.duration) { t = v.currentTime; d = v.duration; }
 var p = d ? Math.min(1, t / d) : 0;
-cab.style.left = (el.offsetLeft + el.offsetWidth * p) + 'px';
+if (!self.arrastrando) cab.style.left = (el.offsetLeft + el.offsetWidth * p) + 'px';
 var antes = 0; ids.forEach(function (i) { if (i < sel) antes += CLIPS[i].dur; });
 if (tcEl) tcEl.textContent = tc(antes + t);
 if (c.video && v && v.ended && self.ultimo !== sel) { self.ultimo = sel; var k = ids.indexOf(sel); if (k < ids.length - 1) self.irA(ids[k + 1], 0); }
 };
 this.raf = requestAnimationFrame(loop);
+var arr = null;
+var aTiempo = function (cx, soltar) {
+var pista = document.getElementById('ed-pista'); if (!pista) return;
+var r = pista.getBoundingClientRect(), x = Math.max(0, Math.min(r.width - 1, cx - r.left));
+var cl = pista.querySelectorAll('.clip'), el = null;
+for (var i = 0; i < cl.length; i++) { if (x >= cl[i].offsetLeft && x <= cl[i].offsetLeft + cl[i].offsetWidth) { el = cl[i]; break; } }
+if (!el) { for (var j = 0; j < cl.length; j++) { if (cl[j].offsetLeft > x) { el = cl[j]; break; } } if (!el) el = cl[cl.length - 1]; }
+if (!el) return;
+var idx = +el.id.replace('clip-', ''), f = Math.min(0.999, Math.max(0, (x - el.offsetLeft) / el.offsetWidth));
+var cab = document.getElementById('ed-cabezal'); if (cab) cab.style.left = x + 'px';
+var st = self.state || {}, ids0 = delBin(st.bin || 'aconcagua'), antes0 = 0; ids0.forEach(function (i) { if (i < idx) antes0 += CLIPS[i].dur; });
+var tcEl0 = document.getElementById('ed-tc'); if (tcEl0) tcEl0.textContent = tc(antes0 + f * CLIPS[idx].dur);
+if (st.sel !== idx) { self.ultimo = null; self.setState({ sel: idx }); }
+self.pend = { idx: idx, f: f, play: !!soltar };
+};
+this.onDown = function (e) {
+var t = e.target; if (!t || !t.closest) return;
+if (!t.closest('#ed-cabezal .agarre') && !t.closest('#ed-regla')) return;
+e.preventDefault(); arr = true; self.arrastrando = true;
+var cab = document.getElementById('ed-cabezal'); if (cab) cab.classList.add('arrastrando');
+aTiempo(e.clientX, false);
+};
+this.onMove = function (e) { if (!arr) return; e.preventDefault(); aTiempo(e.clientX, false); };
+this.onUp = function (e) { if (!arr) return; arr = null; self.arrastrando = false; var cab = document.getElementById('ed-cabezal'); if (cab) cab.classList.remove('arrastrando'); aTiempo(e.clientX, true); };
+document.addEventListener('pointerdown', this.onDown);
+document.addEventListener('pointermove', this.onMove, { passive: false });
+document.addEventListener('pointerup', this.onUp);
+document.addEventListener('pointercancel', this.onUp);
 }
-componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); document.removeEventListener('scroll', this.onScroll, { capture: true }); cancelAnimationFrame(this.raf); }
+componentWillUnmount() { document.removeEventListener('pointerdown', this.onDown); document.removeEventListener('pointermove', this.onMove); document.removeEventListener('pointerup', this.onUp); document.removeEventListener('pointercancel', this.onUp); window.removeEventListener('scroll', this.onScroll); document.removeEventListener('scroll', this.onScroll, { capture: true }); cancelAnimationFrame(this.raf); }
 irA(i, frac) {
 var self = this; this.ultimo = null;
 this.setState({ sel: i });
