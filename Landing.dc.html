@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lisarts Studios — Landing Pages</title>
+<meta name="description" content="Lisandro Martínez Mendoza · Lisarts Studios — Animación 2D/3D, Motion Graphics, Edición de video, Visualizers e Ilustración.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#071F24}
+a{color:#22C3D6}a:hover{color:#7FE0EB}
+html{scroll-behavior:smooth}
+@keyframes entrar{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.entra{animation:entrar .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d)}
+@keyframes tipea{from{opacity:0}to{opacity:1}}
+.tl{opacity:0;animation:tipea .01s linear forwards;animation-delay:calc(var(--i) * 70ms + .4s)}
+@keyframes cursor{0%,49%{opacity:1}50%,100%{opacity:0}}
+.caret{display:inline-block;width:.08em;height:.85em;margin-left:.04em;background:#22C3D6;vertical-align:-.05em;animation:cursor .9s steps(1,end) infinite}
+@keyframes armar{0%,8%{transform:scaleX(0)}20%,88%{transform:scaleX(1)}96%,100%{transform:scaleX(0)}}
+.bloque{transform-origin:0 50%;transform:scaleX(0);animation:armar 6s cubic-bezier(.3,1.3,.5,1) infinite;animation-delay:var(--d)}
+@keyframes mouse{0%,30%{transform:translate(120px,40px)}46%,52%{transform:translate(0,0)}60%,100%{transform:translate(60px,90px)}}
+.mouse{animation:mouse 6s cubic-bezier(.6,0,.3,1) infinite}
+@keyframes click{0%,47%{transform:scale(0);opacity:.8}53%{transform:scale(1.6);opacity:0}100%{transform:scale(1.6);opacity:0}}
+.click{animation:click 6s ease-out infinite}
+@keyframes boton{0%,46%{transform:none}49%{transform:scale(.9)}53%,100%{transform:none}}
+.boton-cta{animation:boton 6s ease-out infinite}
+@keyframes brillo{from{background-position:-200% 0}to{background-position:200% 0}}
+.esqueleto{background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.22) 50%,rgba(255,255,255,0) 100%),var(--b);background-size:200% 100%,100% 100%;animation:brillo 2.2s linear infinite}
+.web{all:unset;box-sizing:border-box;display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:#0B2E35;border:1.5px solid #164650;transition:transform .35s cubic-bezier(.3,1.5,.5,1),border-color .2s,box-shadow .35s}
+.web:hover,.web:focus-within{transform:translateY(-6px);border-color:var(--c);box-shadow:0 22px 44px rgba(0,0,0,.35)}
+.pantalla-web{position:relative;aspect-ratio:16 / 10;overflow:hidden;background:#F2F7F8}
+.pantalla-web img.largo{position:absolute;left:0;top:0;width:100%;height:auto;transition:transform 6s cubic-bezier(.45,0,.55,1)}
+.web:hover .pantalla-web img.largo,.web:focus-within .pantalla-web img.largo{transform:translateY(calc(-100% + 100cqh))}
+.pantalla-web{container-type:size}
+.btn{transition:transform .25s cubic-bezier(.3,1.6,.5,1)}.btn:hover,.btn:focus-visible{transform:translateY(-3px) rotate(-1.5deg)}
+@keyframes ventana{from{clip-path:inset(50% 50% 50% 50% round 18px)}to{clip-path:inset(0 0 0 0 round 0)}}
+.cortina{position:fixed;inset:0;z-index:300;pointer-events:none;background:#E8F4F6;animation:cierra .7s cubic-bezier(.7,0,.2,1) .15s both}
+@keyframes cierra{from{clip-path:inset(0 0 0 0)}to{clip-path:inset(0 0 100% 0)}}
+@media (prefers-reduced-motion:reduce){.entra,.tl,.caret,.bloque,.mouse,.click,.boton-cta,.esqueleto{animation:none}.tl{opacity:1}.bloque{transform:none}.cortina{display:none}.web,.btn,.pantalla-web img.largo{transition:none}}
+</style>
+
+</head>
+<body>
+<div id="dc-root"></div>
+<template id="dc-tpl">
+
+<div style="font-family: Inter, system-ui, sans-serif; color: #E8F4F6; background: #071F24; position: relative; isolation: isolate; min-height: 100vh; overflow-x: clip">
+
+<div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; pointer-events: none; background-image: radial-gradient(rgba(34,195,214,0.14) 1px, transparent 1px); background-size: 22px 22px"></div>
+
+<div style="position: sticky; top: 0; z-index: 100; background: {{barraFondo}}; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid {{barraBorde}}; transition: background .3s ease, border-color .3s ease">
+<header style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between">
+<a href="Main.dc.html" class="btn" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px; background: #E8F4F6; color: #071F24; text-decoration: none; font-weight: 600; font-size: 14px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Volver al inicio</a>
+<nav aria-label="Secciones" style="display: flex; flex-wrap: wrap; gap: 4px; font-size: 14px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6"><a href="{{t.href}}" style="{{t.estilo}}">{{t.label}}</a></sc-for>
+</nav>
+</header>
+</div>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: 44px 24px 28px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center">
+<div style="flex: 3 1 500px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<p class="entra" style="--d: 0s; margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #8FC3CB">SECCIÓN 06 / 06 · WEB</p>
+<div class="entra" aria-hidden="true" style="--d: .1s; align-self: flex-start; display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: #0B2E35; border: 1.5px solid #164650; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #8FC3CB"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5EE6A8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>https://<span style="color: #FFFFFF">tu-marca</span>.com</div>
+<h1 aria-label="Landing Pages" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(54px, 9vw, 120px); line-height: 0.95; letter-spacing: -0.035em; color: #FFFFFF">
+<span aria-hidden="true" style="display: block; white-space: nowrap"><sc-for list="{{t1}}" as="l" hint-placeholder-count="7"><span class="tl" style="--i: {{l.i}}">{{l.c}}</span></sc-for></span>
+<span aria-hidden="true" style="display: block; white-space: nowrap; color: #22C3D6"><sc-for list="{{t2}}" as="l" hint-placeholder-count="5"><span class="tl" style="--i: {{l.i}}">{{l.c}}</span></sc-for><span class="caret"></span></span>
+</h1>
+<p class="entra" style="--d: 1.4s; margin: 0; font-family: Caveat, cursive; font-size: 32px; color: #FFD23F; transform: rotate(-2deg); align-self: flex-start">páginas que se mueven y venden</p>
+<p class="entra" style="--d: 1.5s; margin: 0; font-size: 18px; line-height: 1.55; color: #B9D6DB; max-width: 580px">Diseño y armo landing pages para marcas: una página clara, rápida y con movimiento, pensada para que el cliente entienda qué ofrecés y te escriba.</p>
+<div class="entra" style="--d: 1.6s; display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="4"><span style="padding: 9px 16px; border-radius: 999px; border: 1.5px solid #3E6E76; font-size: 14px; font-weight: 500">{{t}}</span></sc-for>
+</div>
+</div>
+<div aria-hidden="true" style="flex: 2 1 340px; min-width: 0; display: flex; justify-content: center">
+<div style="position: relative; width: min(100%, 420px); border-radius: 16px; overflow: hidden; background: #F2F7F8; box-shadow: 0 30px 60px rgba(0,0,0,0.35); transform: rotate(2deg)">
+<div style="height: 30px; background: #164650; display: flex; align-items: center; gap: 6px; padding: 0 12px"><span style="width: 9px; height: 9px; border-radius: 50%; background: #FF7A5C"></span><span style="width: 9px; height: 9px; border-radius: 50%; background: #FFD23F"></span><span style="width: 9px; height: 9px; border-radius: 50%; background: #5EE6A8"></span><span style="margin-left: 10px; height: 14px; flex: 1 1 auto; max-width: 200px; border-radius: 999px; background: #071F24"></span></div>
+<div style="position: relative; padding: 18px; display: flex; flex-direction: column; gap: 10px; height: 250px; box-sizing: border-box">
+<span class="bloque" style="--d: 0s; display: block; height: 14px; width: 40%; border-radius: 4px; background: #071F24"></span>
+<span class="bloque" style="--d: .15s; display: block; height: 70px; border-radius: 10px; background: #22C3D6"></span>
+<span class="bloque" style="--d: .3s; display: block; height: 9px; width: 80%; border-radius: 4px; background: #8FC3CB"></span>
+<span class="bloque" style="--d: .4s; display: block; height: 9px; width: 60%; border-radius: 4px; background: #8FC3CB"></span>
+<div style="display: flex; gap: 8px"><span class="bloque" style="--d: .55s; display: block; flex: 1 1 0; height: 46px; border-radius: 8px; background: #B79CFF"></span><span class="bloque" style="--d: .65s; display: block; flex: 1 1 0; height: 46px; border-radius: 8px; background: #5EE6A8"></span><span class="bloque" style="--d: .75s; display: block; flex: 1 1 0; height: 46px; border-radius: 8px; background: #FFD23F"></span></div>
+<span class="bloque boton-cta" style="--d: .9s; display: block; align-self: flex-start; height: 24px; width: 120px; border-radius: 999px; background: #FF7A5C"></span>
+<span style="position: absolute; left: 78px; bottom: 26px; width: 0; height: 0">
+<span class="click" style="position: absolute; left: -14px; top: -14px; width: 28px; height: 28px; border-radius: 50%; border: 2px solid #FF7A5C"></span>
+<svg class="mouse" width="22" height="22" viewBox="0 0 24 24" style="position: absolute; left: -2px; top: -2px"><path d="M4 2 L4 20 L9 15 L12.5 22 L15.5 20.5 L12 14 L19 14 Z" fill="#071F24" stroke="#FFFFFF" stroke-width="1.4" stroke-linejoin="round"></path></svg>
+</span>
+</div>
+</div>
+</div>
+</section>
+
+<section aria-label="Landings" style="max-width: 1200px; margin: 0 auto; padding: 28px 24px 16px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; align-items: baseline">
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(36px, 5.4vw, 68px); line-height: 1; letter-spacing: -0.02em; color: #FFFFFF">Páginas que hice</h2>
+<p style="margin: 0; font-family: Caveat, cursive; font-size: 26px; color: #FFD23F; transform: rotate(-2deg)">pasá el mouse y recorré cada página</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 24px">
+<sc-for list="{{sitios}}" as="s" hint-placeholder-count="2">
+<article class="web" style="--c: {{s.color}}">
+<div style="height: 34px; flex: 0 0 auto; background: #164650; display: flex; align-items: center; gap: 6px; padding: 0 12px">
+<span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #FF7A5C"></span><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #FFD23F"></span><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #5EE6A8"></span>
+<span style="margin-left: 8px; min-width: 0; flex: 1 1 auto; height: 20px; border-radius: 999px; background: #071F24; display: flex; align-items: center; padding: 0 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8FC3CB; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{s.url}}</span>
+</div>
+<div class="pantalla-web">
+<sc-if value="{{s.hayShot}}" hint-placeholder-val="{{ false }}"><img class="largo" src="{{s.shot}}" alt="Vista de la página {{s.titulo}}" loading="lazy"></sc-if>
+<sc-if value="{{s.sinShot}}" hint-placeholder-val="{{ true }}">
+<div aria-hidden="true" style="position: absolute; inset: 0; background: {{s.fondo}}; padding: 7% 8%; box-sizing: border-box; display: flex; flex-direction: column; gap: 6%">
+<div style="display: flex; justify-content: space-between; align-items: center"><span class="esqueleto" style="--b: {{s.color}}; display: block; width: 26%; height: 10px; border-radius: 4px"></span><span class="esqueleto" style="--b: {{s.linea}}; display: block; width: 30%; height: 7px; border-radius: 4px"></span></div>
+<span class="esqueleto" style="--b: {{s.linea}}; display: block; width: 70%; height: 18px; border-radius: 5px"></span>
+<span class="esqueleto" style="--b: {{s.linea}}; display: block; width: 50%; height: 9px; border-radius: 4px"></span>
+<span class="esqueleto" style="--b: {{s.color}}; display: block; width: 32%; height: 20px; border-radius: 999px"></span>
+<div style="display: flex; gap: 6%; flex: 1 1 auto"><span class="esqueleto" style="--b: {{s.linea}}; display: block; flex: 1 1 0; border-radius: 8px"></span><span class="esqueleto" style="--b: {{s.linea}}; display: block; flex: 1 1 0; border-radius: 8px"></span><span class="esqueleto" style="--b: {{s.linea}}; display: block; flex: 1 1 0; border-radius: 8px"></span></div>
+<span style="position: absolute; right: 10px; bottom: 10px; padding: 4px 9px; border-radius: 6px; background: rgba(7,31,36,0.85); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #FFD23F">vista previa en camino</span>
+</div>
+</sc-if>
+</div>
+<div style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 10px; flex: 1 1 auto">
+<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between">
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: #FFFFFF">{{s.titulo}}</span>
+<span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; background: {{s.color}}; color: #071F24; font-size: 12px; font-weight: 800; letter-spacing: 0.04em"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"></path></svg>HECHA POR MÍ</span>
+</div>
+<span style="font-size: 15px; line-height: 1.5; color: #B9D6DB">{{s.desc}}</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{s.roles}}" as="r" hint-placeholder-count="3"><span style="padding: 5px 11px; border-radius: 999px; border: 1.5px solid #3E6E76; font-size: 12px; font-weight: 600">{{r}}</span></sc-for>
+</div>
+<div style="padding-top: 4px">
+<sc-if value="{{s.hayLink}}" hint-placeholder-val="{{ false }}"><a class="btn" href="{{s.link}}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 18px; border-radius: 999px; background: {{s.color}}; color: #071F24; font-weight: 700; text-decoration: none">Visitar la página <span aria-hidden="true">↗</span></a></sc-if>
+<sc-if value="{{s.sinLink}}" hint-placeholder-val="{{ true }}"><span style="display: inline-flex; align-items: center; min-height: 46px; padding: 0 18px; border-radius: 999px; border: 1.5px dashed #3E6E76; color: #8FC3CB; font-weight: 600">Link próximamente</span></sc-if>
+</div>
+</div>
+</article>
+</sc-for>
+<article aria-label="Próxima landing" style="border-radius: 16px; border: 2px dashed #3E6E76; display: flex; flex-direction: column; overflow: hidden; background: repeating-linear-gradient(135deg, rgba(34,195,214,0.05) 0 12px, transparent 12px 24px)">
+<div aria-hidden="true" style="height: 34px; background: rgba(22,70,80,0.6); display: flex; align-items: center; gap: 6px; padding: 0 12px"><span style="width: 10px; height: 10px; border-radius: 50%; background: #3E6E76"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #3E6E76"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #3E6E76"></span></div>
+<div style="flex: 1 1 auto; min-height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 24px; text-align: center">
+<span aria-hidden="true" style="width: 56px; height: 56px; border-radius: 50%; border: 2px dashed #22C3D6; display: flex; align-items: center; justify-content: center; font-size: 28px; color: #22C3D6">+</span>
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: #FFFFFF">Nueva landing en construcción</span>
+<span style="font-family: Caveat, cursive; font-size: 24px; color: #FFD23F">se viene pronto</span>
+</div>
+</article>
+</div>
+</section>
+
+<section style="padding: 48px 24px 64px">
+<div style="max-width: 1200px; margin: 0 auto; box-sizing: border-box; background: #22C3D6; color: #071F24; border-radius: 28px; padding: clamp(28px, 4vw, 52px); display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between">
+<div style="flex: 1 1 380px; display: flex; flex-direction: column; gap: 6px">
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.05">¿Tu marca necesita su página?</h2>
+<p style="margin: 0; font-family: Caveat, cursive; font-size: 26px">la diseño, la animo y la dejo online</p>
+</div>
+<a class="btn" href="https://wa.me/5491158165994" style="background: #071F24; color: #FFFFFF; font-weight: 600; padding: 0 26px; min-height: 54px; display: inline-flex; align-items: center; border-radius: 999px; text-decoration: none">Escribime por WhatsApp</a>
+</div>
+<div style="max-width: 1200px; margin: 28px auto 0; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between">
+<a class="btn" href="Ilustracion.dc.html" style="min-height: 48px; display: inline-flex; align-items: center; padding: 0 20px; border-radius: 999px; border: 1.5px solid #3E6E76; color: #FFFFFF; text-decoration: none; font-weight: 600">← Ilustración y Storyboard</a>
+<a class="btn" href="Main.dc.html#contacto" style="min-height: 48px; display: inline-flex; align-items: center; padding: 0 20px; border-radius: 999px; border: 1.5px solid #3E6E76; color: #FFFFFF; text-decoration: none; font-weight: 600">Contacto →</a>
+</div>
+</section>
+
+<div class="cortina" aria-hidden="true"></div>
+</div>
+</template>
+<script type="text/plain" id="dc-src" data-props='{"$preview":{"width":1280,"height":1900}}'>
+var SITIOS = [
+{ titulo: 'Sanitarios Públicos', url: 'sanitarios públicos · link próximamente', link: '', shot: '', color: '#22C3D6', fondo: '#F2F7F8', linea: '#C9D6DA', desc: 'Landing de venta para una empresa de boxes sanitarios: productos, galería con fotos a pantalla completa, clientes y pedido de cotización directo por WhatsApp.', roles: ['Diseño web', 'Armado', 'Contenido'] },
+{ titulo: 'Módulos y Tabiques', url: 'módulos y tabiques · link próximamente', link: '', shot: '', color: '#FFD23F', fondo: '#0B2E35', linea: '#164650', desc: 'Landing de venta para el lanzamiento de una marca nueva de tabiques sanitarios, con identidad propia.', roles: ['Diseño web', 'Armado', 'Contenido'] }
+];
+var TABS = [['Animacion.dc.html', 'Animación', '#22C3D6'], ['Motion.dc.html', 'Motion', '#FFD23F'], ['Edicion.dc.html', 'Edición', '#FF7A5C'], ['MusicVisuals.dc.html', 'Visualizers', '#B79CFF'], ['Ilustracion.dc.html', 'Ilustración', '#5EE6A8'], ['Landing.dc.html', 'Landings', '#E8F4F6']];
+function letras(t, desde) { return t.split('').map(function (c, k) { return { c: c === ' ' ? ' ' : c, i: desde + k }; }); }
+class Component extends DCLogic {
+componentDidMount() { var self = this; this.onScroll = function (e) { var t = e && e.target && e.target.scrollTop; var y = Math.max(window.scrollY || 0, document.documentElement.scrollTop || 0, t || 0); var on = y > 30; if (on !== !!(self.state && self.state.bajo)) self.setState({ bajo: on }); }; window.addEventListener('scroll', this.onScroll, { passive: true }); document.addEventListener('scroll', this.onScroll, { passive: true, capture: true }); }
+componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); document.removeEventListener('scroll', this.onScroll, { capture: true }); }
+renderVals() {
+var st = this.state || {};
+var tabs = TABS.map(function (t) { var a = t[0] === 'Landing.dc.html'; return { href: t[0], label: t[1], estilo: 'text-decoration: none; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 999px; font-weight: 600; ' + (a ? 'background: ' + t[2] + '; color: #071F24' : 'color: #B9D6DB') }; });
+return {
+barraFondo: st.bajo ? 'rgba(7,31,36,0.55)' : 'rgba(7,31,36,1)', barraBorde: st.bajo ? 'rgba(62,110,118,0.6)' : 'transparent',
+tabs: tabs, t1: letras('Landing', 0), t2: letras('Pages', 7),
+tools: ['Diseño web', 'Animación web', 'Responsive'],
+sitios: SITIOS.map(function (s) { return { titulo: s.titulo, url: s.url, link: s.link, hayLink: !!s.link, sinLink: !s.link, shot: s.shot, hayShot: !!s.shot, sinShot: !s.shot, color: s.color, fondo: s.fondo, linea: s.linea, desc: s.desc, roles: s.roles }; })
+};
+}
+}
+</script>
+<script src="morphdom.js"></script>
+<script src="dc-lite.js"></script>
+</body>
+</html>

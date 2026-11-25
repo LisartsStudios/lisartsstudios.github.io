@@ -67,7 +67,7 @@ html{scroll-behavior:smooth}
 
 <section style="max-width: 1200px; margin: 0 auto; padding: 44px 24px 28px; display: flex; flex-wrap: wrap; gap: 36px; align-items: center">
 <div style="flex: 3 1 500px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
-<p class="entra" style="--d: 0s; margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #8FC3CB">SECCIÓN 05 / 05 · DEL BOCETO AL COLOR</p>
+<p class="entra" style="--d: 0s; margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #8FC3CB">SECCIÓN 05 / 06 · DEL BOCETO AL COLOR</p>
 <h1 aria-label="Ilustración y Storyboard" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(48px, 7.6vw, 104px); line-height: 1; letter-spacing: -0.03em">
 <span aria-hidden="true" class="titulo-l" style="--c: #FFFFFF; --d: .3s"><span class="boceto">Ilustración</span><span class="tinta">Ilustración</span><span class="punta"></span></span>
 <span aria-hidden="true" class="titulo-l" style="--c: #5EE6A8; --d: 1.1s"><span class="boceto">y Storyboard</span><span class="tinta">y Storyboard</span><span class="punta"></span></span>
@@ -160,7 +160,7 @@ html{scroll-behavior:smooth}
 </div>
 <div style="max-width: 1200px; margin: 28px auto 0; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between">
 <a class="btn" href="MusicVisuals.dc.html" style="min-height: 48px; display: inline-flex; align-items: center; padding: 0 20px; border-radius: 999px; border: 1.5px solid #3E6E76; color: #FFFFFF; text-decoration: none; font-weight: 600">← Visualizers Musicales</a>
-<a class="btn" href="Main.dc.html#contacto" style="min-height: 48px; display: inline-flex; align-items: center; padding: 0 20px; border-radius: 999px; border: 1.5px solid #3E6E76; color: #FFFFFF; text-decoration: none; font-weight: 600">Contacto →</a>
+<a class="btn" href="Landing.dc.html" style="min-height: 48px; display: inline-flex; align-items: center; padding: 0 20px; border-radius: 999px; border: 1.5px solid #3E6E76; color: #FFFFFF; text-decoration: none; font-weight: 600">Landing Pages →</a>
 </div>
 </section>
 
@@ -243,7 +243,7 @@ var STARS = [
 { k: 'sc54', titulo: 'Diseño de personaje', tipo: 'Stars in the City · personajes' }
 ];
 var ROTS = ['-2.5deg', '1.8deg', '-1deg', '2.6deg', '-1.8deg', '1deg', '-3deg', '2deg'];
-var TABS = [['Animacion.dc.html', 'Animación', '#22C3D6'], ['Motion.dc.html', 'Motion', '#FFD23F'], ['Edicion.dc.html', 'Edición', '#FF7A5C'], ['MusicVisuals.dc.html', 'Visualizers', '#B79CFF'], ['Ilustracion.dc.html', 'Ilustración', '#5EE6A8']];
+var TABS = [['Animacion.dc.html', 'Animación', '#22C3D6'], ['Motion.dc.html', 'Motion', '#FFD23F'], ['Edicion.dc.html', 'Edición', '#FF7A5C'], ['MusicVisuals.dc.html', 'Visualizers', '#B79CFF'], ['Ilustracion.dc.html', 'Ilustración', '#5EE6A8'], ['Landing.dc.html', 'Landings', '#E8F4F6']];
 class Component extends DCLogic {
 componentDidMount() { var self = this; this.onScroll = function (e) { var t = e && e.target && e.target.scrollTop; var y = Math.max(window.scrollY || 0, document.documentElement.scrollTop || 0, t || 0); var on = y > 30; if (on !== !!(self.state && self.state.bajo)) self.setState({ bajo: on }); }; window.addEventListener('scroll', this.onScroll, { passive: true }); document.addEventListener('scroll', this.onScroll, { passive: true, capture: true }); }
 componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); document.removeEventListener('scroll', this.onScroll, { capture: true }); }

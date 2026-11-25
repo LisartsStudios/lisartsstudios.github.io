@@ -89,7 +89,7 @@ html{scroll-behavior:smooth}
 
 <section style="max-width: 1200px; margin: 0 auto; padding: 44px 24px 36px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center">
 <div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
-<p class="entra" style="--d: 0s; margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #8FC3CB">SECCIÓN 03 / 05 · SECUENCIA_01</p>
+<p class="entra" style="--d: 0s; margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #8FC3CB">SECCIÓN 03 / 06 · SECUENCIA_01</p>
 <h1 aria-label="Edición de video" style="position: relative; margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(54px, 9vw, 124px); line-height: 1; letter-spacing: -0.035em; color: #FFFFFF">
 <span aria-hidden="true" class="linea2"><span class="trozo" style="--cd: 0s"><span class="clipx" style="--fx: 1.6em; --fy: -0.5em; --d: .15s">Edi</span></span><span class="trozo corte" style="--cd: 3.4s"><span class="clipx" style="--fx: -1.4em; --fy: 0.4em; --d: .3s">ción</span></span></span>
 <span aria-hidden="true" class="linea2" style="color: #FF7A5C"><span class="trozo" style="--cd: 0s"><span class="clipx" style="--fx: 2.4em; --fy: 0.5em; --d: .45s">de</span></span><span class="trozo corte" style="--cd: 3.9s"><span class="clipx" style="--fx: -1.2em; --fy: -0.4em; --d: .6s">&nbsp;vi</span></span><span class="trozo corte" style="--cd: 4.2s"><span class="clipx" style="--fx: 0.8em; --fy: 0.6em; --d: .75s">deo</span></span></span>
@@ -236,7 +236,7 @@ var CLIPS = [
 { cuenta: 'lisarts', titulo: 'Reels Lisarts #5', tipo: 'Reel para mi cuenta · 2026', desc: 'Contenido para la cuenta de Lisarts Studios.', video: 'media/573a67c19d8969062f1a0f7dfcdd0ca9.mp4', poster: 'media/e40886432824e4ba6a56d666321020b2.jpg', tira: 'media/e40886432824e4ba6a56d666321020b2.jpg', dur: 12 }
 ];
 var TOMAS = ['media/2952803f9d33fdb73a90b6ca6d8bd823.jpg', 'media/968cc96a5019d7516c7c102d1246900b.jpg', 'media/399ad04db6a0c89c2c6172675fafe77f.jpg', 'media/1d221f988541db48ee215e086ea611df.jpg', 'media/9fe857c7850163406870b993d997c1ac.jpg', 'media/f51a45e7dc10f6d055437653738294f9.jpg'];
-var TABS = [['Animacion.dc.html', 'Animación', '#22C3D6'], ['Motion.dc.html', 'Motion', '#FFD23F'], ['Edicion.dc.html', 'Edición', '#FF7A5C'], ['MusicVisuals.dc.html', 'Visualizers', '#B79CFF'], ['Ilustracion.dc.html', 'Ilustración', '#5EE6A8']];
+var TABS = [['Animacion.dc.html', 'Animación', '#22C3D6'], ['Motion.dc.html', 'Motion', '#FFD23F'], ['Edicion.dc.html', 'Edición', '#FF7A5C'], ['MusicVisuals.dc.html', 'Visualizers', '#B79CFF'], ['Ilustracion.dc.html', 'Ilustración', '#5EE6A8'], ['Landing.dc.html', 'Landings', '#E8F4F6']];
 function cuenta(id) { for (var i = 0; i < CUENTAS.length; i++) { if (CUENTAS[i].id === id) return CUENTAS[i]; } return CUENTAS[0]; }
 function delBin(id) { var r = []; CLIPS.forEach(function (c, i) { if (c.cuenta === id) r.push(i); }); return r; }
 function dos(n) { n = Math.floor(n); return n < 10 ? '0' + n : String(n); }

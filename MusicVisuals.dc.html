@@ -65,7 +65,7 @@ html{scroll-behavior:smooth}
 
 <section style="max-width: 1200px; margin: 0 auto; padding: 44px 24px 28px; display: flex; flex-wrap: wrap; gap: 36px; align-items: center">
 <div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
-<p class="entra" style="--d: 0s; margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #8FC3CB">SECCIÓN 04 / 05 · LADO A</p>
+<p class="entra" style="--d: 0s; margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #8FC3CB">SECCIÓN 04 / 06 · LADO A</p>
 <h1 aria-label="Visualizers Musicales" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(48px, 7.6vw, 106px); line-height: 0.98; letter-spacing: -0.03em; color: #FFFFFF">
 <span aria-hidden="true" style="display: block; white-space: nowrap"><sc-for list="{{t1}}" as="l" hint-placeholder-count="11"><span class="nota" style="--i: {{l.i}}; --b: {{l.b}}">{{l.c}}</span></sc-for></span>
 <span aria-hidden="true" style="display: block; white-space: nowrap; color: #B79CFF"><sc-for list="{{t2}}" as="l" hint-placeholder-count="9"><span class="nota" style="--i: {{l.i}}; --b: {{l.b}}">{{l.c}}</span></sc-for></span>
@@ -228,7 +228,7 @@ var DISCOS = [
 { yt: 'JBvWOcuXPZk', tapa: 'media/01899f16af5ec428a2e7befb9b60944d.jpg', titulo: 'Cart4s para v0s', artista: 'LICHA ft. Sanxhezz', tipo: 'Visualizer', color: '#FF7A5C' },
 { video: 'media/b7921f337c177bc145f226bf6da77557.mp4', poster: 'media/b764ecd8b97fe369a40ab540e1592b5f.jpg', titulo: 'Chiedo Solo a Dio', artista: 'Diego Smolovich y Lito Vitale', tipo: 'Trailer · videoclip animado', color: '#E8F4F6' }
 ];
-var TABS = [['Animacion.dc.html', 'Animación', '#22C3D6'], ['Motion.dc.html', 'Motion', '#FFD23F'], ['Edicion.dc.html', 'Edición', '#FF7A5C'], ['MusicVisuals.dc.html', 'Visualizers', '#B79CFF'], ['Ilustracion.dc.html', 'Ilustración', '#5EE6A8']];
+var TABS = [['Animacion.dc.html', 'Animación', '#22C3D6'], ['Motion.dc.html', 'Motion', '#FFD23F'], ['Edicion.dc.html', 'Edición', '#FF7A5C'], ['MusicVisuals.dc.html', 'Visualizers', '#B79CFF'], ['Ilustracion.dc.html', 'Ilustración', '#5EE6A8'], ['Landing.dc.html', 'Landings', '#E8F4F6']];
 function tapa(d) { return d.tapa || d.poster || ('https://i.ytimg.com/vi/' + d.yt + '/hqdefault.jpg'); }
 function yth(id) { return 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg'; }
 function lado(i) { var h = Math.ceil(DISCOS.length / 2); return (i < h ? 'A' : 'B') + ((i % h) + 1); }
